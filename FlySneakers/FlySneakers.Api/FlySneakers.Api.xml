@@ -1,0 +1,451 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlySneakers.Api</name>
+    </assembly>
+    <members>
+        <member name="M:FlySneakers.Api.Controllers.CarrinhoController.ObterCarrinhos(System.Int32)">
+            <summary>
+            Obter o carrinho do cliente informado pelo ID
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 serão retornados os carrinhos do usuario</remarks>
+            <response code="200">Carrinho retornado</response>
+            <response code="400">Carrinho não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.CarrinhoController.CadastrarCarrinho(FlySneakers.Borders.Models.Carrinho)">
+            <summary>
+            Cria carrinho para o usuario informado
+            </summary>
+            <remarks>Awesomeness!</remarks>
+            <response code="200">Carrinho criado</response>
+            <response code="400">Usuario não encontrando</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.CarrinhoController.RemoverCarrinho(System.Int32)">
+            <summary>
+            Remove item carrinho
+            </summary>
+            <remarks>Awesomeness!</remarks>
+            <response code="200">Carrinho removido</response>
+            <response code="400">Carrinho não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.CategoriaController.ObterCategorias">
+            <summary>
+            Obter todas as categorias cadastradas
+            </summary>
+            <response code="200">Categorias retornadas</response>
+            <response code="400">Categorias não encontradas</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.CategoriaController.ObterCategoria(System.Int32)">
+            <summary>
+            Obter a categoria informada pelo ID
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado a categoria</remarks>
+            <response code="200">Categoria retornada</response>
+            <response code="400">Categoria não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.CategoriaController.CadastrarCategoria(FlySneakers.Borders.Models.Categoria)">
+            <summary>
+            Criar nova categoria
+            </summary>
+            <response code="200">Categoria cadastrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.CategoriaController.AlterarCategoria(System.Int32,FlySneakers.Borders.Models.Categoria)">
+            <summary>
+            Alterar dados categoria
+            </summary>
+            <response code="200">Categoria alterada</response>
+            <response code="400">Categoria não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.CategoriaController.RemoverCategoria(System.Int32)">
+            <summary>
+            Remover categoria
+            </summary>
+            <response code="200">Categoria removida</response>
+            <response code="400">Categoria não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="T:FlySneakers.Api.Controllers.ComentarioController">
+            <summary>
+            Obter os comentarios do usuario a partir do ID informado
+            </summary>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ComentarioController.ObterComentariosUsuario(System.Int32)">
+            <summary>
+            Obter os comentarios do usuario a partir do ID informado
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado os comentarios dos usuarios</remarks>
+            <response code="200">Comentario retornada</response>
+            <response code="400">Comentario não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ComentarioController.ObterComentarioProduto(System.Int32)">
+            <summary>
+            Obter os comentarios do produto a partir do ID informado
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado os comentarios dos produtos</remarks>
+            <response code="200">Comentario retornada</response>
+            <response code="400">Comentario não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ComentarioController.CadastrarComentario(FlySneakers.Borders.Models.Comentario)">
+            <summary>
+            Cadastrar comentario
+            </summary>
+            <response code="200">Comentario criado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ComentarioController.AlterarComentario(System.Int32,FlySneakers.Borders.Models.Comentario)">
+            <summary>
+            Alterar comentario a partir do ID informado
+            </summary>
+            <response code="200">Comentario alterado</response>
+            <response code="400">Comentario não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ComentarioController.RemoverComentario(System.Int32)">
+            <summary>
+            Remover comentario a partir do ID informado
+            </summary>
+            <response code="200">Comentario removido</response>
+            <response code="400">Comentario não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.HealthCheckController.Get">
+            <summary>
+            Verificar saúde da API
+            </summary>
+            <remarks>EndPoint utilizado para verificar a saúde da API, se a mesma está sendo executada corretamente sem nenhum problema.</remarks>
+            <response code="200">API com status OK</response>
+            <response code="500">Erro inesperado na API</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MarcaController.ObterMarcas">
+            <summary>
+            Obter as marcas cadastradas
+            </summary>
+            <response code="200">Marcas retornadas</response>
+            <response code="400">Marcas não cadastradas</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MarcaController.ObterMarca(System.Int32)">
+            <summary>
+            Obter a marca a partir do ID informado
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado a marca</remarks>
+            <response code="200">Marca retornada</response>
+            <response code="400">Marca não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MarcaController.CadastrarMarca(FlySneakers.Borders.Models.Marca)">
+            <summary>
+            Cadastrar marca
+            </summary>
+            <response code="200">Marca cadastrada</response>
+            <response code="400">Marca não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MarcaController.AlterarMarca(System.Int32,FlySneakers.Borders.Models.Marca)">
+            <summary>
+            Alterar marca a partir do ID informado
+            </summary>
+            <response code="200">Marca alterada</response>
+            <response code="400">Marca não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MarcaController.RemoverMarca(System.Int32)">
+            <summary>
+            Remover marca
+            </summary>
+            <response code="200">Marca removida</response>
+            <response code="400">Marca não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MeiosPagamentoController.ObterMeioPagamentos">
+            <summary>
+            Obter os meios de pagamentos
+            </summary>
+            <response code="200">Meios de pagamentos retornados</response>
+            <response code="400">Meios de pagamentos não cadastrados</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MeiosPagamentoController.ObterMeioPagamento(System.Int32)">
+            <summary>
+            Obter meio de pagamento a partir do ID informado
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado o meio de pagamento</remarks>
+            <response code="200">Meio de pagamento retornado</response>
+            <response code="400">Meio de pagamento não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MeiosPagamentoController.CadastrarMeioPagamento(FlySneakers.Borders.Models.MeioPagamento)">
+            <summary>
+            Cadastrar meio de pagamento
+            </summary>
+            <response code="200">Meio de pagamento cadastrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MeiosPagamentoController.AlterarMeioPagamento(System.Int32,FlySneakers.Borders.Models.MeioPagamento)">
+            <summary>
+            Alterar meio de pagamento a partir do ID informado
+            </summary>
+            <response code="200">Meio de pagamento alterado</response>
+            <response code="400">Meio de pagamento não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.MeiosPagamentoController.RemoverMeioPagamento(System.Int32)">
+            <summary>
+            Remover meio de pagamento a partir do ID informado
+            </summary>
+            <response code="200">Meio de pagamento removido</response>
+            <response code="400">Meio de pagamento não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.PedidoController.ObterPedido(System.Int32,System.Int32)">
+            <summary>
+            Obter pedido a partir do ID informado
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado o pedido</remarks>
+            <response code="200">Pedido retornado</response>
+            <response code="400">Pedido não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.PedidoController.ObterPedidos(System.Int32)">
+            <summary>
+            Obter pedidos a partir do ID do usuario
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado os pedidos do usuário</remarks>
+            <response code="200">Pedido retornado</response>
+            <response code="400">Pedido não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.PedidoController.CadastrarPedido(FlySneakers.Borders.Models.Pedido)">
+            <summary>
+            Cadastrar pedido
+            </summary>
+            <response code="200">Pedido criado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.PedidoController.AlterarPedido(System.Int32,System.Int32)">
+            <summary>
+            Alterar dados pedido
+            </summary>
+            <response code="200">Pedido alterado</response>
+            <response code="400">Pedido não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutos">
+            <summary>
+            Obter produtos cadastrados
+            </summary>
+            <response code="200">Produtos retornados</response>
+            <response code="400">Produtos não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProduto(System.Int32)">
+            <summary>
+            Obter produto a partir do ID informado
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado o produto</remarks>
+            <response code="200">Produto retornado</response>
+            <response code="400">Produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.CadastrarProdutos(FlySneakers.Borders.Models.Produto)">
+            <summary>
+            Cadastrar produto
+            </summary>
+            <response code="200">Produto cadatrado</response>
+            <response code="400">Produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.AlterarDadosProduto(System.Int32,FlySneakers.Borders.Models.Produto)">
+            <summary>
+            Alterar produto a partir do ID informado
+            </summary>
+            <response code="200">Produto alterado</response>
+            <response code="400">Produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.RemoverProduto(System.Int32)">
+            <summary>
+            Remover produto a partir do ID informado
+            </summary>
+            <response code="200">Produto removido</response>
+            <response code="400">Produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutoSkusSkuController.ObterInformacoesProdutos">
+            <summary>
+            Obter todas as informações dos produtos
+            </summary>
+            <response code="200">Produtos retornados</response>
+            <response code="400">Produtos não encontrados</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutoSkusSkuController.ObterInformacoesProduto(System.Int32)">
+            <summary>
+            Obter todas as informações do produto a partir do ID informado
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado todos os dados do produto</remarks>
+            <response code="200">Produto retornado</response>
+            <response code="400">Produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutoSkusSkuController.ObterProdutoSku">
+            <summary>
+            Obter dados dos produtos
+            </summary>
+            <response code="200">Dados produtos retornados</response>
+            <response code="400">Dados produtos não encontrados</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutoSkusSkuController.ObterProdutoSku(System.Int32)">
+            <summary>
+            Obter dados produto a partir do ID informado
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado o dados produto</remarks>
+            <response code="200">Dados produto retornado</response>
+            <response code="400">Dados produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutoSkusSkuController.CadastrarProdutoSku(FlySneakers.Borders.Models.ProdutoSku)">
+            <summary>
+            Cadastrar dados produto
+            </summary>
+            <response code="200">Produto cadastrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutoSkusSkuController.AlterarDadosProdutoSku(System.Int32,FlySneakers.Borders.Models.ProdutoSku)">
+            <summary>
+            Alterar dados produto a partir do ID informado
+            </summary>
+            <response code="200">Dados produto alterado</response>
+            <response code="400">Dados produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutoSkusSkuController.AlterarEstoque(System.Int32,FlySneakers.Borders.Dto.EstoqueDto)">
+            <summary>
+            Alterar estoque produto a partir do ID informado
+            </summary>
+            <response code="200">Estoque alterado</response>
+            <response code="400">Dados produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutoSkusSkuController.RemoverProdutoSku(System.Int32)">
+            <summary>
+            Remover dados produto a partir do ID informado
+            </summary>
+            <response code="200">Dados produto removido</response>
+            <response code="400">Dados produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.ObterUsuarios">
+            <summary>
+            Obter usuarios
+            </summary>
+            <response code="200">Usuarios retornados</response>
+            <response code="400">Usuarios não encontrados</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.Logar(FlySneakers.Borders.Models.Usuario)">
+            <summary>
+            Realizar login usuario
+            </summary>
+            <remarks>Ao informar o email: teste1@gmail.com e senha: 1234 será retornado OK</remarks>
+            <response code="200">Usuario logado</response>
+            <response code="400">Usuario não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.CadastrarUsuario(FlySneakers.Borders.Models.Usuario)">
+            <summary>
+            Cadastrar usuario
+            </summary>
+            <response code="200">Usuario cadastrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.AlterarUsuario(System.Int32,FlySneakers.Borders.Models.Usuario)">
+            <summary>
+            Alterar usuario a partir do ID informado
+            </summary>
+            <response code="200">Usuario alterado</response>
+            <response code="400">Usuario não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.RemoverUsuario(System.Int32)">
+            <summary>
+            Remover usuario a partir do ID informado
+            </summary>
+            <response code="200">Usuario removido</response>
+            <response code="400">Usuario não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioDadosController.ObterUsuarioDados">
+            <summary>
+            Obter dados usuarios
+            </summary>
+            <response code="200">Dados usuarios retornados</response>
+            <response code="400">Dados usuarios não encontrados</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioDadosController.CadastrarUsuarioDados(FlySneakers.Borders.Models.UsuarioDados)">
+            <summary>
+            Cadastrar dados usuario
+            </summary>
+            <response code="200">Dados usuario cadastrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioDadosController.AlterarUsuarioDados(System.Int32,FlySneakers.Borders.Models.UsuarioDados)">
+            <summary>
+            Alterar dados usuario a partir do ID informado
+            </summary>
+            <response code="200">Dados usuario alterado</response>
+            <response code="400">Dados usuario não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioDadosController.RemoverUsuarioDados(System.Int32)">
+            <summary>
+            Remover dados usuario a partir do ID informado
+            </summary>
+            <response code="200">Dados usuario removido</response>
+            <response code="400">Dados usuario não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioPerfilController.ObterUsuarioPerfis">
+            <summary>
+            Obter perfis usuarios
+            </summary>
+            <response code="200">Perfil usuario retornados</response>
+            <response code="400">Perfil usuario não encontrados</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioPerfilController.CadastrarUsuarioPerfil(FlySneakers.Borders.Models.UsuarioPerfil)">
+            <summary>
+            Cadastrar perfil usuario
+            </summary>
+            <response code="200">Perfil usuario cadastrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioPerfilController.AlterarUsuarioPerfil(System.Int32,FlySneakers.Borders.Models.UsuarioPerfil)">
+            <summary>
+            Alterar perfil usuario a partir do ID informado
+            </summary>
+            <response code="200">Perfil usuario alterado</response>
+            <response code="400">Perfil usuario não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioPerfilController.RemoverUsuarioPerfil(System.Int32)">
+            <summary>
+            Remover perfil usuario a partir do ID informado
+            </summary>
+            <response code="200">Perfil usuario removido</response>
+            <response code="400">Perfil usuario não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+    </members>
+</doc>

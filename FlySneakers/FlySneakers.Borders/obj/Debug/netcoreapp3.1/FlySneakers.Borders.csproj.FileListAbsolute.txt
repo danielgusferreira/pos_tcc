@@ -1,0 +1,12 @@
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\bin\Debug\netcoreapp3.1\FlySneakers.Borders.deps.json
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\bin\Debug\netcoreapp3.1\FlySneakers.Borders.dll
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\bin\Debug\netcoreapp3.1\FlySneakers.Borders.pdb
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\bin\Debug\netcoreapp3.1\FlySneakers.Shared.dll
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\bin\Debug\netcoreapp3.1\FlySneakers.Shared.pdb
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\obj\Debug\netcoreapp3.1\FlySneakers.Borders.csprojAssemblyReference.cache
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\obj\Debug\netcoreapp3.1\FlySneakers.Borders.AssemblyInfoInputs.cache
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\obj\Debug\netcoreapp3.1\FlySneakers.Borders.AssemblyInfo.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\obj\Debug\netcoreapp3.1\FlySneakers.Borders.csproj.CoreCompileInputs.cache
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\obj\Debug\netcoreapp3.1\FlySneakers.Borders.csproj.CopyComplete
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\obj\Debug\netcoreapp3.1\FlySneakers.Borders.dll
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Borders\obj\Debug\netcoreapp3.1\FlySneakers.Borders.pdb
