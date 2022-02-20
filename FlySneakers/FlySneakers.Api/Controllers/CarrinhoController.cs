@@ -80,7 +80,6 @@ namespace FlySneakers.Api.Controllers
         /// <summary>
         /// Cria carrinho para o usuario informado
         /// </summary>
-        /// <remarks>Awesomeness!</remarks>
         /// <response code="200">Carrinho criado</response>
         /// <response code="400">Usuario não encontrando</response>
         /// <response code="500">Erro inesperado</response>
@@ -94,7 +93,6 @@ namespace FlySneakers.Api.Controllers
         /// <summary>
         /// Remove item carrinho
         /// </summary>
-        /// <remarks>Awesomeness!</remarks>
         /// <response code="200">Carrinho removido</response>
         /// <response code="400">Carrinho não encontrado</response>
         /// <response code="500">Erro inesperado</response>

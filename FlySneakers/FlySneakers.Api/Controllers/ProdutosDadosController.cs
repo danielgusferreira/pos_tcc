@@ -8,11 +8,11 @@ namespace FlySneakers.Api.Controllers
 {
     [ApiController]
     [Route("api/produto-dados")]
-    public class ProdutoSkusSkuController : BaseController
+    public class ProdutosDadosController : BaseController
     {
         private readonly IActionResultConverter actionResultConverter;
 
-        public ProdutoSkusSkuController(IActionResultConverter actionResultConverter)
+        public ProdutosDadosController(IActionResultConverter actionResultConverter)
         {
             this.actionResultConverter = actionResultConverter;
         }

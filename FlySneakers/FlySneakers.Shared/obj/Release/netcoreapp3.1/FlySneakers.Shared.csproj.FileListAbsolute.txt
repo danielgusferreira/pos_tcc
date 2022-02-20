@@ -1,0 +1,9 @@
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Shared\bin\Release\netcoreapp3.1\FlySneakers.Shared.deps.json
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Shared\bin\Release\netcoreapp3.1\FlySneakers.Shared.dll
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Shared\bin\Release\netcoreapp3.1\FlySneakers.Shared.pdb
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Shared\obj\Release\netcoreapp3.1\FlySneakers.Shared.csprojAssemblyReference.cache
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Shared\obj\Release\netcoreapp3.1\FlySneakers.Shared.AssemblyInfoInputs.cache
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Shared\obj\Release\netcoreapp3.1\FlySneakers.Shared.AssemblyInfo.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Shared\obj\Release\netcoreapp3.1\FlySneakers.Shared.csproj.CoreCompileInputs.cache
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Shared\obj\Release\netcoreapp3.1\FlySneakers.Shared.dll
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Shared\obj\Release\netcoreapp3.1\FlySneakers.Shared.pdb

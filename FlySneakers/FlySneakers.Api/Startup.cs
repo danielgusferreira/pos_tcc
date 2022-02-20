@@ -30,7 +30,7 @@ namespace FlySneakers.Api
                 {
                     Title = "Fly Sneakers API",
                     Version = "v1",
-                    Description = "Description for the API goes here.",
+                    Description = "API responsavel por disponibilizar endPoints que serão utilizados na aplicação de um e-commerce para a venda de calçados e acessorios esportivos. \n\nNa descrição dos endPoints temos informações sobre a execução.",
                     Contact = new OpenApiContact
                     {
                         Name = "Daniel Gustavo Souza Ferreira",

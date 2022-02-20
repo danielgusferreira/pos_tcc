@@ -1,6 +1,7 @@
 ﻿using FlySneakers.Api.Models;
 using FlySneakers.Borders.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace FlySneakers.Api.Controllers
@@ -17,43 +18,13 @@ namespace FlySneakers.Api.Controllers
         }
 
         /// <summary>
-        /// Obter os comentarios do usuario a partir do ID informado
-        /// </summary>
-        /// <remarks>Ao informar os IDs 1 e 2 será retornado os comentarios dos usuarios</remarks>
-        /// <response code="200">Comentario retornada</response>
-        /// <response code="400">Comentario não encontrada</response>
-        /// <response code="500">Erro inesperado</response>
-        [HttpGet("{idUsuario}")]
-        public ActionResult<IEnumerable<Comentario>> ObterComentariosUsuario(int idUsuario)
-        {
-            var listaComentario1 = new List<Comentario>
-            {
-                new Comentario { Codigo = 1, Nota = 5, Descricao = "Comentario produto1", CodigoProdutoSku = 1, CodigoUsuario = 1 },
-                new Comentario { Codigo = 2, Nota = 4, Descricao = "Comentario produto2", CodigoProdutoSku = 2, CodigoUsuario = 1 }
-            };
-
-            var listaComentario2 = new List<Comentario>
-            {
-                new Comentario { Codigo = 1, Nota = 5, Descricao = "Comentario produto1", CodigoProdutoSku = 1, CodigoUsuario = 2 },
-                new Comentario { Codigo = 2, Nota = 4, Descricao = "Comentario produto2", CodigoProdutoSku = 2, CodigoUsuario = 2 }
-            };
-
-            return idUsuario switch
-            {
-                1 => Ok(listaComentario1),
-                2 => Ok(listaComentario2),
-                _ => NotFound(),
-            };
-        }
-
-        /// <summary>
         /// Obter os comentarios do produto a partir do ID informado
         /// </summary>
         /// <remarks>Ao informar os IDs 1 e 2 será retornado os comentarios dos produtos</remarks>
         /// <response code="200">Comentario retornada</response>
         /// <response code="400">Comentario não encontrada</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpGet("{idProduto}")]
+        [HttpGet("{idProduto}", Order = 1)]
         public ActionResult<IEnumerable<Comentario>> ObterComentarioProduto(int idProduto)
         {
             var listaComentarioProduto1 = new List<Comentario>

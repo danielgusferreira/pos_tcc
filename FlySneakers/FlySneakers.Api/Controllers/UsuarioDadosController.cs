@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace FlySneakers.Api.Controllers
 {
     [ApiController]
-    [Route("api/UsuarioDados-dados")]
+    [Route("api/usuario-dados")]
     public class UsuarioDadosController : BaseController
     {
         private readonly IActionResultConverter actionResultConverter;
@@ -108,10 +108,10 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Dados usuario removido</response>
         /// <response code="400">Dados usuario não encontrado</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpDelete("{IdUsuarioDados}")]
-        public ActionResult<int> RemoverUsuarioDados(int idUsuarioDados)
+        [HttpDelete("{idUsuario}")]
+        public ActionResult<int> RemoverUsuarioDados(int idUsuario)
         {
-            return Ok(idUsuarioDados);
+            return Ok(idUsuario);
         }
 
     }

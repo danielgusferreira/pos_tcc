@@ -85,8 +85,8 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Marca removida</response>
         /// <response code="400">Marca não encontrada</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpDelete("{IdMarca}")]
-        public ActionResult<int> RemoverMarca(int idMarca)
+        [HttpDelete("{idMarca}")]
+        public ActionResult RemoverMarca(int idMarca)
         {
             return Ok(idMarca);
         }

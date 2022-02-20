@@ -65,10 +65,10 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Perfil usuario removido</response>
         /// <response code="400">Perfil usuario não encontrado</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpDelete("{IdUsuarioPerfil}")]
-        public ActionResult<int> RemoverUsuarioPerfil(int idUsuarioPerfil)
+        [HttpDelete("idPerfilUsuario")]
+        public ActionResult<int> RemoverUsuarioPerfil(int idPerfilUsuario)
         {
-            return Ok(idUsuarioPerfil);
+            return Ok(idPerfilUsuario);
         }
 
     }
