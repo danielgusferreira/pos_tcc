@@ -1,5 +1,8 @@
 ﻿using FlySneakers.Api.Models;
+using FlySneakers.Borders.Dto;
 using FlySneakers.Borders.Models;
+using FlySneakers.Borders.UseCase;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +14,14 @@ namespace FlySneakers.Api.Controllers
     public class UsuarioController : BaseController
     {
         private readonly IActionResultConverter actionResultConverter;
+        private readonly ILogarUseCase logarUseCase;
+        private readonly ICadastrarUsuarioUseCase cadastrarUsuarioUseCase;
 
-        public UsuarioController(IActionResultConverter actionResultConverter)
+        public UsuarioController(IActionResultConverter actionResultConverter, ILogarUseCase logarUseCase, ICadastrarUsuarioUseCase cadastrarUsuarioUseCase)
         {
             this.actionResultConverter = actionResultConverter;
+            this.logarUseCase = logarUseCase;
+            this.cadastrarUsuarioUseCase = cadastrarUsuarioUseCase;
         }
 
         /// <summary>
@@ -41,17 +48,17 @@ namespace FlySneakers.Api.Controllers
         /// </summary>
         /// <remarks>Ao informar o email: teste1@gmail.com e senha: 1234 será retornado OK</remarks>
         /// <response code="200">Usuario logado</response>
-        /// <response code="400">Usuario não encontrado</response>
+        /// <response code="404">Usuario não encontrado</response>
         /// <response code="500">Erro inesperado</response>
         [HttpPost("login")]
-        public ActionResult<Usuario> Logar([FromBody] Usuario usuario)
+        public IActionResult Logar([FromBody] LoginDto login)
         {
-            if (usuario.Email == "teste1@gmail.com")
-            {
-                return Ok();
-            }
+            var result = logarUseCase.Execute(login);
 
-            return NotFound();
+            if (result == null)
+                return StatusCode(StatusCodes.Status404NotFound);
+
+            return Ok(result);
         }
 
         /// <summary>
@@ -62,8 +69,12 @@ namespace FlySneakers.Api.Controllers
         [HttpPost]
         public ActionResult<Usuario> CadastrarUsuario([FromBody] Usuario usuario)
         {
-            usuario.Codigo = 3;
-            return Ok(usuario);
+            var result = cadastrarUsuarioUseCase.Execute(usuario);
+
+            if (result == null)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
         /// <summary>

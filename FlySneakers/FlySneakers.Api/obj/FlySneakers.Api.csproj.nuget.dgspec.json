@@ -30,6 +30,12 @@
             "projectReferences": {
               "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Borders\\FlySneakers.Borders.csproj": {
                 "projectPath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Borders\\FlySneakers.Borders.csproj"
+              },
+              "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Repositories\\FlySneakers.Repositories.csproj": {
+                "projectPath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Repositories\\FlySneakers.Repositories.csproj"
+              },
+              "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.UseCases\\FlySneakers.UseCases.csproj": {
+                "projectPath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.UseCases\\FlySneakers.UseCases.csproj"
               }
             }
           }
@@ -149,6 +155,78 @@
         }
       }
     },
+    "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Repositories\\FlySneakers.Repositories.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Repositories\\FlySneakers.Repositories.csproj",
+        "projectName": "FlySneakers.Repositories",
+        "projectPath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Repositories\\FlySneakers.Repositories.csproj",
+        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Repositories\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Borders\\FlySneakers.Borders.csproj": {
+                "projectPath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Borders\\FlySneakers.Borders.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Shared\\FlySneakers.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -184,6 +262,70 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.UseCases\\FlySneakers.UseCases.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.UseCases\\FlySneakers.UseCases.csproj",
+        "projectName": "FlySneakers.UseCases",
+        "projectPath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.UseCases\\FlySneakers.UseCases.csproj",
+        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.UseCases\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Borders\\FlySneakers.Borders.csproj": {
+                "projectPath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakers\\FlySneakers.Borders\\FlySneakers.Borders.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNet.WebApi.Core": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -1,4 +1,9 @@
 using FlySneakers.Api.Models;
+using FlySneakers.Borders.Repositories;
+using FlySneakers.Borders.UseCase;
+using FlySneakers.Repositories.Repositories;
+using FlySneakers.UseCases;
+using FlySneakers.UseCases.Usuario;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -12,12 +17,14 @@ namespace FlySneakers.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Microsoft.AspNetCore.Hosting.IHostingEnvironment HostingEnvironment { get; private set; }
+        public IConfiguration Configuration { get; private set; }
 
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
+        {
+            this.HostingEnvironment = env;
+            this.Configuration = configuration;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -43,6 +50,21 @@ namespace FlySneakers.Api
             });
 
             services.AddScoped<IActionResultConverter, ActionResultConverter>();
+
+            services.AddScoped<ILogarUseCase, LoginUseCase>();
+            services.AddScoped<ICadastrarUsuarioUseCase, CadastrarUsuarioUseCase>();
+
+            services.AddScoped<IAdicionarItemCarrinhoUseCase, AdicionarItemCarrinhoUseCase>();
+            services.AddScoped<IObterCarrinhoUsuarioUseCase, ObterCarrinhoUsuarioUseCase>();
+
+            services.AddScoped<ICadastrarPedidoUseCase, CadastrarPedidoUseCase>();
+            services.AddScoped<IObterPedidoUseCase, ObterPedidoUseCase>();
+
+            
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<ICarrinhoRepository, CarrinhoRepository>();
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
