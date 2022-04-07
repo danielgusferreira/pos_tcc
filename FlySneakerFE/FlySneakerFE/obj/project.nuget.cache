@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "v1poDqTjxamYN8rQJSuaaKca/zRqoNjjI3kj1RLN4LAUlHqRBn+fgTuoUoF3c6IzeLhKOICPqpYytrfV4s/uRw==",
+  "dgSpecHash": "K01WGJquJBg693QJeh6hUha19XlEtErnHqwC2FzmUhSiQdv0MZgOWTO49QDMx8FLZxvAAIepcCBzikECwLLSIg==",
   "success": true,
   "projectFilePath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\pos_tcc\\FlySneakerFE\\FlySneakerFE\\FlySneakerFE.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\danie\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\restsharp\\107.3.0\\restsharp.107.3.0.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

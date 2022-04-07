@@ -1,5 +1,9 @@
 ﻿using FlySneakers.Api.Models;
+using FlySneakers.Borders.Dto;
 using FlySneakers.Borders.Models;
+using FlySneakers.Borders.UseCase.Produto;
+using FlySneakers.UseCases;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +15,15 @@ namespace FlySneakers.Api.Controllers
     public class ProdutosController : BaseController
     {
         private readonly IActionResultConverter actionResultConverter;
+        private readonly IObterProdutoPagInicialUseCase obterProdutoPagInicialUseCase;
+        private readonly IObterProdutoDetalhesUseCase obterProdutoDetalheUseCase;
 
-        public ProdutosController(IActionResultConverter actionResultConverter)
+        public ProdutosController(IActionResultConverter actionResultConverter, IObterProdutoPagInicialUseCase obterProdutoPagInicialUseCase,
+            IObterProdutoDetalhesUseCase obterProdutoDetalheUseCase)
         {
             this.actionResultConverter = actionResultConverter;
+            this.obterProdutoPagInicialUseCase = obterProdutoPagInicialUseCase;
+            this.obterProdutoDetalheUseCase = obterProdutoDetalheUseCase;
         }
 
         /// <summary>
@@ -24,15 +33,15 @@ namespace FlySneakers.Api.Controllers
         /// <response code="400">Produtos não encontrado</response>
         /// <response code="500">Erro inesperado</response>
         [HttpGet]
-        public ActionResult<IEnumerable<Produto>> ObterProdutos()
+        public ActionResult<IEnumerable<ProdutoPagInicialDto>> ObterProdutos()
         {
-            var listaProdutos = new List<Produto>
-            {
-                new Produto { Codigo = 1, Nome = "Adidas SuperStar", Descricao = "Descrição tenis", DataCriacao = DateTime.Now, CodigoCategoria = 1, CodigoMarca = 1 },
-                new Produto { Codigo = 2, Nome = "Nike Air Force 1", Descricao = "Descrição tenis", DataCriacao = DateTime.Now, CodigoCategoria = 2, CodigoMarca = 2 }
-            };
 
-            return Ok(listaProdutos);
+            var result = obterProdutoPagInicialUseCase.Execute();
+
+            if (result == null)
+                return StatusCode(StatusCodes.Status404NotFound);
+
+            return Ok(result);        
         }
 
         /// <summary>
@@ -42,15 +51,15 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Produto retornado</response>
         /// <response code="400">Produto não encontrado</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpGet("{idProduto}")]
-        public ActionResult<IEnumerable<string>> ObterProduto(int idProduto)
+        [HttpGet("{codigo}")]
+        public ActionResult<ProdutoDetalhesDto> ObterProdutoDetalhe(int codigo)
         {
-            return idProduto switch
-            {
-                1 => Ok(new Produto { Codigo = 1, Nome = "Adidas SuperStar", Descricao = "Descrição tenis", DataCriacao = DateTime.Now, CodigoCategoria = 1, CodigoMarca = 1 }),
-                2 => Ok(new Produto { Codigo = 2, Nome = "Nike Air Force 1", Descricao = "Descrição tenis", DataCriacao = DateTime.Now, CodigoCategoria = 2, CodigoMarca = 2 }),
-                _ => NotFound(),
-            };
+            var result = obterProdutoDetalheUseCase.Execute(codigo);
+
+            if (result == null)
+                return StatusCode(StatusCodes.Status404NotFound);
+
+            return Ok(result);
         }
 
         /// <summary>

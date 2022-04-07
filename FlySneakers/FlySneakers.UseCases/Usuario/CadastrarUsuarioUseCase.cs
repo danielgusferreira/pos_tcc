@@ -29,8 +29,8 @@ namespace FlySneakers.UseCases.Usuario
                 {
                     result.Nome = request.Nome;
                     result.Email = request.Email;
-                    result.perfil = request.Tipo;
-                }              
+                    result.perfil = request.Tipo == 0 ? 3 : request.Tipo;
+                }
             }
             catch (Exception e)
             {

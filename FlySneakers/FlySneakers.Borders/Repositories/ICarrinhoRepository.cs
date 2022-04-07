@@ -7,5 +7,6 @@ namespace FlySneakers.Borders.Repositories
     {
         IEnumerable<DadosCarrinhoDto> ObterCarrinho(int codUsuario);
         int CadastrarProduto(CadastrarCarrinhoDto carrinho);
+        int RemoverItemCarrinhoProduto(int codCarrinho);
     }
 }

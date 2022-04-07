@@ -1,5 +1,8 @@
 ﻿using FlySneakers.Api.Models;
+using FlySneakers.Borders.Dto;
 using FlySneakers.Borders.Models;
+using FlySneakers.Borders.UseCase;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +14,12 @@ namespace FlySneakers.Api.Controllers
     public class PedidoController : BaseController
     {
         private readonly IActionResultConverter actionResultConverter;
+        private readonly ICadastrarPedidoUseCase cadastrarPedidoUseCase;
 
-        public PedidoController(IActionResultConverter actionResultConverter)
+        public PedidoController(IActionResultConverter actionResultConverter, ICadastrarPedidoUseCase cadastrarPedidoUseCase = null)
         {
             this.actionResultConverter = actionResultConverter;
+            this.cadastrarPedidoUseCase = cadastrarPedidoUseCase;
         }
 
         /// <summary>
@@ -114,10 +119,14 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Pedido criado</response>
         /// <response code="500">Erro inesperado</response>
         [HttpPost]
-        public ActionResult<Pedido> CadastrarPedido([FromBody] Pedido Pedido)
+        public ActionResult<int> CadastrarPedido([FromBody] CadastrarPedidoDto pedido)
         {
-            Pedido.Codigo = 3;
-            return Ok(Pedido);
+            int result = cadastrarPedidoUseCase.Execute(pedido);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok();
         }
 
         /// <summary>

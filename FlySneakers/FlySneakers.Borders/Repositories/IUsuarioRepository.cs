@@ -7,5 +7,6 @@ namespace FlySneakers.Borders.Repositories
     {
         UsuarioLogadoDto VerificarLogin(LoginDto login);
         int CadastrarUsuario(Usuario usuario);
+        int CadastrarDadosUsuario(UsuarioDados usuario);
     }
 }

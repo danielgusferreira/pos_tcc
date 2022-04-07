@@ -1,9 +1,11 @@
 using FlySneakers.Api.Models;
 using FlySneakers.Borders.Repositories;
 using FlySneakers.Borders.UseCase;
+using FlySneakers.Borders.UseCase.Produto;
 using FlySneakers.Repositories.Repositories;
 using FlySneakers.UseCases;
 using FlySneakers.UseCases.Usuario;
+using FlySneakers.UseCases.UsuarioDados;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -53,18 +55,24 @@ namespace FlySneakers.Api
 
             services.AddScoped<ILogarUseCase, LoginUseCase>();
             services.AddScoped<ICadastrarUsuarioUseCase, CadastrarUsuarioUseCase>();
+            services.AddScoped<ICadastrarDadosUsuarioUseCase, CadastrarDadosUsuarioUseCase>();
+            services.AddScoped<IValidarUsuarioDadosUseCase, ValidarUsuarioDadosUseCase>();
 
             services.AddScoped<IAdicionarItemCarrinhoUseCase, AdicionarItemCarrinhoUseCase>();
             services.AddScoped<IObterCarrinhoUsuarioUseCase, ObterCarrinhoUsuarioUseCase>();
+            services.AddScoped<IRemoverItemCarrinhoUseCase, RemoverItemCarrinhoUseCase>();
 
             services.AddScoped<ICadastrarPedidoUseCase, CadastrarPedidoUseCase>();
             services.AddScoped<IObterPedidoUseCase, ObterPedidoUseCase>();
 
-            
+            services.AddScoped<IObterProdutoPagInicialUseCase, ObterProdutoPagInicialUseCase>();
+            services.AddScoped<IObterProdutoDetalhesUseCase, ObterProdutoDetalhesUseCase>();        
+
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IUsuarioDadosRepository, UsuarioDadosRepository>();
             services.AddScoped<ICarrinhoRepository, CarrinhoRepository>();
             services.AddScoped<IPedidoRepository, PedidoRepository>();
-
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

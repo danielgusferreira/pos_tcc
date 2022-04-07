@@ -4,8 +4,8 @@ namespace FlySneakers.Borders.Repositories
 {
     public interface IPedidoRepository
     {
+        UsuarioLogadoDto ObterDadosConcluirPedido(CadastrarCarrinhoDto login);
         UsuarioLogadoDto ObterPedidos(CadastrarCarrinhoDto login);
-        int CadastrarPedido(CadastrarCarrinhoDto carrinho);
+        int CadastrarPedido(CadastrarPedidoDto pedido);
     }
 }
-

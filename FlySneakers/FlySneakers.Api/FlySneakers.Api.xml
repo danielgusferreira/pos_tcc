@@ -208,7 +208,7 @@
             <response code="400">Pedido não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.PedidoController.CadastrarPedido(FlySneakers.Borders.Models.Pedido)">
+        <member name="M:FlySneakers.Api.Controllers.PedidoController.CadastrarPedido(FlySneakers.Borders.Dto.CadastrarPedidoDto)">
             <summary>
             Cadastrar pedido
             </summary>
@@ -231,7 +231,7 @@
             <response code="400">Produtos não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProduto(System.Int32)">
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutoDetalhe(System.Int32)">
             <summary>
             Obter produto a partir do ID informado
             </summary>
@@ -337,6 +337,14 @@
             <response code="400">Usuarios não encontrados</response>
             <response code="500">Erro inesperado</response>
         </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.VerificarUsuarioDados(System.Int32)">
+            <summary>
+            Obter usuarios
+            </summary>
+            <response code="200">Usuarios retornados</response>
+            <response code="400">Usuarios não encontrados</response>
+            <response code="500">Erro inesperado</response>
+        </member>
         <member name="M:FlySneakers.Api.Controllers.UsuarioController.Logar(FlySneakers.Borders.Dto.LoginDto)">
             <summary>
             Realizar login usuario
@@ -353,6 +361,13 @@
             <response code="200">Usuario cadastrado</response>
             <response code="500">Erro inesperado</response>
         </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.CadastrarUsuarioDados(FlySneakers.Borders.Models.UsuarioDados)">
+            <summary>
+            Cadastrar dados usuario
+            </summary>
+            <response code="200">Dados usuario cadastrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
         <member name="M:FlySneakers.Api.Controllers.UsuarioController.AlterarUsuario(System.Int32,FlySneakers.Borders.Models.Usuario)">
             <summary>
             Alterar usuario a partir do ID informado
@@ -367,37 +382,6 @@
             </summary>
             <response code="200">Usuario removido</response>
             <response code="400">Usuario não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioDadosController.ObterUsuarioDados">
-            <summary>
-            Obter dados usuarios
-            </summary>
-            <response code="200">Dados usuarios retornados</response>
-            <response code="400">Dados usuarios não encontrados</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioDadosController.CadastrarUsuarioDados(FlySneakers.Borders.Models.UsuarioDados)">
-            <summary>
-            Cadastrar dados usuario
-            </summary>
-            <response code="200">Dados usuario cadastrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioDadosController.AlterarUsuarioDados(System.Int32,FlySneakers.Borders.Models.UsuarioDados)">
-            <summary>
-            Alterar dados usuario a partir do ID informado
-            </summary>
-            <response code="200">Dados usuario alterado</response>
-            <response code="400">Dados usuario não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioDadosController.RemoverUsuarioDados(System.Int32)">
-            <summary>
-            Remover dados usuario a partir do ID informado
-            </summary>
-            <response code="200">Dados usuario removido</response>
-            <response code="400">Dados usuario não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
         <member name="M:FlySneakers.Api.Controllers.UsuarioPerfilController.ObterUsuarioPerfis">

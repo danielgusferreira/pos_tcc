@@ -10,16 +10,15 @@ namespace FlySneakers.Repositories.Repositories
 {
     public class CarrinhoRepository : ICarrinhoRepository //Informando que a classe tem uma interface
     {
-        private readonly IConfiguration _config;
 
-        public CarrinhoRepository(IConfiguration config)
+        private string Connection = "Server=tcp:flysneakerstcc.database.windows.net,1433;Initial Catalog=flysneakersdb;Persist Security Info=False;User ID=flysneakeradm;Password=Futebol101112@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        public CarrinhoRepository()
         {
-            _config = config;
         }
 
         public IEnumerable<DadosCarrinhoDto> ObterCarrinho(int codUsuario)
         {
-            using (var connection = new SqlConnection("Server=tcp:flysneakers.database.windows.net,1433;Initial Catalog=flySneakersDB;Persist Security Info=False;User ID=danielgusferreira;Password=Futebol11@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (var connection = new SqlConnection(Connection))
             {
                 string sql = @"select
                                    c.codigo as Codigo,
@@ -51,7 +50,7 @@ namespace FlySneakers.Repositories.Repositories
 
         public int CadastrarProduto(CadastrarCarrinhoDto carrinho)
         {
-            using (var connection = new SqlConnection("Server=tcp:flysneakers.database.windows.net,1433;Initial Catalog=flySneakersDB;Persist Security Info=False;User ID=danielgusferreira;Password=Futebol11@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (var connection = new SqlConnection(Connection))
             {
 
                 string sql = @"INSERT INTO carrinho([quantidade], [codigo_produto_dados], [usuario_codigo]) 
@@ -61,6 +60,22 @@ namespace FlySneakers.Repositories.Repositories
                 parameters.Add("quantidade", carrinho.Quantidade, DbType.Int32);
                 parameters.Add("codigo_produto_dados", carrinho.CodigoProdutoDados, DbType.Int32);
                 parameters.Add("usuario_codigo", carrinho.UsuarioCodigo, DbType.Int32);
+
+                var result = connection.Execute(sql, parameters);
+
+                return result;
+            }
+        }
+
+        public int RemoverItemCarrinhoProduto(int codCarrinho)
+        {
+            using (var connection = new SqlConnection(Connection))
+            {
+
+                string sql = @"DELETE FROM carrinho WHERE codigo = @codCarrinho";
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("codCarrinho", codCarrinho, DbType.Int32);
 
                 var result = connection.Execute(sql, parameters);
 

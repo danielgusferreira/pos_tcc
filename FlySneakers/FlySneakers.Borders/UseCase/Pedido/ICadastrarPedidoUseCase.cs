@@ -4,6 +4,6 @@ namespace FlySneakers.Borders.UseCase
 {
     public interface ICadastrarPedidoUseCase
     {
-        int Execute(CadastrarCarrinhoDto carrinho);
+        int Execute(CadastrarPedidoDto carrinho);
     }
 }

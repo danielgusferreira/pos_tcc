@@ -35,3 +35,12 @@ C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\FlySneakerFE.genruntimeconfig.cache
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\FlySneakerFE.csproj.CopyComplete
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Login\Login.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\bin\Debug\netcoreapp3.1\RestSharp.dll
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutAdm.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutUsuario.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Login\Sair.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Cadastrar\Index.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Produto\Details.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Cadastrar\UsuarioDados.cshtml.g.cs

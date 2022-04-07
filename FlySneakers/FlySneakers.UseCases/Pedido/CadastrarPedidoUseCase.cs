@@ -19,7 +19,7 @@ namespace FlySneakers.UseCases
             this.pedidoRepository = pedidoRepository;
         }
 
-        public int Execute(CadastrarCarrinhoDto request)
+        public int Execute(CadastrarPedidoDto request)
         {
             int result = 0;
             try

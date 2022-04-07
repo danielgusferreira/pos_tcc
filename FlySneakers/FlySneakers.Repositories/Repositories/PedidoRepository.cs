@@ -9,13 +9,15 @@ namespace FlySneakers.Repositories.Repositories
     public class PedidoRepository : IPedidoRepository //Informando que a classe tem uma interface
     {
 
-        public PedidoRepository()
+        public readonly string Connection = "Server=tcp:flysneakerstcc.database.windows.net,1433;Initial Catalog=flysneakersdb;Persist Security Info=False;User ID=flysneakeradm;Password=Futebol101112@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+       
+            public PedidoRepository()
         {
         }
 
         public UsuarioLogadoDto ObterPedidos(CadastrarCarrinhoDto usuario)
         {
-            //using (var connection = new SqlConnection("Server=tcp:flysneakers.database.windows.net,1433;Initial Catalog=flySneakersDB;Persist Security Info=False;User ID=danielgusferreira;Password=Futebol11@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            //using (var connection = new SqlConnection(Connection))
             //{
             //    string sql = "SELECT nome, email, codigo_perfil as perfil from usuario where email = @email AND senha = @senha";
 
@@ -30,23 +32,31 @@ namespace FlySneakers.Repositories.Repositories
             return null;
         }
 
-        public int CadastrarPedido(CadastrarCarrinhoDto carrinho)
+        public int CadastrarPedido(CadastrarPedidoDto pedido)
         {
-            using (var connection = new SqlConnection("Server=tcp:flysneakers.database.windows.net,1433;Initial Catalog=flySneakersDB;Persist Security Info=False;User ID=danielgusferreira;Password=Futebol11@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            int result = 0;
+            using (var connection = new SqlConnection(Connection))
             {
 
-                string sql = @"INSERT INTO carrinho([quantidade], [codigo_produto_dados], [usuario_codigo]) 
-                               VALUES(@quantidade, @codigo_produto_dados, @usuario_codigo);";
+                foreach (var itemCarrinho in pedido.CodCarrinhos)
+                {
+                    string sql = @"INSERT INTO pedido([data_pedido], [status], [codigo_meio_pagamento], [codigo_carrinho]) 
+                               VALUES(GETDATE(), 1, @codigo_meio_pagamento, @codigo_carrinho);";
 
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("quantidade", carrinho.Quantidade, DbType.Int32);
-                parameters.Add("codigo_produto_dados", carrinho.CodigoProdutoDados, DbType.Int32);
-                parameters.Add("usuario_codigo", carrinho.UsuarioCodigo, DbType.Int32);
+                    DynamicParameters parameters = new DynamicParameters();
+                    parameters.Add("codigo_meio_pagamento", pedido.CodPagamento, DbType.Int32);
+                    parameters.Add("codigo_carrinho", itemCarrinho, DbType.Int32);
 
-                var result = connection.Execute(sql, parameters);
+                    result = connection.Execute(sql, parameters);
+                }
 
                 return result;
             }
+        }
+
+        public UsuarioLogadoDto ObterDadosConcluirPedido(CadastrarCarrinhoDto login)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

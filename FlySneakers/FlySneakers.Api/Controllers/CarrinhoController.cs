@@ -16,15 +16,17 @@ namespace FlySneakers.Api.Controllers
         private readonly IActionResultConverter actionResultConverter;
         private readonly IAdicionarItemCarrinhoUseCase adicionarItemCarrinhoUseCase;
         private readonly IObterCarrinhoUsuarioUseCase obterCarrinhoUsuarioUseCase;
+        private readonly IRemoverItemCarrinhoUseCase removerItemCarrinhoUseCase;
 
-
-        public CarrinhoController(IActionResultConverter actionResultConverter, 
-            IAdicionarItemCarrinhoUseCase adicionarItemCarrinhoUseCase, 
-            IObterCarrinhoUsuarioUseCase obterCarrinhoUsuarioUseCase)
+        public CarrinhoController(IActionResultConverter actionResultConverter,
+            IAdicionarItemCarrinhoUseCase adicionarItemCarrinhoUseCase,
+            IObterCarrinhoUsuarioUseCase obterCarrinhoUsuarioUseCase, 
+            IRemoverItemCarrinhoUseCase removerItemCarrinhoUseCase)
         {
             this.actionResultConverter = actionResultConverter;
             this.adicionarItemCarrinhoUseCase = adicionarItemCarrinhoUseCase;
             this.obterCarrinhoUsuarioUseCase = obterCarrinhoUsuarioUseCase;
+            this.removerItemCarrinhoUseCase = removerItemCarrinhoUseCase;
         }
 
         /// <summary>
@@ -40,7 +42,7 @@ namespace FlySneakers.Api.Controllers
             var result = obterCarrinhoUsuarioUseCase.Execute(idUsuario);
 
             if (result == null)
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status404NotFound);
 
             return Ok(result);
         }
@@ -71,7 +73,12 @@ namespace FlySneakers.Api.Controllers
         [HttpDelete("{idUsuario}/carrinho/{idCarrinho}")]
         public ActionResult<int> RemoverCarrinho(int idCarrinho)
         {
-            return Ok(idCarrinho);
+            int result = removerItemCarrinhoUseCase.Execute(idCarrinho);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status404NotFound);
+
+            return Ok();       
         }
 
     }

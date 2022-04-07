@@ -16,12 +16,20 @@ namespace FlySneakers.Api.Controllers
         private readonly IActionResultConverter actionResultConverter;
         private readonly ILogarUseCase logarUseCase;
         private readonly ICadastrarUsuarioUseCase cadastrarUsuarioUseCase;
+        private readonly ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase;
+        private readonly IValidarUsuarioDadosUseCase validarUsuarioDadosUseCase;
 
-        public UsuarioController(IActionResultConverter actionResultConverter, ILogarUseCase logarUseCase, ICadastrarUsuarioUseCase cadastrarUsuarioUseCase)
+        public UsuarioController(IActionResultConverter actionResultConverter,
+            ILogarUseCase logarUseCase, 
+            ICadastrarUsuarioUseCase cadastrarUsuarioUseCase, 
+            ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase, 
+            IValidarUsuarioDadosUseCase validarUsuarioDadosUseCase)
         {
             this.actionResultConverter = actionResultConverter;
             this.logarUseCase = logarUseCase;
             this.cadastrarUsuarioUseCase = cadastrarUsuarioUseCase;
+            this.cadastrarDadosUsuarioUseCase = cadastrarDadosUsuarioUseCase;
+            this.validarUsuarioDadosUseCase = validarUsuarioDadosUseCase;
         }
 
         /// <summary>
@@ -42,6 +50,21 @@ namespace FlySneakers.Api.Controllers
 
             return Ok(listaUsuarios);
         }
+
+        /// <summary>
+        /// Obter usuarios
+        /// </summary>
+        /// <response code="200">Usuarios retornados</response>
+        /// <response code="400">Usuarios não encontrados</response>
+        /// <response code="500">Erro inesperado</response>
+        [HttpGet("dados/{idUsuario}")]
+        public ActionResult<int> VerificarUsuarioDados(int idUsuario)
+        {
+            var result = validarUsuarioDadosUseCase.Execute(idUsuario);
+
+            return Ok(result);
+        }
+
 
         /// <summary>
         /// Realizar login usuario
@@ -75,6 +98,22 @@ namespace FlySneakers.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
             return Ok(result);
+        }
+
+        /// <summary>
+        /// Cadastrar dados usuario
+        /// </summary>
+        /// <response code="200">Dados usuario cadastrado</response>
+        /// <response code="500">Erro inesperado</response>
+        [HttpPost("dados")]
+        public ActionResult<UsuarioDados> CadastrarUsuarioDados([FromBody] UsuarioDados UsuarioDados)
+        {
+            var result = cadastrarDadosUsuarioUseCase.Execute(UsuarioDados);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok();
         }
 
         /// <summary>
