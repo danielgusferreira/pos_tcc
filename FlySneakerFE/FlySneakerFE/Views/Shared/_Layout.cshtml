@@ -30,38 +30,18 @@
 </head>
 <body>
     <header>
-        <!-- ============= COMPONENT ============== -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Fky Sneakers</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="main_nav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">  Categorias  </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
-                                <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
-                                <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">  Marcas  </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
-                                <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
-                                <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="/Login/Login"> Login </a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Cadastrar/Index"> Cadastrar </a></li>
-                    </ul>
-                </div> <!-- navbar-collapse.// -->
-            </div> <!-- container-fluid.// -->
+        <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+            <a href="/" class="navbar-brand d-flex w-50 mr-auto">FlySneakers</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+                @*@{ Html.PartialAsync("Index", "Menu").Wait(); }*@
+                <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+                    <li class="nav-item"><a class="nav-link" href="/Login/Login"> Login </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Cadastrar/Index"> Cadastrar </a></li>
+                </ul>
+            </div>
         </nav>
     </header>
     <div class="container">

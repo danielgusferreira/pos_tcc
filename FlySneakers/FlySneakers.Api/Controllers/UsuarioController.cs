@@ -17,19 +17,19 @@ namespace FlySneakers.Api.Controllers
         private readonly ILogarUseCase logarUseCase;
         private readonly ICadastrarUsuarioUseCase cadastrarUsuarioUseCase;
         private readonly ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase;
-        private readonly IValidarUsuarioDadosUseCase validarUsuarioDadosUseCase;
+        private readonly IObterUsuarioDadosUseCase obterUsuarioDadosUseCase;
 
         public UsuarioController(IActionResultConverter actionResultConverter,
             ILogarUseCase logarUseCase, 
             ICadastrarUsuarioUseCase cadastrarUsuarioUseCase, 
             ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase, 
-            IValidarUsuarioDadosUseCase validarUsuarioDadosUseCase)
+            IObterUsuarioDadosUseCase obterUsuarioDadosUseCase)
         {
             this.actionResultConverter = actionResultConverter;
             this.logarUseCase = logarUseCase;
             this.cadastrarUsuarioUseCase = cadastrarUsuarioUseCase;
             this.cadastrarDadosUsuarioUseCase = cadastrarDadosUsuarioUseCase;
-            this.validarUsuarioDadosUseCase = validarUsuarioDadosUseCase;
+            this.obterUsuarioDadosUseCase = obterUsuarioDadosUseCase;
         }
 
         /// <summary>
@@ -58,9 +58,9 @@ namespace FlySneakers.Api.Controllers
         /// <response code="400">Usuarios não encontrados</response>
         /// <response code="500">Erro inesperado</response>
         [HttpGet("dados/{idUsuario}")]
-        public ActionResult<int> VerificarUsuarioDados(int idUsuario)
+        public ActionResult<UsuarioDados> ObterUsuarioDados(int idUsuario)
         {
-            var result = validarUsuarioDadosUseCase.Execute(idUsuario);
+            var result = obterUsuarioDadosUseCase.Execute(idUsuario);
 
             return Ok(result);
         }

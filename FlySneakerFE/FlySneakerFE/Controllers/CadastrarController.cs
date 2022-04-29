@@ -18,6 +18,7 @@ namespace FlySneakerFE.Controllers
 
         private readonly ILogger<CadastrarController> _logger;
         private UsuarioLogadoDto usuarioLogado = new UsuarioLogadoDto();
+        private UsuarioDados usuarioDados = new UsuarioDados();
 
         public CadastrarController(ILogger<CadastrarController> logger)
         {
@@ -36,42 +37,82 @@ namespace FlySneakerFE.Controllers
         {
             try
             {
-                if (senha == confirmarSenha)
+                var dados = new Usuario { Nome = nome, Email = email, Senha = senha };
+
+                var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
+
+                using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    var dados = new Usuario { Nome = nome, Email = email, Senha = senha };
-
-                    var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
-
-                    using (var httpClient = new HttpClient(httpClientHandler))
+                    using (var response = await httpClient.PostAsync("https://localhost:5001/api/usuario", httpContent))
                     {
-                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/usuario", httpContent))
-                        {
-                            var resultApi = await response.Content.ReadAsStringAsync();
+                        var resultApi = await response.Content.ReadAsStringAsync();
 
-                            usuarioLogado = JsonConvert.DeserializeObject<UsuarioLogadoDto>(resultApi);
+                        usuarioLogado = JsonConvert.DeserializeObject<UsuarioLogadoDto>(resultApi);
 
-                            CookieOptions options = new CookieOptions();
-                            options.Expires = DateTime.Now.AddMinutes(30);
-                            Response.Cookies.Append("CodigoUsuarioLogado", usuarioLogado.Codigo.ToString(), options);
-                            Response.Cookies.Append("EmailUsuarioLogado", usuarioLogado.Email, options);
-                            Response.Cookies.Append("NomeUsuarioLogado", usuarioLogado.Nome, options);
-                            Response.Cookies.Append("PerfilUsuarioLogado", usuarioLogado.Perfil.ToString(), options);
-                        }
+                        CookieOptions options = new CookieOptions();
+                        options.Expires = DateTime.Now.AddMinutes(30);
+                        Response.Cookies.Append("CodigoUsuarioLogado", usuarioLogado.Codigo.ToString(), options);
+                        Response.Cookies.Append("EmailUsuarioLogado", usuarioLogado.Email, options);
+                        Response.Cookies.Append("NomeUsuarioLogado", usuarioLogado.Nome, options);
+                        Response.Cookies.Append("PerfilUsuarioLogado", usuarioLogado.Perfil.ToString(), options);
                     }
                 }
 
                 return RedirectToAction("Index", "Home");
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return View();
             }
         }
 
         [HttpGet]
-        public IActionResult UsuarioDados()
+        public IActionResult Details()
         {
             return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Details(string cpf, DateTime dataNascimento, string telefone, int cep, string endereco, string numero, string complemento, string bairro, string cidade, string uf)
+        {
+            try
+            {
+                var dados = new UsuarioDados
+                {
+                    CodigoUsuario = Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]),
+                    Cpf = cpf,
+                    DataNascimento = dataNascimento,
+                    Telefone = telefone,
+                    Cep = cep,
+                    Endereco = endereco,
+                    Numero = numero,
+                    Complemento = complemento,
+                    Bairro = bairro,
+                    Cidade = cidade,
+                    Uf = uf,
+                };
+
+                var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
+
+                using (var httpClient = new HttpClient(httpClientHandler))
+                {
+                    using (var response = await httpClient.PostAsync("https://localhost:5001/api/usuario/dados", httpContent))
+                    {
+                        var resultApi = await response.Content.ReadAsStringAsync();
+
+                        usuarioDados = JsonConvert.DeserializeObject<UsuarioDados>(resultApi);
+                    }
+                }
+
+                return RedirectToAction("Index", "Pedido");
+            }
+            catch
+            {
+                ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return View();
+            }
         }
     }
 }

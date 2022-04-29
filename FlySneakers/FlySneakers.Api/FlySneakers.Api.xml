@@ -337,7 +337,7 @@
             <response code="400">Usuarios não encontrados</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioController.VerificarUsuarioDados(System.Int32)">
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.ObterUsuarioDados(System.Int32)">
             <summary>
             Obter usuarios
             </summary>

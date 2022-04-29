@@ -56,7 +56,7 @@ namespace FlySneakers.Api
             services.AddScoped<ILogarUseCase, LoginUseCase>();
             services.AddScoped<ICadastrarUsuarioUseCase, CadastrarUsuarioUseCase>();
             services.AddScoped<ICadastrarDadosUsuarioUseCase, CadastrarDadosUsuarioUseCase>();
-            services.AddScoped<IValidarUsuarioDadosUseCase, ValidarUsuarioDadosUseCase>();
+            services.AddScoped<IObterUsuarioDadosUseCase, ObterUsuarioDadosUseCase>();
 
             services.AddScoped<IAdicionarItemCarrinhoUseCase, AdicionarItemCarrinhoUseCase>();
             services.AddScoped<IObterCarrinhoUsuarioUseCase, ObterCarrinhoUsuarioUseCase>();

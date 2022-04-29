@@ -1,7 +1,9 @@
-﻿namespace FlySneakers.Borders.Repositories
+﻿using FlySneakers.Borders.Models;
+
+namespace FlySneakers.Borders.Repositories
 {
     public interface IUsuarioDadosRepository
     {
-        int VerificarDados(int codigo);
+        UsuarioDados ObterDadosUsuario(int codigo);
     }
 }

@@ -27,9 +27,10 @@ namespace FlySneakers.UseCases.Usuario
 
                 if (insercao != 0)
                 {
+                    result.Codigo = this.usuarioRepository.VerificarLogin(new LoginDto { Email = request.Email, Senha = request.Senha }).Codigo;
                     result.Nome = request.Nome;
                     result.Email = request.Email;
-                    result.perfil = request.Tipo == 0 ? 3 : request.Tipo;
+                    result.Perfil = request.Tipo == 0 ? 3 : request.Tipo;
                 }
             }
             catch (Exception e)

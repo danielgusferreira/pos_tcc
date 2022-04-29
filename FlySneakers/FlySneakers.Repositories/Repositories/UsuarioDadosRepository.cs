@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using FlySneakers.Borders.Models;
 using FlySneakers.Borders.Repositories;
 using System.Data;
 using System.Data.SqlClient;
@@ -13,18 +14,29 @@ namespace FlySneakers.Repositories.Repositories
         {
         }
 
-        public int VerificarDados(int codigo)
+        public UsuarioDados ObterDadosUsuario(int codigo)
         {
             using (var connection = new SqlConnection(Connection))
             {
-                string sql = "select codigo from usuario_dados where codigo_usuario = @codigo";
+                string sql = @"select codigo 
+                                ,cpf
+                                ,data_nascimento
+                                ,telefone
+                                ,cep
+                                ,endereco
+                                ,numero
+                                ,complemento
+                                ,bairro
+                                ,cidade
+                                ,uf 
+                            from usuario_dados where codigo_usuario = @codigo";
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("codigo", codigo, DbType.String);
 
-                var result = connection.QueryFirstOrDefault(sql, parameters);
+                var result = connection.QueryFirstOrDefault<UsuarioDados>(sql, parameters);
 
-                return result != null ? 1 : 0;
+                return result;
             }
         }
     }

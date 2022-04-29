@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FlySneakerFE.Controllers
@@ -45,9 +46,10 @@ namespace FlySneakerFE.Controllers
 
                 return View(produto);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return View();
             }
         }
 
@@ -56,91 +58,45 @@ namespace FlySneakerFE.Controllers
         {
             try
             {
-                using (var httpClient = new HttpClient(httpClientHandler))
+                if (Request.Cookies["CodigoUsuarioLogado"] != null)
                 {
-                    string url = "https://localhost:5001/api/usuario/dados/" + codigoProdutoDados;
-
-                    using (var response = await httpClient.GetAsync(url))
+                    var dados = new CadastrarCarrinhoDto
                     {
-                        var resultApi = await response.Content.ReadAsStringAsync();
+                        CodigoProdutoDados = Convert.ToInt32(codigoProdutoDados),
+                        Quantidade = quantidade,
+                        UsuarioCodigo = Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"])
+                    };
 
-                        if (Convert.ToInt32(resultApi) == 0)
+                    var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
+
+                    using (var httpClient = new HttpClient(httpClientHandler))
+                    {
+                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/carrinho/", httpContent))
                         {
-                            return RedirectToAction("Index", "Home");
+                            var resultApi = await response.Content.ReadAsStringAsync();
+
+                            if(resultApi != "1")
+                            {
+                                var a = "";
+                            }
                         }
-
-                        return RedirectToAction("Index", "Home");
-
                     }
+
                 }
+                else
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+
+                return RedirectToAction("Index", "Carrinho");
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return View();
             }
         }
 
-        // GET: ProdutoController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        // POST: ProdutoController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        // GET: ProdutoController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        // POST: ProdutoController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: ProdutoController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        // POST: ProdutoController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        
     }
 }

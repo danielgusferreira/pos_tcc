@@ -34,8 +34,8 @@
                     <img src="@item.Foto" class="card-img-top" alt="foto">
                     <div class="card-body">
                         <h5 class="card-title">@item.Nome</h5>
-                        <p class="card-text">@item.Valor</p>
-                        @Html.ActionLink("Detalhes", "Details", "Produto", new { codigo = @item.Codigo }, new { @class = "btn btn-outline-primary text-center" })
+                        <p class="card-text">@item.Valor.ToString("C")</p>
+                        @Html.ActionLink("Detalhes", "Details", "Produto", new { codigo = @item.Codigo }, new { @class = "btn btn-outline-dark flex-shrink-0 text-center" })
                     </div>
                 </div>
                 <br />

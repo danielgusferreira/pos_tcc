@@ -20,7 +20,7 @@ namespace FlySneakers.Repositories.Repositories
         {
             using (var connection = new SqlConnection(Connection))
             {
-                string sql = "SELECT nome, email, codigo_perfil as perfil from usuario where email = @email AND senha = @senha";
+                string sql = "SELECT codigo, nome, email, codigo_perfil as Perfil from usuario where email = @email AND senha = @senha";
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("email", usuario.Email, DbType.String);

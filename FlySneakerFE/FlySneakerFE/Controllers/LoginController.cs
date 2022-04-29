@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,14 @@ namespace FlySneakerFE.Controllers
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
+                        dynamic data = JObject.Parse(resultApi);
+
+                        if(data.status == 404)
+                        {
+                            ViewBag.ErroLogin = "Login e senha inválidos, tente novamente!";
+                            return View();
+                        }
+
                         usuarioLogado = JsonConvert.DeserializeObject<UsuarioLogadoDto>(resultApi);
 
                         CookieOptions options = new CookieOptions();
@@ -64,7 +73,8 @@ namespace FlySneakerFE.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                ViewBag.ErroLogin = "Erro ao realizar login, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return View();
             }
         }
 

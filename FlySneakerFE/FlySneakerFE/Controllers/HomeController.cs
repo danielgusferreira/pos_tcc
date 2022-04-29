@@ -45,7 +45,8 @@ namespace FlySneakerFE.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return View();
             }
 
         }

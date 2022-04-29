@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    switch (ViewBag.PerfilUsuario)
+    {
+        case "1":
+            Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+            break;
+        case "2":
+            Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+            break;
+        case "3":
+            Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+            break;
+        default:
+            //Admin layout
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+    }
+
+    @model FlySneakerFE.Models.ConfirmarPedidoDto
+}
+
+<form method="post" action="@Url.Action("Index", "Pedido")">
+    <div class="container">
+        <br />
+        <h4>Carrinho de compras</h4>@Html.ActionLink("Continuar comprando", "Index", "Home", null, new { @class = "btn btn-outline-primary text-center" })
+        <br />
+
+        <div class="row">
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Confira os dados abaixo e finalize a compra</h3>
+                        <div class="row">
+                            <div class="col col-lg-4">
+                                CPF: @Model.UsuarioDados.Cpf
+                            </div>
+                            <div class="col col-lg-4">
+                                Nascimento: @Model.UsuarioDados.DataNascimento.ToShortDateString()
+                            </div>
+                            <div class="col col-lg-4">
+                                Telefone: @Model.UsuarioDados.Telefone
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-4">
+                                CEP: @Model.UsuarioDados.Cep
+                            </div>
+                            <div class="col col-lg-8">
+                                Endereço: @Model.UsuarioDados.Endereco
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-4">
+                                Número: @Model.UsuarioDados.Numero
+                            </div>
+                            <div class="col col-lg-4">
+                                Complemento: @Model.UsuarioDados.Complemento
+                            </div>
+                            <div class="col col-lg-4">
+                                Cidade: @Model.UsuarioDados.Cidade
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-4">
+                                Bairro: @Model.UsuarioDados.Bairro
+                            </div>
+                            <div class="col col-lg-4">
+                                UF: @Model.UsuarioDados.Uf
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5>Escolha o tipo de pagamento: </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <select name="codigoMeioPagamento" class="form-select" aria-label="Default select example">
+                                    @foreach (var item in Model.MeioPagamento)
+                                    {
+                                        <option value="@item.Codigo">  @item.Nome</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Valor Pedido: @Model.ValorPedido </h5>                              
+                            </div>
+                        </div>
+                        <input type="hidden" value="@Model.Codigos" name="codigosCarrinhos">
+
+                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Finalizar Pedido
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>

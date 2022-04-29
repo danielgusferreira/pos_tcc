@@ -37,7 +37,7 @@ namespace FlySneakers.Api.Controllers
         /// <response code="400">Carrinho não encontrado</response>
         /// <response code="500">Erro inesperado</response>
         [HttpGet("{idUsuario}")]
-        public ActionResult<IEnumerable<Carrinho>> ObterCarrinhos(int idUsuario)
+        public ActionResult<IEnumerable<DadosCarrinhoDto>> ObterCarrinhos(int idUsuario)
         {
             var result = obterCarrinhoUsuarioUseCase.Execute(idUsuario);
 
@@ -61,7 +61,7 @@ namespace FlySneakers.Api.Controllers
             if (result == 0)
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
-            return Ok();
+            return Ok(result);
         }
 
         /// <summary>
