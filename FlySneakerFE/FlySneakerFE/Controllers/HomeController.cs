@@ -33,7 +33,7 @@ namespace FlySneakerFE.Controllers
 
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/produtos"))
+                    using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos"))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 

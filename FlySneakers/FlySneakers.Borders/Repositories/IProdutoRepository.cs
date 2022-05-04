@@ -5,7 +5,7 @@ namespace FlySneakers.Borders.Repositories
 {
     public interface IProdutoRepository
     {
-        IEnumerable<ProdutoPagInicialDto> ObterProdutosPagInicial();
+        IEnumerable<ProdutoPagInicialDto> ObterProdutosPagInicial(int codigoCategoria, int codigoMarca);
         ProdutoDetalhesDto ObterProdutoDetalhes(int codigo);
         IEnumerable<EstoqueDto> ObterEstoque(int codigo);
     }

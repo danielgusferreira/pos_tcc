@@ -36,7 +36,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-                @*@{ Html.PartialAsync("Index", "Menu").Wait(); }*@
+                @await Component.InvokeAsync("Menu")
                 <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
                     <li class="nav-item"><a class="nav-link" href="/Login/Login"> Login </a></li>
                     <li class="nav-item"><a class="nav-link" href="/Cadastrar/Index"> Cadastrar </a></li>

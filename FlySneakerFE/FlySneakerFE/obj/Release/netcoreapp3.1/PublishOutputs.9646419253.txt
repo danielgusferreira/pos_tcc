@@ -1,6 +1,10 @@
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\FlySneakerFE.exe
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\css\site.css
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\favicon.ico
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\img\2.jpg
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\img\3.jpg
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\img\4.jpg
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\img\login.jpg
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\js\site.js
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map

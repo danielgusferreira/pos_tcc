@@ -35,7 +35,7 @@ namespace FlySneakerFE.Controllers
 
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    string url = "https://localhost:5001/api/carrinho/" + Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]);
+                    string url = "https://flysneakersbeapi.azurewebsites.net/api/carrinho/" + Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]);
 
                     using (var response = await httpClient.GetAsync(url))
                     {
@@ -62,7 +62,7 @@ namespace FlySneakerFE.Controllers
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    string url = "https://localhost:5001/api/usuario/dados/" + Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]);
+                    string url = "https://flysneakersbeapi.azurewebsites.net/api/usuario/dados/" + Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]);
 
                     using (var response = await httpClient.GetAsync(url))
                     {

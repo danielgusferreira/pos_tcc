@@ -20,12 +20,12 @@ namespace FlySneakers.UseCases
             this.produtoRepository = produtoRepository;
         }
 
-        public IEnumerable<ProdutoPagInicialDto> Execute()
+        public IEnumerable<ProdutoPagInicialDto> Execute(int codigoCategoria, int codigoMarca)
         {
             IEnumerable<ProdutoPagInicialDto> result = null;
             try
             {
-                result = this.produtoRepository.ObterProdutosPagInicial();
+                result = this.produtoRepository.ObterProdutosPagInicial(codigoCategoria, codigoMarca);
             }
             catch (Exception ex)
             {

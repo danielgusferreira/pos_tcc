@@ -16,19 +16,43 @@ namespace FlySneakers.Repositories.Repositories
         {
         }
 
-        public IEnumerable<ProdutoPagInicialDto> ObterProdutosPagInicial()
+        public IEnumerable<ProdutoPagInicialDto> ObterProdutosPagInicial(int codigoCategoria, int codigoMarca)
         {
             using (var connection = new SqlConnection(Connection))
             {
                 string sql = @"SELECT
-                                    p.codigo as codigo,
-	                                p.nome as nome,
-	                                p.foto1 as foto,
-	                                (SELECT MIN(pd.valor) FROM produto_dados pd WHERE pd.codigo_produto = p.codigo) as valor
-                                FROM
-	                                produto p;";
+                                p.codigo as codigo,
+	                            p.nome as nome,
+	                            p.foto1 as foto,
+	                            (SELECT MIN(pd.valor) FROM produto_dados pd WHERE pd.codigo_produto = p.codigo) as valor,
+	                            p.codigo_categoria as CodigoCategoria,
+	                            p.codigo_marca as CodigoMarca
+                            FROM
+	                            produto p
 
-                var result = connection.Query<ProdutoPagInicialDto>(sql);
+	                            INNER JOIN produto_categoria c ON
+		                            c.codigo = p.codigo_categoria
+
+	                            INNER JOIN marca_produto m ON
+		                            m.codigo = p.codigo_marca ";
+
+                DynamicParameters parameters = new DynamicParameters();
+
+                if (codigoCategoria != 0)
+                {
+                    sql += "WHERE c.codigo = @codigoCategoria";
+
+                    parameters.Add("codigoCategoria", codigoCategoria, DbType.Int32);
+                }
+
+                if (codigoMarca != 0)
+                {
+                    sql += "WHERE m.codigo = @codigoMarca";
+
+                    parameters.Add("codigoMarca", codigoMarca, DbType.Int32);
+                }
+
+                var result = connection.Query<ProdutoPagInicialDto>(sql, parameters);
 
                 return result;
             }

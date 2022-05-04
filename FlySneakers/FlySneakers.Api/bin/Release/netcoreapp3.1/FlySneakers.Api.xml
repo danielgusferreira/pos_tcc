@@ -223,7 +223,7 @@
             <response code="400">Pedido não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutos">
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutos(System.Int32,System.Int32)">
             <summary>
             Obter produtos cadastrados
             </summary>

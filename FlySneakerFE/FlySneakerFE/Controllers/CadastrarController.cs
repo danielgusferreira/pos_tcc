@@ -43,7 +43,7 @@ namespace FlySneakerFE.Controllers
 
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.PostAsync("https://localhost:5001/api/usuario", httpContent))
+                    using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario", httpContent))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -98,7 +98,7 @@ namespace FlySneakerFE.Controllers
 
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.PostAsync("https://localhost:5001/api/usuario/dados", httpContent))
+                    using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario/dados", httpContent))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 

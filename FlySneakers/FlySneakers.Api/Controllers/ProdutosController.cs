@@ -33,15 +33,14 @@ namespace FlySneakers.Api.Controllers
         /// <response code="400">Produtos não encontrado</response>
         /// <response code="500">Erro inesperado</response>
         [HttpGet]
-        public ActionResult<IEnumerable<ProdutoPagInicialDto>> ObterProdutos()
+        public ActionResult<IEnumerable<ProdutoPagInicialDto>> ObterProdutos([FromQuery] int codigoCategoria = 0, int codigoMarca = 0)
         {
-
-            var result = obterProdutoPagInicialUseCase.Execute();
+            var result = obterProdutoPagInicialUseCase.Execute(codigoCategoria, codigoMarca);
 
             if (result == null)
                 return StatusCode(StatusCodes.Status404NotFound);
 
-            return Ok(result);        
+            return Ok(result);
         }
 
         /// <summary>

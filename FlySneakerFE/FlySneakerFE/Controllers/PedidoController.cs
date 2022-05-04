@@ -82,7 +82,7 @@ namespace FlySneakerFE.Controllers
 
         private async Task ObterDadosUsuario(HttpClient httpClient)
         {
-            string url = "https://localhost:5001/api/usuario/dados/" + Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]);
+            string url = "https://flysneakersbeapi.azurewebsites.net/api/usuario/dados/" + Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]);
 
             using (var response = await httpClient.GetAsync(url))
             {
@@ -95,7 +95,7 @@ namespace FlySneakerFE.Controllers
 
         private async Task ObterDadosMeiosPagamento(HttpClient httpClient)
         {
-            string url = "https://localhost:5001/api/meio-pagamento";
+            string url = "https://flysneakersbeapi.azurewebsites.net/api/meio-pagamento";
 
             using (var response = await httpClient.GetAsync(url))
             {
@@ -107,7 +107,7 @@ namespace FlySneakerFE.Controllers
 
         private async Task ObterCarrinho(HttpClient httpClient)
         {
-            string url = "https://localhost:5001/api/carrinho/" + Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]);
+            string url = "https://flysneakersbeapi.azurewebsites.net/api/carrinho/" + Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]);
 
             using (var response = await httpClient.GetAsync(url))
             {
@@ -123,7 +123,7 @@ namespace FlySneakerFE.Controllers
 
             var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
-            using (var response = await httpClient.PostAsync("https://localhost:5001/api/usuario/login", httpContent))
+            using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario/login", httpContent))
             {
                 var resultApi = await response.Content.ReadAsStringAsync();
 

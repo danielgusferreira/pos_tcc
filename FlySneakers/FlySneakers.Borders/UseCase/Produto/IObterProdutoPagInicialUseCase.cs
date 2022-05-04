@@ -5,6 +5,6 @@ namespace FlySneakers.Borders.UseCase.Produto
 {
     public interface IObterProdutoPagInicialUseCase
     {
-        IEnumerable<ProdutoPagInicialDto> Execute();
+        IEnumerable<ProdutoPagInicialDto> Execute(int codigoCategoria, int codigoMarca);
     }
 }

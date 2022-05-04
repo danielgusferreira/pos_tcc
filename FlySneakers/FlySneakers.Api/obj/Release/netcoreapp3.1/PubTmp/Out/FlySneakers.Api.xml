@@ -223,7 +223,7 @@
             <response code="400">Pedido não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutos">
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutos(System.Int32,System.Int32)">
             <summary>
             Obter produtos cadastrados
             </summary>
@@ -231,7 +231,7 @@
             <response code="400">Produtos não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProduto(System.Int32)">
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutoDetalhe(System.Int32)">
             <summary>
             Obter produto a partir do ID informado
             </summary>
@@ -330,6 +330,14 @@
             <response code="500">Erro inesperado</response>
         </member>
         <member name="M:FlySneakers.Api.Controllers.UsuarioController.ObterUsuarios">
+            <summary>
+            Obter usuarios
+            </summary>
+            <response code="200">Usuarios retornados</response>
+            <response code="400">Usuarios não encontrados</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.ObterUsuarioDados(System.Int32)">
             <summary>
             Obter usuarios
             </summary>

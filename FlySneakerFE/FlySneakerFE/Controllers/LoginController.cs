@@ -46,7 +46,7 @@ namespace FlySneakerFE.Controllers
 
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.PostAsync("https://localhost:5001/api/usuario/login", httpContent))
+                    using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario/login", httpContent))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
