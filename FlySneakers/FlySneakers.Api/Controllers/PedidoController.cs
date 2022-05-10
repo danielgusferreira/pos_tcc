@@ -126,7 +126,7 @@ namespace FlySneakers.Api.Controllers
             if (result == 0)
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
-            return Ok();
+            return Ok(result);
         }
 
         /// <summary>

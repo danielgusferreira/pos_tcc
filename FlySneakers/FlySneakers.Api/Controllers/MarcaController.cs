@@ -30,7 +30,9 @@ namespace FlySneakers.Api.Controllers
                 new Marca { Codigo = 1, Nome = "Nike", Descricao = "Marca de artigos Nike" },
                 new Marca { Codigo = 2, Nome = "Adidas", Descricao = "Marca de artigos Adidas" },
                 new Marca { Codigo = 3, Nome = "Rebook", Descricao = "Marca de artigos Rebook" },
-                new Marca { Codigo = 3, Nome = "Vans", Descricao = "Marca de artigos Vans" }
+                new Marca { Codigo = 4, Nome = "Vans", Descricao = "Marca de artigos Vans" },
+                new Marca { Codigo = 5, Nome = "New Balance", Descricao = "Marca de artigos New Balance" },
+                new Marca { Codigo = 6, Nome = "Puma", Descricao = "Marca de artigos Puma" }
             };
 
             return Ok(listaMarca);

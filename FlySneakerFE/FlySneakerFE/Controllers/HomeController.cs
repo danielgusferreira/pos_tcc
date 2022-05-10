@@ -25,15 +25,25 @@ namespace FlySneakerFE.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int codigoMarca, int codigoCategoria, bool pedido = false)
         {
             try
             {
                 ViewBag.PerfilUsuario = Request.Cookies["PerfilUsuarioLogado"];
+                ViewBag.PedidoRealizado = pedido;
 
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos"))
+
+                    var url = "https://flysneakersbeapi.azurewebsites.net/api/produtos";
+
+                    if(codigoCategoria != 0)
+                        url += "?codigoCategoria=" + codigoCategoria;
+
+                    if (codigoMarca != 0)
+                        url += "?codigoMarca=" + codigoMarca;
+
+                    using (var response = await httpClient.GetAsync(url))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 

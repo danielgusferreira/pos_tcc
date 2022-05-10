@@ -37,7 +37,8 @@ namespace FlySneakers.Repositories.Repositories
                                     inner join produto p on
                                         p.codigo = pd.codigo_produto
                                 where 
-                                    c.usuario_codigo = @usuario";
+                                    c.usuario_codigo = @usuario AND
+	                                c.codigo NOT IN (SELECT codigo from pedido where codigo_carrinho = c.codigo)";
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("usuario", codUsuario, DbType.Int32);

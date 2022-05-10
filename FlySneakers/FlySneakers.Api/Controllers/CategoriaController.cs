@@ -27,8 +27,11 @@ namespace FlySneakers.Api.Controllers
         {
             var listaCategoria = new List<Categoria>
             {
-                new Categoria { Codigo = 1, Nome = "Tênis", Descricao = "Categoria responsavel por listas os tênis disponiveis no site." },
-                new Categoria { Codigo = 2, Nome = "Feminino", Descricao = "Categoria responsavel por listas itens femininos." }
+                new Categoria { Codigo = 1, Nome = "Masculino", Descricao = "Produtos masculinos" },
+                new Categoria { Codigo = 2, Nome = "Feminino", Descricao = "Produtos femininos." },
+                new Categoria { Codigo = 3, Nome = "Chuteiras", Descricao = "Produtos Chuteiras." },
+                new Categoria { Codigo = 4, Nome = "SkateBoard", Descricao = "Produtos skateBoard." },
+                new Categoria { Codigo = 5, Nome = "Casual", Descricao = "Produtos casual." },
             };
 
             return Ok(listaCategoria);

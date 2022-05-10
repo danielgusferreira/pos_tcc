@@ -7,7 +7,7 @@
             Layout = "~/Views/Shared/_LayoutAdm.cshtml";
             break;
         case "2":
-            Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+            Layout = "~/Views/Shared/_LayoutFunc.cshtml";
             break;
         case "3":
             Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
@@ -24,9 +24,19 @@
 <form method="post" action="@Url.Action("Index", "Pedido")">
     <div class="container">
         <br />
-        <h4>Carrinho de compras</h4>@Html.ActionLink("Continuar comprando", "Index", "Home", null, new { @class = "btn btn-outline-primary text-center" })
         <br />
-
+        <div class="row">
+            <div class="col">
+                <h4>Pedidos</h4>
+            </div>
+            <div class="col-6">
+            </div>
+            <div class="col">
+                @Html.ActionLink("Continuar comprando", "Index", "Home", null, new { @class = "btn btn-outline-dark flex-shrink-0 text-center" })
+            </div>
+        </div>
+        <br />
+        <br />
         <div class="row">
             <div class="col-8">
                 <div class="card">
@@ -93,7 +103,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <h5>Valor Pedido: @Model.ValorPedido </h5>                              
+                                <h5>Valor Pedido: @Model.ValorPedido </h5>
                             </div>
                         </div>
                         <input type="hidden" value="@Model.Codigos" name="codigosCarrinhos">

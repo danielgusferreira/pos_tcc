@@ -28,8 +28,7 @@ namespace FlySneakers.UseCases
             }
             catch (Exception e)
             {
-                ErrorMessage errMsg = new ErrorMessage("00.01", "Error ao criar pedido");
-                var errorData = e.Data?.OfType<DictionaryEntry>().ToDictionary(kv => kv.Key.ToString(), kv => kv.Value?.ToString());
+                throw e;
             }
 
             return result;

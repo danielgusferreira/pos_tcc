@@ -62,16 +62,21 @@ namespace FlySneakerFE.Controllers
         {
             try
             {
+                var result = "";
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
                     await ObterCarrinho(httpClient);
 
                     var codCarrinhos = carrinho.Select(x => x.Codigo);
 
-                    await FinalizarPedido(httpClient, codigoMeioPagamento, codCarrinhos);
+                    result = await FinalizarPedido(httpClient, codigoMeioPagamento, codCarrinhos);
                 }
 
+                if(result == "1")
+                    RedirectToAction("Index", "Home", new { pedido = true });
+
                 return RedirectToAction("Index", "Pedido");
+
             }
             catch
             {
@@ -117,16 +122,17 @@ namespace FlySneakerFE.Controllers
             }
         }
 
-        private async Task FinalizarPedido(HttpClient httpClient, int codigoMeioPagamento, IEnumerable<int> codCarrinhos)
+        private async Task<string> FinalizarPedido(HttpClient httpClient, int codigoMeioPagamento, IEnumerable<int> codCarrinhos)
         {
             var dados = new CadastrarPedidoDto { CodPagamento = codigoMeioPagamento, CodCarrinhos = codCarrinhos };
 
             var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
-            using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario/login", httpContent))
+            using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/pedido/", httpContent))
             {
-                var resultApi = await response.Content.ReadAsStringAsync();
+                var result = await response.Content.ReadAsStringAsync();
 
+                return result;
             }
 
         }

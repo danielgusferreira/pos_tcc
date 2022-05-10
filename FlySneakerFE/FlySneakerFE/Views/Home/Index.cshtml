@@ -7,7 +7,7 @@
             Layout = "~/Views/Shared/_LayoutAdm.cshtml";
             break;
         case "2":
-            Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+            Layout = "~/Views/Shared/_LayoutFunc.cshtml";
             break;
         case "3":
             Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
@@ -25,6 +25,21 @@
     <br />
     <h4>Conheça nossas novidades</h4>
     <br />
+    @{
+        if (Model.Count() == 0)
+        {
+            <div class="alert alert-warning" role="alert">
+                No momento não temos produtos cadastrados com o filtro utilizado.
+            </div>
+        }
+
+        if (ViewBag.PedidoRealizado == true)
+        {
+            <div class="alert alert-success" role="alert">
+                Pedido realizado com sucesso, aguarde o envio.
+            </div>
+        }
+    }
     <div class="row align-items-start">
 
         @foreach (var item in Model)
