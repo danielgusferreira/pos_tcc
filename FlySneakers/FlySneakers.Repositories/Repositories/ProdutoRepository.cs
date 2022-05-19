@@ -62,8 +62,18 @@ namespace FlySneakers.Repositories.Repositories
         {
             using (var connection = new SqlConnection(Connection))
             {
-                string sql = @"SELECT CODIGO, NOME, DESCRICAO, FOTO1, FOTO2, FOTO3, FOTO4
-                                FROM produto WHERE CODIGO = @codigo";
+                string sql = @"SELECT 
+                                    CODIGO, 
+                                    NOME, 
+                                    DESCRICAO, 
+                                    FOTO1, 
+                                    FOTO2, 
+                                    FOTO3, 
+                                    FOTO4
+                                FROM
+                                    produto 
+                                WHERE 
+                                    CODIGO = @codigo";
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("codigo", codigo, DbType.Int32);
@@ -83,9 +93,9 @@ namespace FlySneakers.Repositories.Repositories
 	                            codigo_produto as CodigoProduto,
 	                            tamanho,
 	                            estoque,
-	                            valor
+	                            (SELECT MIN(pd2.valor) FROM produto_dados pd2 WHERE pd2.codigo_produto = pd.codigo_produto) as Valor
                             from
-	                            produto_dados
+	                            produto_dados pd
                             where
 	                            codigo_produto = @codigo";
 

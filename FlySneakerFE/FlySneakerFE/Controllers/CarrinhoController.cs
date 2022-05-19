@@ -65,15 +65,15 @@ namespace FlySneakerFE.Controllers
                     string url = "https://flysneakersbeapi.azurewebsites.net/api/usuario/dados/" + Convert.ToInt32(Request.Cookies["CodigoUsuarioLogado"]);
 
                     using (var response = await httpClient.GetAsync(url))
-                    {
-                        if (await response.Content.ReadAsStringAsync() == "0")
+                    {                      
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
-                            return RedirectToAction("Details", "Cadastrar");
+                            return RedirectToAction("Index", "Pedido");
                         }
                     }
                 }
 
-                return RedirectToAction("Index", "Pedido");
+                return RedirectToAction("Details", "Cadastrar");
             }
             catch
             {

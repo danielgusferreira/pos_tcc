@@ -47,3 +47,5 @@ C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\Razor\Views\Pedido\Index.cshtml.g.cs
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\Razor\Views\Produto\Details.cshtml.g.cs
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\Razor\Views\Shared\Components\Menu\Index.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\Razor\Views\Shared\_LayoutFunc.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Release\netcoreapp3.1\Razor\Views\Home\IndexAdm.cshtml.g.cs

@@ -48,7 +48,6 @@ namespace FlySneakerFE.Controllers
                 var dadosPedido = new ConfirmarPedidoDto { MeioPagamento = meiosPagamento, UsuarioDados = usuario, ValorPedido = ValorCarrinho, Codigos = CodigosCarrinhos };
 
                 return View(dadosPedido);
-
             }
             catch
             {
@@ -73,7 +72,7 @@ namespace FlySneakerFE.Controllers
                 }
 
                 if(result == "1")
-                    RedirectToAction("Index", "Home", new { pedido = true });
+                    return RedirectToAction("Index", "Home", new { pedido = true });
 
                 return RedirectToAction("Index", "Pedido");
 

@@ -27,7 +27,7 @@ namespace FlySneakers.Repositories.Repositories
 	                               c.quantidade as Quantidade, 
 	                               pd.tamanho as Tamanho,
 	                               p.foto1 as Foto,
-	                               pd.valor as Valor
+	                               (SELECT MIN(pd.valor) FROM produto_dados pd WHERE pd.codigo_produto = p.codigo) as Valor
                                from
                                     carrinho c
 

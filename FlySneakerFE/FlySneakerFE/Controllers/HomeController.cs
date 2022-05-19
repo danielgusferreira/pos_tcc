@@ -30,6 +30,13 @@ namespace FlySneakerFE.Controllers
             try
             {
                 ViewBag.PerfilUsuario = Request.Cookies["PerfilUsuarioLogado"];
+
+                if (Request.Cookies["PerfilUsuarioLogado"] == "1" || Request.Cookies["PerfilUsuarioLogado"] == "2")
+                {
+                    return RedirectToAction("IndexAdm");
+                }
+
+                
                 ViewBag.PedidoRealizado = pedido;
 
                 using (var httpClient = new HttpClient(httpClientHandler))
@@ -61,5 +68,21 @@ namespace FlySneakerFE.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> IndexAdm(int codigoMarca, int codigoCategoria, bool pedido = false)
+        {
+            try
+            {
+                ViewBag.PerfilUsuario = Request.Cookies["PerfilUsuarioLogado"];
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return View();
+            }
+
+        }
     }
 }

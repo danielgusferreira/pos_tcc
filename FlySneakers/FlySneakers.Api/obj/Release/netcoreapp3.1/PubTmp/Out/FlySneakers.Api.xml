@@ -345,6 +345,12 @@
             <response code="400">Usuarios não encontrados</response>
             <response code="500">Erro inesperado</response>
         </member>
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.VerificarCadastroUsuario(System.String)">
+            <summary>
+            Obter usuarios
+            </summary>
+            <response code="200">Retorna resultado da busca</response>
+        </member>
         <member name="M:FlySneakers.Api.Controllers.UsuarioController.Logar(FlySneakers.Borders.Dto.LoginDto)">
             <summary>
             Realizar login usuario

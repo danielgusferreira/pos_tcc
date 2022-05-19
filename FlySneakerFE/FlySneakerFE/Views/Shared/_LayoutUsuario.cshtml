@@ -36,24 +36,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-                <ul class="navbar-nav w-100 justify-content-center">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">  Categorias  </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">  Marcas  </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
-                        </ul>
-                    </li>
-                </ul>
+                @await Component.InvokeAsync("Menu")
                 <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
                     <li class="nav-item"><a class="nav-link" href="Carrinho/Index"> Carrinho </a></li>
                     <li class="nav-item"><a class="nav-link" href="Login/Sair"> Sair </a></li>

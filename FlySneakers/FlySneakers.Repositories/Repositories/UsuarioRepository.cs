@@ -77,5 +77,20 @@ namespace FlySneakers.Repositories.Repositories
                 return result;
             }
         }
+
+        public bool VerificarCadastroUsuario(string email)
+        {
+            using (var connection = new SqlConnection(Connection))
+            {
+                string sql = "SELECT codigo from usuario where email = @email";
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("email", email, DbType.String);
+
+                var result = connection.QueryFirstOrDefault<int>(sql, parameters);
+
+                return result != 0;
+            }
+        }
     }
 }

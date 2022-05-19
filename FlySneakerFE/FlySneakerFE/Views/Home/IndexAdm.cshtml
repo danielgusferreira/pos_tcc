@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    switch (ViewBag.PerfilUsuario)
+    {
+        case "1":
+            Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+            break;
+        case "2":
+            Layout = "~/Views/Shared/_LayoutFunc.cshtml";
+            break;
+        case "3":
+            Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+            break;
+        default:
+            //Admin layout
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+    }
+}
+
+<div class="container">
+    <br />
+    <h4>DashBoard</h4>
+</div>

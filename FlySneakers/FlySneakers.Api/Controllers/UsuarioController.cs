@@ -18,18 +18,21 @@ namespace FlySneakers.Api.Controllers
         private readonly ICadastrarUsuarioUseCase cadastrarUsuarioUseCase;
         private readonly ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase;
         private readonly IObterUsuarioDadosUseCase obterUsuarioDadosUseCase;
+        private readonly IVerificarCadastroUsuarioUseCase verificarCadastroUsuarioUseCase;
 
         public UsuarioController(IActionResultConverter actionResultConverter,
-            ILogarUseCase logarUseCase, 
-            ICadastrarUsuarioUseCase cadastrarUsuarioUseCase, 
-            ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase, 
-            IObterUsuarioDadosUseCase obterUsuarioDadosUseCase)
+            ILogarUseCase logarUseCase,
+            ICadastrarUsuarioUseCase cadastrarUsuarioUseCase,
+            ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase,
+            IObterUsuarioDadosUseCase obterUsuarioDadosUseCase, 
+            IVerificarCadastroUsuarioUseCase verificarCadastroUsuarioUseCase)
         {
             this.actionResultConverter = actionResultConverter;
             this.logarUseCase = logarUseCase;
             this.cadastrarUsuarioUseCase = cadastrarUsuarioUseCase;
             this.cadastrarDadosUsuarioUseCase = cadastrarDadosUsuarioUseCase;
             this.obterUsuarioDadosUseCase = obterUsuarioDadosUseCase;
+            this.verificarCadastroUsuarioUseCase = verificarCadastroUsuarioUseCase;
         }
 
         /// <summary>
@@ -65,6 +68,17 @@ namespace FlySneakers.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Obter usuarios
+        /// </summary>
+        /// <response code="200">Retorna resultado da busca</response>
+        [HttpGet("verificarCadastro/{email}")]
+        public ActionResult<UsuarioDados> VerificarCadastroUsuario(string email)
+        {
+            var result = verificarCadastroUsuarioUseCase.Execute(email);
+
+            return Ok(result);
+        }
 
         /// <summary>
         /// Realizar login usuario

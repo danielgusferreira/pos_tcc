@@ -7,7 +7,7 @@
             Layout = "~/Views/Shared/_LayoutAdm.cshtml";
             break;
         case "2":
-            Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+            Layout = "~/Views/Shared/_LayoutFunc.cshtml";
             break;
         case "3":
             Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
@@ -39,27 +39,36 @@
 
         <br />
         <br />
-
-        @foreach (var item in Model)
-        {<div class="row align-items-start">
-                <div class="col">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col">
-                                <img style="width: 200px;" class="img-responsive" src="@item.Foto">
+        @if (Model.Count() == 0)
+        {
+            <div class="alert alert-warning" role="alert">
+                O seu carrinho está vazio, adicione novos itens para realizar a compra.
+            </div>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <div class="row align-items-start">
+                    <div class="col">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col">
+                                    <img style="width: 200px;" class="img-responsive" src="@item.Foto">
+                                </div>
+                                <div class="col-6">
+                                    <h4 class="product-name"><strong>@item.Nome</strong></h4>
+                                </div>
+                                <div class="col">
+                                    <h6><strong>@item.Valor.ToString("C") <span class="text-muted">x</span> <span class="text-muted">@item.Quantidade</span> </strong></h6>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <h4 class="product-name"><strong>@item.Nome</strong></h4>
-                            </div>
-                            <div class="col">
-                                    <h6><strong>@item.Valor <span class="text-muted">x</span> <span class="text-muted">@item.Quantidade</span> </strong></h6>
-                            </div>
+                            <hr>
                         </div>
-                        <hr>
                     </div>
-                </div>
 
-            </div>}
+                </div>}
+        }
     </div>
     <button class="btn btn-outline-dark flex-shrink-0" type="submit">
         <i class="bi-cart-fill me-1"></i>

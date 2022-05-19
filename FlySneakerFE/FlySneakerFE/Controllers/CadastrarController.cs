@@ -43,6 +43,12 @@ namespace FlySneakerFE.Controllers
 
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
+                    if (await VerificarCadastroUsuarioAsync(email, httpClient))
+                    {
+                        ViewBag.ErroLogin = "O usuario informado já existe, acesse a tela de login para acessar o sistema.";
+                        return View();
+                    }
+
                     using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario", httpContent))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
@@ -60,11 +66,13 @@ namespace FlySneakerFE.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
-            catch
+            catch(Exception ex)
             {
-                ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                ViewBag.ErroLogin = ex;
+                //ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
                 return View();
             }
+
         }
 
         [HttpGet]
@@ -113,6 +121,19 @@ namespace FlySneakerFE.Controllers
                 ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
                 return View();
             }
+        }
+
+
+        private async Task<bool> VerificarCadastroUsuarioAsync(string email, HttpClient httpClient)
+        {
+            var result = "";
+
+            using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario/verificarCadastro/" + email))
+            {
+                result = await response.Content.ReadAsStringAsync();                         
+            }
+            
+            return Convert.ToBoolean(result);
         }
     }
 }
