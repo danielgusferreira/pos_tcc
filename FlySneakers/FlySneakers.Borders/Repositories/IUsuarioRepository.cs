@@ -9,5 +9,9 @@ namespace FlySneakers.Borders.Repositories
         bool VerificarCadastroUsuario(string email);
         int CadastrarUsuario(Usuario usuario);
         int CadastrarDadosUsuario(UsuarioDados usuario);
+        //int AtualizarUsuario(Usuario usuario);
+        //int AtualizarDadosUsuario(UsuarioDados usuario);
+        int RemoverUsuario(Usuario usuario);
+        int RemoverDadosUsuario(UsuarioDados usuario);
     }
 }

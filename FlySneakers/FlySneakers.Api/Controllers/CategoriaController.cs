@@ -1,7 +1,10 @@
 ﻿using FlySneakers.Api.Models;
 using FlySneakers.Borders.Models;
+using FlySneakers.Borders.UseCase;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FlySneakers.Api.Controllers
 {
@@ -10,10 +13,16 @@ namespace FlySneakers.Api.Controllers
     public class CategoriaController : BaseController
     {
         private readonly IActionResultConverter actionResultConverter;
+        private readonly IObterCategoriaUseCase obterCategoriaUseCase;
+        private readonly ICadastarCategoriaUseCase cadastarCategoriaUseCase;
 
-        public CategoriaController(IActionResultConverter actionResultConverter)
+        public CategoriaController(IActionResultConverter actionResultConverter, 
+            IObterCategoriaUseCase obterCategoriaUseCase, 
+            ICadastarCategoriaUseCase cadastarCategoriaUseCase)
         {
             this.actionResultConverter = actionResultConverter;
+            this.obterCategoriaUseCase = obterCategoriaUseCase;
+            this.cadastarCategoriaUseCase = cadastarCategoriaUseCase;
         }
 
         /// <summary>
@@ -25,14 +34,7 @@ namespace FlySneakers.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Categoria>> ObterCategorias()
         {
-            var listaCategoria = new List<Categoria>
-            {
-                new Categoria { Codigo = 1, Nome = "Masculino", Descricao = "Produtos masculinos" },
-                new Categoria { Codigo = 2, Nome = "Feminino", Descricao = "Produtos femininos." },
-                new Categoria { Codigo = 3, Nome = "Chuteiras", Descricao = "Produtos Chuteiras." },
-                new Categoria { Codigo = 4, Nome = "SkateBoard", Descricao = "Produtos skateBoard." },
-                new Categoria { Codigo = 5, Nome = "Casual", Descricao = "Produtos casual." },
-            };
+            var listaCategoria = obterCategoriaUseCase.Execute();
 
             return Ok(listaCategoria);
         }
@@ -63,8 +65,12 @@ namespace FlySneakers.Api.Controllers
         [HttpPost]
         public ActionResult<Categoria> CadastrarCategoria([FromBody] Categoria categoria)
         {
-            categoria.Codigo = 3;
-            return Ok(categoria);
+            var result = cadastarCategoriaUseCase.Execute(categoria);
+
+            if(result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
         /// <summary>

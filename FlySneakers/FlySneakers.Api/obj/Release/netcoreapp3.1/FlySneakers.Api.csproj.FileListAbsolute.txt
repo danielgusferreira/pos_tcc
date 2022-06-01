@@ -6,6 +6,7 @@ C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\bi
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\bin\Release\netcoreapp3.1\FlySneakers.Api.runtimeconfig.dev.json
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\bin\Release\netcoreapp3.1\FlySneakers.Api.dll
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\bin\Release\netcoreapp3.1\FlySneakers.Api.pdb
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\bin\Release\netcoreapp3.1\FlySneakers.Api.xml
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\bin\Release\netcoreapp3.1\Dapper.dll
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\bin\Release\netcoreapp3.1\FluentValidation.dll
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\bin\Release\netcoreapp3.1\System.Net.Http.Formatting.dll
@@ -74,4 +75,3 @@ C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\ob
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\obj\Release\netcoreapp3.1\FlySneakers.Api.dll
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\obj\Release\netcoreapp3.1\FlySneakers.Api.pdb
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\obj\Release\netcoreapp3.1\FlySneakers.Api.genruntimeconfig.cache
-C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakers\FlySneakers.Api\bin\Release\netcoreapp3.1\FlySneakers.Api.xml

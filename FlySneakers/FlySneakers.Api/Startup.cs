@@ -67,13 +67,20 @@ namespace FlySneakers.Api
             services.AddScoped<IObterPedidoUseCase, ObterPedidoUseCase>();
 
             services.AddScoped<IObterProdutoPagInicialUseCase, ObterProdutoPagInicialUseCase>();
-            services.AddScoped<IObterProdutoDetalhesUseCase, ObterProdutoDetalhesUseCase>();        
+            services.AddScoped<IObterProdutoDetalhesUseCase, ObterProdutoDetalhesUseCase>();
+
+            services.AddScoped<IObterCategoriaUseCase, ObterCategoriaUseCase>();
+            services.AddScoped<ICadastarCategoriaUseCase, CadastarCategoriaUseCase>();
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IUsuarioDadosRepository, UsuarioDadosRepository>();
             services.AddScoped<ICarrinhoRepository, CarrinhoRepository>();
             services.AddScoped<IPedidoRepository, PedidoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            services.AddScoped<IMarcasRepository, MarcaRepository>();
+            services.AddScoped<IComentarioRepository, ComentarioRepository>();
+            services.AddScoped<IFormaPagamentoRepository, FormaPagamentoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
