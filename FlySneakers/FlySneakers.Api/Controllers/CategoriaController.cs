@@ -15,14 +15,20 @@ namespace FlySneakers.Api.Controllers
         private readonly IActionResultConverter actionResultConverter;
         private readonly IObterCategoriaUseCase obterCategoriaUseCase;
         private readonly ICadastarCategoriaUseCase cadastarCategoriaUseCase;
+        private readonly IEditarCategoriaUseCase editarCategoriaUseCase;
+        private readonly IRemoverCategoriaUseCase removerCategoriaUseCase;
 
-        public CategoriaController(IActionResultConverter actionResultConverter, 
-            IObterCategoriaUseCase obterCategoriaUseCase, 
-            ICadastarCategoriaUseCase cadastarCategoriaUseCase)
+        public CategoriaController(IActionResultConverter actionResultConverter,
+            IObterCategoriaUseCase obterCategoriaUseCase,
+            ICadastarCategoriaUseCase cadastarCategoriaUseCase,
+            IEditarCategoriaUseCase editarCategoriaUseCase, 
+            IRemoverCategoriaUseCase removerCategoriaUseCase)
         {
             this.actionResultConverter = actionResultConverter;
             this.obterCategoriaUseCase = obterCategoriaUseCase;
             this.cadastarCategoriaUseCase = cadastarCategoriaUseCase;
+            this.editarCategoriaUseCase = editarCategoriaUseCase;
+            this.removerCategoriaUseCase = removerCategoriaUseCase;
         }
 
         /// <summary>
@@ -39,23 +45,25 @@ namespace FlySneakers.Api.Controllers
             return Ok(listaCategoria);
         }
 
-        /// <summary>
-        /// Obter a categoria informada pelo ID
-        /// </summary>
-        /// <remarks>Ao informar os IDs 1 e 2 será retornado a categoria</remarks>
-        /// <response code="200">Categoria retornada</response>
-        /// <response code="400">Categoria não encontrada</response>
-        /// <response code="500">Erro inesperado</response>
-        [HttpGet("{idCategoria}")]
-        public ActionResult<Categoria> ObterCategoria(int idCategoria)
-        {
-            return idCategoria switch
-            {
-                1 => Ok(new Categoria { Codigo = 1, Nome = "Tênis", Descricao = "Categoria responsavel por listas os tênis disponiveis no site." }),
-                2 => Ok(new Categoria { Codigo = 2, Nome = "Feminino", Descricao = "Categoria responsavel por listas itens femininos." }),
-                _ => NotFound(),
-            };
-        }
+        #region
+        ///// <summary>
+        ///// Obter a categoria informada pelo ID
+        ///// </summary>
+        ///// <remarks>Ao informar os IDs 1 e 2 será retornado a categoria</remarks>
+        ///// <response code="200">Categoria retornada</response>
+        ///// <response code="400">Categoria não encontrada</response>
+        ///// <response code="500">Erro inesperado</response>
+        //[HttpGet("{idCategoria}")]
+        //public ActionResult<Categoria> ObterCategoria(int idCategoria)
+        //{
+        //    return idCategoria switch
+        //    {
+        //        1 => Ok(new Categoria { Codigo = 1, Nome = "Tênis", Descricao = "Categoria responsavel por listas os tênis disponiveis no site." }),
+        //        2 => Ok(new Categoria { Codigo = 2, Nome = "Feminino", Descricao = "Categoria responsavel por listas itens femininos." }),
+        //        _ => NotFound(),
+        //    };
+        //}
+        #endregion
 
         /// <summary>
         /// Criar nova categoria
@@ -82,7 +90,13 @@ namespace FlySneakers.Api.Controllers
         [HttpPut("{idCategoria}")]
         public ActionResult<IEnumerable<string>> AlterarCategoria(int idCategoria, [FromBody] Categoria categoria)
         {
-            return Ok(categoria);
+            categoria.Codigo = idCategoria;
+            var result = editarCategoriaUseCase.Execute(categoria);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
         /// <summary>
@@ -94,7 +108,12 @@ namespace FlySneakers.Api.Controllers
         [HttpDelete("{idCategoria}")]
         public ActionResult<IEnumerable<string>> RemoverCategoria(int idCategoria)
         {
-            return Ok(idCategoria);
+            var result = removerCategoriaUseCase.Execute(idCategoria);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
     }

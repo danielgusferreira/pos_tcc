@@ -1,5 +1,7 @@
 ﻿using FlySneakers.Api.Models;
 using FlySneakers.Borders.Models;
+using FlySneakers.Borders.UseCase;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -10,10 +12,18 @@ namespace FlySneakers.Api.Controllers
     public class MarcaController : BaseController
     {
         private readonly IActionResultConverter actionResultConverter;
+        private readonly IObterMarcaUseCase obterMarcaUseCase;
+        private readonly ICadastarMarcaUseCase cadastarMarcaUseCase;
+        private readonly IEditarMarcaUseCase editarMarcaUseCase;
+        private readonly IRemoverMarcaUseCase removerMarcaUseCase;
 
-        public MarcaController(IActionResultConverter actionResultConverter)
+        public MarcaController(IActionResultConverter actionResultConverter, IObterMarcaUseCase obterMarcaUseCase, ICadastarMarcaUseCase cadastarMarcaUseCase, IEditarMarcaUseCase editarMarcaUseCase, IRemoverMarcaUseCase removerMarcaUseCase)
         {
             this.actionResultConverter = actionResultConverter;
+            this.obterMarcaUseCase = obterMarcaUseCase;
+            this.cadastarMarcaUseCase = cadastarMarcaUseCase;
+            this.editarMarcaUseCase = editarMarcaUseCase;
+            this.removerMarcaUseCase = removerMarcaUseCase;
         }
 
         /// <summary>
@@ -25,19 +35,12 @@ namespace FlySneakers.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Marca>> ObterMarcas()
         {
-            var listaMarca = new List<Marca>
-            {
-                new Marca { Codigo = 1, Nome = "Nike", Descricao = "Marca de artigos Nike" },
-                new Marca { Codigo = 2, Nome = "Adidas", Descricao = "Marca de artigos Adidas" },
-                new Marca { Codigo = 3, Nome = "Rebook", Descricao = "Marca de artigos Rebook" },
-                new Marca { Codigo = 4, Nome = "Vans", Descricao = "Marca de artigos Vans" },
-                new Marca { Codigo = 5, Nome = "New Balance", Descricao = "Marca de artigos New Balance" },
-                new Marca { Codigo = 6, Nome = "Puma", Descricao = "Marca de artigos Puma" }
-            };
+            var ListaMarcas = obterMarcaUseCase.Execute();
 
-            return Ok(listaMarca);
+            return Ok(ListaMarcas);
         }
 
+        #region
         /// <summary>
         /// Obter a marca a partir do ID informado
         /// </summary>
@@ -45,16 +48,18 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Marca retornada</response>
         /// <response code="400">Marca não encontrada</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpGet("{idMarca}")]
-        public ActionResult<Marca> ObterMarca(int idMarca)
-        {
-            return idMarca switch
-            {
-                1 => Ok(new Marca { Codigo = 1, Nome = "Nike", Descricao = "Marca roupas Nike" }),
-                2 => Ok(new Marca { Codigo = 2, Nome = "Adidas", Descricao = "Marca roupas Adidas" }),
-                _ => NotFound(),
-            };
-        }
+        //[HttpGet("{idMarca}")]
+        //public ActionResult<Marca> ObterMarca(int idMarca)
+        //{
+        //    return idMarca switch
+        //    {
+        //        1 => Ok(new Marca { Codigo = 1, Nome = "Nike", Descricao = "Marca roupas Nike" }),
+        //        2 => Ok(new Marca { Codigo = 2, Nome = "Adidas", Descricao = "Marca roupas Adidas" }),
+        //        _ => NotFound(),
+        //    };
+        //}
+
+        #endregion
 
         /// <summary>
         /// Cadastrar marca
@@ -65,8 +70,14 @@ namespace FlySneakers.Api.Controllers
         [HttpPost]
         public ActionResult<Marca> CadastrarMarca([FromBody] Marca marca)
         {
-            marca.Codigo = 3;
-            return Ok(marca);
+            {
+                var result = cadastarMarcaUseCase.Execute(marca);
+
+                if (result == 0)
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+
+                return Ok(result);
+            }
         }
 
         /// <summary>
@@ -78,7 +89,13 @@ namespace FlySneakers.Api.Controllers
         [HttpPut("{idMarca}")]
         public ActionResult<Marca> AlterarMarca(int idMarca, [FromBody] Marca marca)
         {
-            return Ok(marca);
+            marca.Codigo = idMarca;
+            var result = editarMarcaUseCase.Execute(marca);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
         /// <summary>
@@ -90,7 +107,12 @@ namespace FlySneakers.Api.Controllers
         [HttpDelete("{idMarca}")]
         public ActionResult RemoverMarca(int idMarca)
         {
-            return Ok(idMarca);
+            var result = removerMarcaUseCase.Execute(idMarca);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
     }

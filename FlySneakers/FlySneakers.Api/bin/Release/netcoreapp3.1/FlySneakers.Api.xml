@@ -37,15 +37,6 @@
             <response code="400">Categorias não encontradas</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.CategoriaController.ObterCategoria(System.Int32)">
-            <summary>
-            Obter a categoria informada pelo ID
-            </summary>
-            <remarks>Ao informar os IDs 1 e 2 será retornado a categoria</remarks>
-            <response code="200">Categoria retornada</response>
-            <response code="400">Categoria não encontrada</response>
-            <response code="500">Erro inesperado</response>
-        </member>
         <member name="M:FlySneakers.Api.Controllers.CategoriaController.CadastrarCategoria(FlySneakers.Borders.Models.Categoria)">
             <summary>
             Criar nova categoria
@@ -115,15 +106,6 @@
             </summary>
             <response code="200">Marcas retornadas</response>
             <response code="400">Marcas não cadastradas</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.MarcaController.ObterMarca(System.Int32)">
-            <summary>
-            Obter a marca a partir do ID informado
-            </summary>
-            <remarks>Ao informar os IDs 1 e 2 será retornado a marca</remarks>
-            <response code="200">Marca retornada</response>
-            <response code="400">Marca não encontrada</response>
             <response code="500">Erro inesperado</response>
         </member>
         <member name="M:FlySneakers.Api.Controllers.MarcaController.CadastrarMarca(FlySneakers.Borders.Models.Marca)">

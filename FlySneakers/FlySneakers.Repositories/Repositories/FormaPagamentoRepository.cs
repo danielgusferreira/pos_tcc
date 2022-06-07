@@ -16,13 +16,13 @@ namespace FlySneakers.Repositories.Repositories
         {
         }
 
-        public Task<IEnumerable<MeioPagamento>> ObterFormaPagamentos()
+        public IEnumerable<MeioPagamento> ObterFormaPagamentos()
         {
             using (var connection = new SqlConnection(Connection))
             {
                 string sql = "SELECT codigo, nome, descricao FROM meio_pagamento;";
 
-                var result = connection.QueryAsync<MeioPagamento>(sql);
+                var result = connection.Query<MeioPagamento>(sql);
 
                 return result;
             }

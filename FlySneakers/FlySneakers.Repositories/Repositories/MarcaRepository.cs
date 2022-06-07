@@ -4,11 +4,10 @@ using FlySneakers.Borders.Repositories;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 namespace FlySneakers.Repositories.Repositories
 {
-    public class MarcaRepository : IMarcasRepository 
+    public class MarcaRepository : IMarcasRepository
     {
         private readonly string Connection = "Server=tcp:flysneakerstcc.database.windows.net,1433;Initial Catalog=flysneakersdb;Persist Security Info=False;User ID=flysneakeradm;Password=Futebol101112@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
@@ -16,13 +15,13 @@ namespace FlySneakers.Repositories.Repositories
         {
         }
 
-        public Task<IEnumerable<Marca>> ObterMarcas()
+        public IEnumerable<Marca> ObterMarcas()
         {
             using (var connection = new SqlConnection(Connection))
             {
                 string sql = "SELECT codigo, nome, descricao FROM marca_produto;";
 
-                var result = connection.QueryAsync<Marca>(sql);
+                var result = connection.Query<Marca>(sql);
 
                 return result;
             }

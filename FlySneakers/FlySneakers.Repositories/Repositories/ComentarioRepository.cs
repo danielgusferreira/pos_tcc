@@ -18,13 +18,16 @@ namespace FlySneakers.Repositories.Repositories
         {
         }
 
-        public Task<IEnumerable<Comentario>> ObterComentarios()
+        public IEnumerable<Comentario> ObterComentarios(int codigo)
         {
             using (var connection = new SqlConnection(Connection))
             {
                 string sql = "SELECT codigo, codigo_usuario, codigo_produto_dados, nota, descricao FROM comentario WHERE codigo_produto_dados = @codigoProdutoDados;";
 
-                var result = connection.QueryAsync<Comentario>(sql);
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("codigo_produto_dados", codigo, DbType.Int32);
+
+                var result = connection.Query<Comentario>(sql, parameters);
 
                 return result;
             }

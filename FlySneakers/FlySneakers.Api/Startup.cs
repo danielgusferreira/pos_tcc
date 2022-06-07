@@ -53,15 +53,29 @@ namespace FlySneakers.Api
 
             services.AddScoped<IActionResultConverter, ActionResultConverter>();
 
-            services.AddScoped<ILogarUseCase, LoginUseCase>();
-            services.AddScoped<ICadastrarUsuarioUseCase, CadastrarUsuarioUseCase>();
-            services.AddScoped<ICadastrarDadosUsuarioUseCase, CadastrarDadosUsuarioUseCase>();
-            services.AddScoped<IObterUsuarioDadosUseCase, ObterUsuarioDadosUseCase>();
-            services.AddScoped<IVerificarCadastroUsuarioUseCase, VerificarCadastroUsuarioUseCase>();
-            
             services.AddScoped<IAdicionarItemCarrinhoUseCase, AdicionarItemCarrinhoUseCase>();
             services.AddScoped<IObterCarrinhoUsuarioUseCase, ObterCarrinhoUsuarioUseCase>();
             services.AddScoped<IRemoverItemCarrinhoUseCase, RemoverItemCarrinhoUseCase>();
+
+            services.AddScoped<IObterCategoriaUseCase, ObterCategoriaUseCase>();
+            services.AddScoped<ICadastarCategoriaUseCase, CadastarCategoriaUseCase>();
+            services.AddScoped<IEditarCategoriaUseCase, EditarCategoriaUseCase>();
+            services.AddScoped<IRemoverCategoriaUseCase, RemoverCategoriaUseCase>();
+
+            services.AddScoped<IObterComentarioUseCase, ObterComentarioUseCase>();
+            services.AddScoped<ICadastarComentarioUseCase, CadastarComentarioUseCase>();
+            services.AddScoped<IEditarComentarioUseCase, EditarComentarioUseCase>();
+            services.AddScoped<IRemoverComentarioUseCase, RemoverComentarioUseCase>();
+
+            services.AddScoped<IObterFormaPagamentoUseCase, ObterFormaPagamentoUseCase>();
+            services.AddScoped<ICadastarFormaPagamentoUseCase, CadastarFormaPagamentoUseCase>();
+            services.AddScoped<IEditarFormaPagamentoUseCase, EditarFormaPagamentoUseCase>();
+            services.AddScoped<IRemoverFormaPagamentoUseCase, RemoverFormaPagamentoUseCase>();
+
+            services.AddScoped<IObterMarcaUseCase, ObterMarcaUseCase>();
+            services.AddScoped<ICadastarMarcaUseCase, CadastarMarcaUseCase>();
+            services.AddScoped<IEditarMarcaUseCase, EditarMarcaUseCase>();
+            services.AddScoped<IRemoverMarcaUseCase, RemoverMarcaUseCase>();
 
             services.AddScoped<ICadastrarPedidoUseCase, CadastrarPedidoUseCase>();
             services.AddScoped<IObterPedidoUseCase, ObterPedidoUseCase>();
@@ -69,8 +83,11 @@ namespace FlySneakers.Api
             services.AddScoped<IObterProdutoPagInicialUseCase, ObterProdutoPagInicialUseCase>();
             services.AddScoped<IObterProdutoDetalhesUseCase, ObterProdutoDetalhesUseCase>();
 
-            services.AddScoped<IObterCategoriaUseCase, ObterCategoriaUseCase>();
-            services.AddScoped<ICadastarCategoriaUseCase, CadastarCategoriaUseCase>();
+            services.AddScoped<ILogarUseCase, LoginUseCase>();
+            services.AddScoped<ICadastrarUsuarioUseCase, CadastrarUsuarioUseCase>();
+            services.AddScoped<ICadastrarDadosUsuarioUseCase, CadastrarDadosUsuarioUseCase>();
+            services.AddScoped<IObterUsuarioDadosUseCase, ObterUsuarioDadosUseCase>();
+            services.AddScoped<IVerificarCadastroUsuarioUseCase, VerificarCadastroUsuarioUseCase>();
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IUsuarioDadosRepository, UsuarioDadosRepository>();

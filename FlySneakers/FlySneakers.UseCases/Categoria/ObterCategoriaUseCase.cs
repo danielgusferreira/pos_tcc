@@ -10,9 +10,9 @@ namespace FlySneakers.UseCases
     {
         private readonly ICategoriaRepository categoriaRepository;
 
-        public ObterCategoriaUseCase(ICategoriaRepository carrinhoRepository)
+        public ObterCategoriaUseCase(ICategoriaRepository categoriaRepository)
         {
-            this.categoriaRepository = carrinhoRepository;
+            this.categoriaRepository = categoriaRepository;
         }
 
         public IEnumerable<Categoria> Execute()

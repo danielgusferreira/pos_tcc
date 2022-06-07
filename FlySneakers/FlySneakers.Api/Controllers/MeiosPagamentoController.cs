@@ -1,5 +1,7 @@
 ﻿using FlySneakers.Api.Models;
 using FlySneakers.Borders.Models;
+using FlySneakers.Borders.UseCase;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -10,10 +12,18 @@ namespace FlySneakers.Api.Controllers
     public class MeiosPagamentoController : BaseController
     {
         private readonly IActionResultConverter actionResultConverter;
+        private readonly IObterFormaPagamentoUseCase obterFormaPagamentoUseCase;
+        private readonly ICadastarFormaPagamentoUseCase cadastarFormaPagamentoUseCase;
+        private readonly IEditarFormaPagamentoUseCase editarFormaPagamentoUseCase;
+        private readonly IRemoverFormaPagamentoUseCase removerFormaPagamentoUseCase;
 
-        public MeiosPagamentoController(IActionResultConverter actionResultConverter)
+        public MeiosPagamentoController(IActionResultConverter actionResultConverter, IObterFormaPagamentoUseCase obterFormaPagamentoUseCase, ICadastarFormaPagamentoUseCase cadastarFormaPagamentoUseCase, IEditarFormaPagamentoUseCase editarFormaPagamentoUseCase, IRemoverFormaPagamentoUseCase removerFormaPagamentoUseCase)
         {
             this.actionResultConverter = actionResultConverter;
+            this.obterFormaPagamentoUseCase = obterFormaPagamentoUseCase;
+            this.cadastarFormaPagamentoUseCase = cadastarFormaPagamentoUseCase;
+            this.editarFormaPagamentoUseCase = editarFormaPagamentoUseCase;
+            this.removerFormaPagamentoUseCase = removerFormaPagamentoUseCase;
         }
 
         /// <summary>
@@ -25,15 +35,12 @@ namespace FlySneakers.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<MeioPagamento>> ObterMeioPagamentos()
         {
-            var listaMeio = new List<MeioPagamento>
-            {
-                new MeioPagamento { Codigo = 1, Nome = "Boleto", Descricao = "Opção de pagamento via Boleto" },
-                new MeioPagamento { Codigo = 2, Nome = "Pix", Descricao = "Opção de pgamento via Pix" }
-            };
+            var listaCategoria = obterFormaPagamentoUseCase.Execute();
 
-            return Ok(listaMeio);
+            return Ok(listaCategoria);
         }
 
+        #region
         /// <summary>
         /// Obter meio de pagamento a partir do ID informado
         /// </summary>
@@ -51,6 +58,7 @@ namespace FlySneakers.Api.Controllers
                 _ => NotFound(),
             };
         }
+        #endregion
 
         /// <summary>
         /// Cadastrar meio de pagamento
@@ -60,8 +68,12 @@ namespace FlySneakers.Api.Controllers
         [HttpPost]
         public ActionResult<IEnumerable<string>> CadastrarMeioPagamento([FromBody] MeioPagamento MeioPagamento)
         {
-            MeioPagamento.Codigo = 3;
-            return Ok(MeioPagamento);
+            var result = cadastarFormaPagamentoUseCase.Execute(MeioPagamento);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
         /// <summary>
@@ -73,7 +85,13 @@ namespace FlySneakers.Api.Controllers
         [HttpPut("{idMeioPagamento}")]
         public ActionResult<MeioPagamento> AlterarMeioPagamento(int idMeioPagamento, [FromBody] MeioPagamento MeioPagamento)
         {
-            return Ok(MeioPagamento);
+            MeioPagamento.Codigo = idMeioPagamento;
+            var result = editarFormaPagamentoUseCase.Execute(MeioPagamento);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
         /// <summary>
@@ -85,7 +103,12 @@ namespace FlySneakers.Api.Controllers
         [HttpDelete("idMeioPagamento")]
         public ActionResult RemoverMeioPagamento(int idMeioPagamento)
         {
-            return Ok(idMeioPagamento);
+            var result = removerFormaPagamentoUseCase.Execute(idMeioPagamento);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
     }

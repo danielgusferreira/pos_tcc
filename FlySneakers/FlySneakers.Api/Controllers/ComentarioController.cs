@@ -1,5 +1,7 @@
 ﻿using FlySneakers.Api.Models;
 using FlySneakers.Borders.Models;
+using FlySneakers.Borders.UseCase;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,18 @@ namespace FlySneakers.Api.Controllers
     public class ComentarioController : BaseController
     {
         private readonly IActionResultConverter actionResultConverter;
+        private readonly IObterComentarioUseCase obterComentarioUseCase;
+        private readonly ICadastarComentarioUseCase cadastarComentarioUseCase;
+        private readonly IEditarComentarioUseCase editarComentarioUseCase;
+        private readonly IRemoverComentarioUseCase removerComentarioUseCase;
 
-        public ComentarioController(IActionResultConverter actionResultConverter)
+        public ComentarioController(IActionResultConverter actionResultConverter, IObterComentarioUseCase obterComentarioUseCase, ICadastarComentarioUseCase cadastarComentarioUseCase, IEditarComentarioUseCase editarComentarioUseCase, IRemoverComentarioUseCase removerComentarioUseCase)
         {
             this.actionResultConverter = actionResultConverter;
+            this.obterComentarioUseCase = obterComentarioUseCase;
+            this.cadastarComentarioUseCase = cadastarComentarioUseCase;
+            this.editarComentarioUseCase = editarComentarioUseCase;
+            this.removerComentarioUseCase = removerComentarioUseCase;
         }
 
         /// <summary>
@@ -27,24 +37,9 @@ namespace FlySneakers.Api.Controllers
         [HttpGet("{idProduto}", Order = 1)]
         public ActionResult<IEnumerable<Comentario>> ObterComentarioProduto(int idProduto)
         {
-            var listaComentarioProduto1 = new List<Comentario>
-            {
-                new Comentario { Codigo = 1, Nota = 5, Descricao = "Comentario produto1", CodigoProdutoSku = 1, CodigoUsuario = 1 },
-                new Comentario { Codigo = 2, Nota = 4, Descricao = "Comentario produto1", CodigoProdutoSku = 1, CodigoUsuario = 1 }
-            };
+            var listaCategoria = obterComentarioUseCase.Execute(idProduto);
 
-            var listaComentarioProduto2 = new List<Comentario>
-            {
-                new Comentario { Codigo = 2, Nota = 5, Descricao = "Comentario produto2", CodigoProdutoSku = 2, CodigoUsuario = 2 },
-                new Comentario { Codigo = 3, Nota = 4, Descricao = "Comentario produto2", CodigoProdutoSku = 2, CodigoUsuario = 2 }
-            };
-
-            return idProduto switch
-            {
-                1 => Ok(listaComentarioProduto1),
-                2 => Ok(listaComentarioProduto2),
-                _ => NotFound(),
-            };
+            return Ok(listaCategoria);
         }
 
         /// <summary>
@@ -53,10 +48,14 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Comentario criado</response>
         /// <response code="500">Erro inesperado</response>
         [HttpPost]
-        public ActionResult<Comentario> CadastrarComentario([FromBody] Comentario Comentario)
+        public ActionResult<Comentario> CadastrarComentario([FromBody] Comentario comentario)
         {
-            Comentario.Codigo = 3;
-            return Ok(Comentario);
+            var result = cadastarComentarioUseCase.Execute(comentario);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
         /// <summary>
@@ -66,9 +65,15 @@ namespace FlySneakers.Api.Controllers
         /// <response code="400">Comentario não encontrado</response>
         /// <response code="500">Erro inesperado</response>
         [HttpPut("{idComentario}")]
-        public ActionResult<Comentario> AlterarComentario(int idComentario, [FromBody] Comentario Comentario)
+        public ActionResult<Comentario> AlterarComentario(int idComentario, [FromBody] Comentario comentario)
         {
-            return Ok(Comentario);
+            comentario.Codigo = idComentario;
+            var result = editarComentarioUseCase.Execute(comentario);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
         /// <summary>
@@ -80,7 +85,12 @@ namespace FlySneakers.Api.Controllers
         [HttpDelete("{idComentario}")]
         public ActionResult<int> RemoverComentario(int idComentario)
         {
-            return Ok(idComentario);
+            var result = removerComentarioUseCase.Execute(idComentario);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
     }
