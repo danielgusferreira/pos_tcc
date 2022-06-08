@@ -15,16 +15,16 @@ using System.Threading.Tasks;
 
 namespace FlySneakerFE.Controllers
 {
-    public class MarcaController : Controller
+    public class FormaPagamentoController : Controller
     {
         HttpClientHandler httpClientHandler = new HttpClientHandler();
 
-        private readonly ILogger<MarcaController> _logger;
+        private readonly ILogger<FormaPagamentoController> _logger;
         private UsuarioLogadoDto usuarioLogado = new UsuarioLogadoDto();
-        private MarcasDto marca = new MarcasDto { Marcas = null };
+        private FormaPagamentosDto formaPagamento = new FormaPagamentosDto { MeioPagamento = null };
         private string mensagem = "";
 
-        public MarcaController(ILogger<MarcaController> logger)
+        public FormaPagamentoController(ILogger<FormaPagamentoController> logger)
         {
             _logger = logger;
             httpClientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
@@ -44,22 +44,22 @@ namespace FlySneakerFE.Controllers
 
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/marca"))
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/meio-pagamento"))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
-                    marca.Marcas = JsonConvert.DeserializeObject<IEnumerable<Marcas>>(resultApi);
+                    formaPagamento.MeioPagamento = JsonConvert.DeserializeObject<IEnumerable<MeioPagamento>>(resultApi);
                 }
             }
 
             if (codigo != 0)
             {
-                marca.Codigo = codigo;
-                marca.Nome = marca.Marcas.FirstOrDefault(x => x.Codigo == codigo).Nome;
-                marca.Descricao = marca.Marcas.FirstOrDefault(x => x.Codigo == codigo).Descricao;
+                formaPagamento.Codigo = codigo;
+                formaPagamento.Nome = formaPagamento.MeioPagamento.FirstOrDefault(x => x.Codigo == codigo).Nome;
+                formaPagamento.Descricao = formaPagamento.MeioPagamento.FirstOrDefault(x => x.Codigo == codigo).Descricao;
             }
 
-            return View(marca);
+            return View(formaPagamento);
         }
 
         [HttpPost]
@@ -70,49 +70,49 @@ namespace FlySneakerFE.Controllers
 
                 if (codigo != 0)
                 {
-                    var dados = new Marcas { Codigo = codigo, Nome = nome, Descricao = descricao };
+                    var dados = new MeioPagamento { Codigo = codigo, Nome = nome, Descricao = descricao };
 
                     var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/marca/" + codigo, httpContent))
+                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/meio-pagamento/" + codigo, httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
                             if (resultApi == "1")
                             {
-                                mensagem = "Marca alterada com sucesso!";
+                                mensagem = "Forma Pagamento alterada com sucesso!";
                             }
                         }
                     }
                 }
                 else
                 {
-                    var dados = new Marcas { Nome = nome, Descricao = descricao };
+                    var dados = new MeioPagamento { Nome = nome, Descricao = descricao };
 
                     var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/marca", httpContent))
+                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/meio-pagamento", httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
                             if (resultApi == "1")
                             {
-                                mensagem = "Marca cadastrada com sucesso!";
+                                mensagem = "Forma Pagamento cadastrada com sucesso!";
                             }
                         }
                     }
                 }
 
-                return RedirectToAction("Index", "Marca", new {mensagem = mensagem });
+                return RedirectToAction("Index", "FormaPagamento", new {mensagem = mensagem });
             }
             catch
             {
-                var erro = "Erro ao cadastrar marca, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao cadastrar formaPagamento, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return RedirectToAction("Index", "FormaPagamento", new { erro = erro });
             }
         }
 
@@ -120,27 +120,27 @@ namespace FlySneakerFE.Controllers
         {
             try
             {
-                IEnumerable<Marcas> retorno;
+                IEnumerable<MeioPagamento> retorno;
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/marca"))
+                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/meio-pagamento"))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
-                        retorno = JsonConvert.DeserializeObject<IEnumerable<Marcas>>(resultApi);
+                        retorno = JsonConvert.DeserializeObject<IEnumerable<MeioPagamento>>(resultApi);
                     }
                 }
 
                 var result = retorno.FirstOrDefault(x => x.Codigo == codigo);
 
-                marca.Codigo = result.Codigo;
+                formaPagamento.Codigo = result.Codigo;
 
-                return RedirectToAction("Index", "Marca", marca);
+                return RedirectToAction("Index", "FormaPagamento", formaPagamento);
             }
             catch (Exception ex)
             {
-                var erro = "Erro ao alterar marca, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao alterar formaPagamento, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return RedirectToAction("Index", "FormaPagamento", new { erro = erro });
             }
         }
 
@@ -151,23 +151,23 @@ namespace FlySneakerFE.Controllers
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/marca/"+ codigo))
+                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/meio-pagamento/" + codigo))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
                         if (resultApi == "1")
                         {
-                            mensagem = "Marca removida com sucesso!";
+                            mensagem = "Forma Pagamento removida com sucesso!";
                         }
                     }
                 }
 
-                return RedirectToAction("Index", "Marca", new { mensagem = mensagem });
+                return RedirectToAction("Index", "FormaPagamento", new { mensagem = mensagem });
             }
             catch
             {
-                var erro = "Erro ao remover marca, verifique a existencia de algum produto vinculado a marca!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao remover formaPagamento, verifique a existencia de algum produto vinculado a formaPagamento!";
+                return RedirectToAction("Index", "FormaPagamento", new { erro = erro });
             }
         }
     }

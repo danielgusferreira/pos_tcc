@@ -15,16 +15,16 @@ using System.Threading.Tasks;
 
 namespace FlySneakerFE.Controllers
 {
-    public class MarcaController : Controller
+    public class CadastroFuncionarioController : Controller
     {
         HttpClientHandler httpClientHandler = new HttpClientHandler();
 
-        private readonly ILogger<MarcaController> _logger;
+        private readonly ILogger<CadastroFuncionarioController> _logger;
         private UsuarioLogadoDto usuarioLogado = new UsuarioLogadoDto();
-        private MarcasDto marca = new MarcasDto { Marcas = null };
+        private CategoriasDto categoria = new CategoriasDto { Categorias = null };
         private string mensagem = "";
 
-        public MarcaController(ILogger<MarcaController> logger)
+        public CadastroFuncionarioController(ILogger<CadastroFuncionarioController> logger)
         {
             _logger = logger;
             httpClientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
@@ -44,22 +44,22 @@ namespace FlySneakerFE.Controllers
 
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/marca"))
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/categoria"))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
-                    marca.Marcas = JsonConvert.DeserializeObject<IEnumerable<Marcas>>(resultApi);
+                    categoria.Categorias = JsonConvert.DeserializeObject<IEnumerable<Categorias>>(resultApi);
                 }
             }
 
             if (codigo != 0)
             {
-                marca.Codigo = codigo;
-                marca.Nome = marca.Marcas.FirstOrDefault(x => x.Codigo == codigo).Nome;
-                marca.Descricao = marca.Marcas.FirstOrDefault(x => x.Codigo == codigo).Descricao;
+                categoria.Codigo = codigo;
+                categoria.Nome = categoria.Categorias.FirstOrDefault(x => x.Codigo == codigo).Nome;
+                categoria.Descricao = categoria.Categorias.FirstOrDefault(x => x.Codigo == codigo).Descricao;
             }
 
-            return View(marca);
+            return View(categoria);
         }
 
         [HttpPost]
@@ -70,49 +70,49 @@ namespace FlySneakerFE.Controllers
 
                 if (codigo != 0)
                 {
-                    var dados = new Marcas { Codigo = codigo, Nome = nome, Descricao = descricao };
+                    var dados = new Categorias { Codigo = codigo, Nome = nome, Descricao = descricao };
 
                     var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/marca/" + codigo, httpContent))
+                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/categoria/" + codigo, httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
                             if (resultApi == "1")
                             {
-                                mensagem = "Marca alterada com sucesso!";
+                                mensagem = "Categoria alterada com sucesso!";
                             }
                         }
                     }
                 }
                 else
                 {
-                    var dados = new Marcas { Nome = nome, Descricao = descricao };
+                    var dados = new Categorias { Nome = nome, Descricao = descricao };
 
                     var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/marca", httpContent))
+                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/categoria", httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
                             if (resultApi == "1")
                             {
-                                mensagem = "Marca cadastrada com sucesso!";
+                                mensagem = "Categoria cadastrada com sucesso!";
                             }
                         }
                     }
                 }
 
-                return RedirectToAction("Index", "Marca", new {mensagem = mensagem });
+                return RedirectToAction("Index", "Categoria", new {mensagem = mensagem });
             }
             catch
             {
-                var erro = "Erro ao cadastrar marca, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao cadastrar categoria, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return RedirectToAction("Index", "Categoria", new { erro = erro });
             }
         }
 
@@ -120,27 +120,27 @@ namespace FlySneakerFE.Controllers
         {
             try
             {
-                IEnumerable<Marcas> retorno;
+                IEnumerable<Categorias> retorno;
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/marca"))
+                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/categoria"))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
-                        retorno = JsonConvert.DeserializeObject<IEnumerable<Marcas>>(resultApi);
+                        retorno = JsonConvert.DeserializeObject<IEnumerable<Categorias>>(resultApi);
                     }
                 }
 
                 var result = retorno.FirstOrDefault(x => x.Codigo == codigo);
 
-                marca.Codigo = result.Codigo;
+                categoria.Codigo = result.Codigo;
 
-                return RedirectToAction("Index", "Marca", marca);
+                return RedirectToAction("Index", "Categoria", categoria);
             }
             catch (Exception ex)
             {
-                var erro = "Erro ao alterar marca, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao alterar categoria, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return RedirectToAction("Index", "Categoria", new { erro = erro });
             }
         }
 
@@ -151,23 +151,23 @@ namespace FlySneakerFE.Controllers
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/marca/"+ codigo))
+                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/categoria/"+ codigo))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
                         if (resultApi == "1")
                         {
-                            mensagem = "Marca removida com sucesso!";
+                            mensagem = "Categoria removida com sucesso!";
                         }
                     }
                 }
 
-                return RedirectToAction("Index", "Marca", new { mensagem = mensagem });
+                return RedirectToAction("Index", "Categoria", new { mensagem = mensagem });
             }
             catch
             {
-                var erro = "Erro ao remover marca, verifique a existencia de algum produto vinculado a marca!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao remover categoria, verifique a existencia de algum produto vinculado a categoria!";
+                return RedirectToAction("Index", "Categoria", new { erro = erro });
             }
         }
     }

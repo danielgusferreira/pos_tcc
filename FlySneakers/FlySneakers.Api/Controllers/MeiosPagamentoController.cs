@@ -100,7 +100,7 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Meio de pagamento removido</response>
         /// <response code="400">Meio de pagamento não encontrado</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpDelete("idMeioPagamento")]
+        [HttpDelete("{idMeioPagamento}")]
         public ActionResult RemoverMeioPagamento(int idMeioPagamento)
         {
             var result = removerFormaPagamentoUseCase.Execute(idMeioPagamento);

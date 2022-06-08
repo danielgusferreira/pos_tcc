@@ -33,11 +33,12 @@ namespace FlySneakerFE.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int codigo, string mensagem, string erro, string desc = "")
         {
-            if(Request.Cookies["PerfilUsuarioLogado"] != "1" || Request.Cookies["PerfilUsuarioLogado"] != "2")
+            if(Request.Cookies["PerfilUsuarioLogado"] != "1" && Request.Cookies["PerfilUsuarioLogado"] != "2")
             {
-                RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
 
+            ViewBag.PerfilUsuario = Request.Cookies["PerfilUsuarioLogado"];
             ViewBag.Mensagem = mensagem;
             ViewBag.Erro = erro;
 
