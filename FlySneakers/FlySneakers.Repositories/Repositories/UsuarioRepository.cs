@@ -188,5 +188,44 @@ namespace FlySneakers.Repositories.Repositories
                 return result;
             }
         }
+
+        public IEnumerable<UsuariosDto> ObterUsuarios(ObterUsuariosDto obterUsuariosDto)
+        {
+            using (var connection = new SqlConnection(Connection))
+            {
+                string sql = @"SELECT
+	                                u.codigo,
+	                                u.Nome, 
+	                                u.Email, 
+	                                u.Senha,
+	                                u.codigo_perfil as Tipo,
+	                                u.data_criacao as DataCriacao, 
+	                                ud.codigo as CodigoUsuario, 
+	                                ud.Cpf, 
+	                                ud.data_nascimento as DataNascimento, 
+	                                ud.Telefone, 
+	                                ud.Cep, 
+	                                ud.Endereco, 
+	                                ud.Numero, 
+	                                ud.Complemento, 
+	                                ud.Bairro, 
+	                                ud.Cidade, 
+	                                ud.Uf 
+                                FROM 
+	                                usuario u 
+
+	                                INNER JOIN usuario_dados ud ON 
+		                                ud.codigo_usuario = u.codigo 
+                                WHERE
+	                                u.codigo_perfil IN @perfil";
+
+                var result = connection.Query<UsuariosDto>(sql);
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("perfil", obterUsuariosDto.TipoUsuario, DbType.Int32);
+
+                return result;
+            }
+        }
     }
 }

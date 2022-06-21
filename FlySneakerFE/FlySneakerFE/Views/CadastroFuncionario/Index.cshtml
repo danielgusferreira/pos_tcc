@@ -91,6 +91,12 @@
                 <input type="text" id="form3Example4" class="form-control form-control-lg"
                        placeholder="UF" name="uf" />
             </div>
+            <div class="form-outline mb-3">
+                <select name="codigoTipoUsuario" class="form-select" aria-label="Default select example">
+                    <option value="1"> Administrador</option>
+                    <option value="2"> Funcionário</option>
+                </select>
+            </div>
             <div class="text-center text-lg-start mt-4 pt-2">
                 <button type="submit" class="btn btn-outline-dark flex-shrink-0 text-center"
                         style="padding-left: 2.5rem; padding-right: 2.5rem;">
@@ -103,23 +109,25 @@
                     <tr>
                         <th class="th-sm">Código</th>
                         <th class="th-sm">Nome</th>
-                        <th class="th-sm">Descrição</th>
+                        <th class="th-sm">Email</th>
+                        <th class="th-sm">Cpf</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.UsuariosDtos)
                     {
-                        <tr>
-                            <td>@item.Codigo</td>
-                            <td>@item.Nome</td>
-                            <td>@item.Descricao</td>
-                            <td>
-                                @Html.ActionLink("Editar", "Editar", "Categoria", new { codigo = item.Codigo })
-                            </td>
-                            <td>
-                                @Html.ActionLink("Excluir", "Excluir", "Categoria", new { codigo = item.Codigo, nome = item.Nome, descricao = item.Descricao })
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>@item.Codigo</td>
+                        <td>@item.Nome</td>
+                        <td>@item.Email</td>
+                        <td>@item.Cpf</td>
+                        <td>
+                            @Html.ActionLink("Editar", "Editar", "Categoria", new { codigo = item.Codigo })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Excluir", "Excluir", "Categoria", new { codigo = item.Codigo, nome = item.Nome })
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
