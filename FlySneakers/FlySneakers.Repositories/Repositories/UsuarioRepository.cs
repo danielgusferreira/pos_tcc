@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FlySneakers.Repositories.Repositories
@@ -108,65 +109,26 @@ namespace FlySneakers.Repositories.Repositories
             }
         }
 
-        //public int AtualizarUsuario(Usuario usuario)
-        //{
-        //    using (var connection = new SqlConnection(Connection))
-        //    {
-        //        string sql = @"INSERT INTO usuario_dados([codigo_usuario], [cpf],[data_nascimento],[telefone],[cep] ,[endereco] ,[numero],[complemento] ,[bairro],[cidade],[uf] ,[data_criacao]) 
-	       //                    VALUES(@codigo_usuario, @cpf, @data_nascimento, @telefone, @cep, @endereco, @numero, @complemento, @bairro, @cidade, @uf, getdate());";
-
-        //        DynamicParameters parameters = new DynamicParameters();
-        //        parameters.Add("codigo_usuario", usuario.c, DbType.Int32);
-        //        parameters.Add("cpf", usuario.Cpf, DbType.String);
-        //        parameters.Add("data_nascimento", usuario.DataNascimento, DbType.DateTime);
-        //        parameters.Add("telefone", usuario.Telefone, DbType.String);
-        //        parameters.Add("cep", usuario.Cep, DbType.String);
-        //        parameters.Add("endereco", usuario.Endereco, DbType.String);
-        //        parameters.Add("numero", usuario.Numero, DbType.String);
-        //        parameters.Add("complemento", usuario.Complemento, DbType.String);
-        //        parameters.Add("bairro", usuario.Bairro, DbType.String);
-        //        parameters.Add("cidade", usuario.Cidade, DbType.String);
-        //        parameters.Add("uf", usuario.Uf, DbType.String);
-
-        //        var result = connection.Execute(sql, parameters);
-
-        //        return result;
-        //    }
-        //}
-
-        //public int AtualizarDadosUsuario(UsuarioDados usuario)
-        //{
-        //    using (var connection = new SqlConnection(Connection))
-        //    {
-        //        string sql = @"";
-
-        //        DynamicParameters parameters = new DynamicParameters();
-        //        parameters.Add("codigo_usuario", usuario.CodigoUsuario, DbType.Int32);
-        //        parameters.Add("cpf", usuario.Cpf, DbType.String);
-        //        parameters.Add("data_nascimento", usuario.DataNascimento, DbType.DateTime);
-        //        parameters.Add("telefone", usuario.Telefone, DbType.String);
-        //        parameters.Add("cep", usuario.Cep, DbType.String);
-        //        parameters.Add("endereco", usuario.Endereco, DbType.String);
-        //        parameters.Add("numero", usuario.Numero, DbType.String);
-        //        parameters.Add("complemento", usuario.Complemento, DbType.String);
-        //        parameters.Add("bairro", usuario.Bairro, DbType.String);
-        //        parameters.Add("cidade", usuario.Cidade, DbType.String);
-        //        parameters.Add("uf", usuario.Uf, DbType.String);
-
-        //        var result = connection.Execute(sql, parameters);
-
-        //        return result;
-        //    }
-        //}
-
-        public int RemoverUsuario(Usuario usuario)
+        public int AtualizarUsuario(UsuariosDto usuario)
         {
             using (var connection = new SqlConnection(Connection))
             {
-                string sql = @"DELETE FROM usuario where codigo = @codigoUsuario;";
+                string sql = @"UPDATE
+	                                usuario
+                                SET
+	                                codigo_perfil = @codigoPerfil,
+	                                nome = @Nome,
+	                                email = @Email,
+	                                senha = @Senha,
+                                WHERE
+	                                codigo = @codigo;";
 
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("codigo_usuario", usuario.Codigo, DbType.Int32);
+                parameters.Add("codigoPerfil", usuario.Tipo, DbType.Int32);
+                parameters.Add("Nome", usuario.Nome, DbType.String);
+                parameters.Add("Email", usuario.Email, DbType.String);
+                parameters.Add("Senha", usuario.Senha, DbType.String);
+                parameters.Add("codigo", usuario.Codigo, DbType.Int32);
 
                 var result = connection.Execute(sql, parameters);
 
@@ -174,14 +136,68 @@ namespace FlySneakers.Repositories.Repositories
             }
         }
 
-        public int RemoverDadosUsuario(UsuarioDados usuario)
+        public int AtualizarDadosUsuario(UsuariosDto usuario)
+        {
+            using (var connection = new SqlConnection(Connection))
+            {
+                string sql = @"UPDATE
+	                                usuario_dados
+                                SET
+	                                cpf = @cpf,
+	                                data_nascimento	= @data_nascimento,
+	                                telefone = @telefone,
+	                                cep	= @cep,
+	                                endereco = @endereco,
+	                                numero = @numero,
+	                                complemento	= @complemento,
+	                                bairro	= @bairro,
+	                                cidade = @cidade,
+	                                uf = @uf,
+                                WHERE
+	                                codigo = @codigo";
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("codigo", usuario.Codigo, DbType.Int32);
+                parameters.Add("cpf", usuario.Cpf, DbType.String);
+                parameters.Add("data_nascimento", usuario.DataNascimento, DbType.DateTime);
+                parameters.Add("telefone", usuario.Telefone, DbType.String);
+                parameters.Add("cep", usuario.Cep, DbType.String);
+                parameters.Add("endereco", usuario.Endereco, DbType.String);
+                parameters.Add("numero", usuario.Numero, DbType.String);
+                parameters.Add("complemento", usuario.Complemento, DbType.String);
+                parameters.Add("bairro", usuario.Bairro, DbType.String);
+                parameters.Add("cidade", usuario.Cidade, DbType.String);
+                parameters.Add("uf", usuario.Uf, DbType.String);
+
+                var result = connection.Execute(sql, parameters);
+
+                return result;
+            }
+        }
+
+        public int RemoverUsuario(int codigo)
+        {
+            using (var connection = new SqlConnection(Connection))
+            {
+                string sql = @"DELETE FROM usuario where codigo = @codigoUsuario;";
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("codigoUsuario", codigo, DbType.Int32);
+
+                var result = connection.Execute(sql, parameters);
+
+                return result;
+            }
+        }
+
+        public int RemoverDadosUsuario(int codigo)
         {
             using (var connection = new SqlConnection(Connection))
             {
                 string sql = @"DELETE FROM usuario_dados where codigo_usuario = @codigoUsuario;";
 
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("codigo_usuario", usuario.CodigoUsuario, DbType.Int32);
+                parameters.Add("codigoUsuario", codigo, DbType.Int32);
 
                 var result = connection.Execute(sql, parameters);
 
@@ -219,10 +235,7 @@ namespace FlySneakers.Repositories.Repositories
                                 WHERE
 	                                u.codigo_perfil IN @perfil";
 
-                var result = connection.Query<UsuariosDto>(sql);
-
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("perfil", obterUsuariosDto.TipoUsuario, DbType.Int32);
+                var result = connection.Query<UsuariosDto>(sql, new { perfil = obterUsuariosDto.TipoUsuario.ToArray() } );
 
                 return result;
             }

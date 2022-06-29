@@ -88,6 +88,8 @@ namespace FlySneakers.Api
             services.AddScoped<ICadastrarDadosUsuarioUseCase, CadastrarDadosUsuarioUseCase>();
             services.AddScoped<IObterUsuarioDadosUseCase, ObterUsuarioDadosUseCase>();
             services.AddScoped<IVerificarCadastroUsuarioUseCase, VerificarCadastroUsuarioUseCase>();
+            services.AddScoped<IObterUsuariosUseCase, ObterUsuariosUseCase>();
+            services.AddScoped<IRemoverUsuarioUseCase, RemoverUsuarioUseCase>();
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IUsuarioDadosRepository, UsuarioDadosRepository>();

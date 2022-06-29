@@ -17,7 +17,8 @@ namespace FlySneakers.UseCases.Usuario
 
         public IEnumerable<UsuariosDto> Execute(ObterUsuariosDto obterUsuariosDto)
         {
-           return usuarioRepository.ObterUsuarios(obterUsuariosDto);
+            var result = usuarioRepository.ObterUsuarios(obterUsuariosDto);
+            return result;
         }
     }
 }

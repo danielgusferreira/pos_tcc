@@ -19,13 +19,17 @@ namespace FlySneakers.Api.Controllers
         private readonly ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase;
         private readonly IObterUsuarioDadosUseCase obterUsuarioDadosUseCase;
         private readonly IVerificarCadastroUsuarioUseCase verificarCadastroUsuarioUseCase;
+        private readonly IObterUsuariosUseCase obterUsuariosUseCase;
+        private readonly IRemoverUsuarioUseCase removerUsuarioUseCase;
 
         public UsuarioController(IActionResultConverter actionResultConverter,
             ILogarUseCase logarUseCase,
             ICadastrarUsuarioUseCase cadastrarUsuarioUseCase,
             ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase,
-            IObterUsuarioDadosUseCase obterUsuarioDadosUseCase, 
-            IVerificarCadastroUsuarioUseCase verificarCadastroUsuarioUseCase)
+            IObterUsuarioDadosUseCase obterUsuarioDadosUseCase,
+            IVerificarCadastroUsuarioUseCase verificarCadastroUsuarioUseCase,
+            IObterUsuariosUseCase obterUsuariosUseCase, 
+            IRemoverUsuarioUseCase removerUsuarioUseCase)
         {
             this.actionResultConverter = actionResultConverter;
             this.logarUseCase = logarUseCase;
@@ -33,6 +37,8 @@ namespace FlySneakers.Api.Controllers
             this.cadastrarDadosUsuarioUseCase = cadastrarDadosUsuarioUseCase;
             this.obterUsuarioDadosUseCase = obterUsuarioDadosUseCase;
             this.verificarCadastroUsuarioUseCase = verificarCadastroUsuarioUseCase;
+            this.obterUsuariosUseCase = obterUsuariosUseCase;
+            this.removerUsuarioUseCase = removerUsuarioUseCase;
         }
 
         /// <summary>
@@ -41,17 +47,12 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Usuarios retornados</response>
         /// <response code="400">Usuarios não encontrados</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpGet]
-        public ActionResult<IEnumerable<Usuario>> ObterUsuarios()
+        [HttpPost("obter")]
+        public ActionResult<IEnumerable<UsuariosDto>> ObterUsuarios(ObterUsuariosDto obterUsuariosDto)
         {
-            var listaUsuarios = new List<Usuario>
-            {
-                new Usuario { Codigo = 1, Nome = "Usuario 1", Email = "teste1@gmail.com", DataCriacao = DateTime.Now },
-                new Usuario { Codigo = 2, Nome = "Usuario 2", Email = "teste2@gmail.com", DataCriacao = DateTime.Now },
-                new Usuario { Codigo = 2, Nome = "Usuario 3", Email = "teste3@gmail.com", DataCriacao = DateTime.Now }
-            };
+            var result = obterUsuariosUseCase.Execute(obterUsuariosDto);
 
-            return Ok(listaUsuarios);
+            return Ok(result);
         }
 
         /// <summary>
@@ -151,7 +152,12 @@ namespace FlySneakers.Api.Controllers
         [HttpDelete("{idUsuario}")]
         public ActionResult<int> RemoverUsuario(int idUsuario)
         {
-            return Ok(idUsuario);
+            var result = removerUsuarioUseCase.Execute(idUsuario);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);
         }
 
     }

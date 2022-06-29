@@ -37,15 +37,15 @@
             <input type="hidden" id="custId" name="codigo" value="@Model?.Codigo">
             <div class="form-outline mb-4">
                 <input type="text" id="form3Example3" class="form-control form-control-lg"
-                       placeholder="Nome" name="nome" />
+                       placeholder="Nome" name="nome" value='@Model?.Nome' />
             </div>
             <div class="form-outline mb-4">
                 <input type="email" id="form3Example3" class="form-control form-control-lg"
-                       placeholder="Email" name="email" />
+                       placeholder="Email" name="email" value='@Model?.Email' />
             </div>
             <div class="form-outline mb-3">
                 <input type="password" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Senha" name="senha" />
+                       placeholder="Senha" name="senha" value='@Model?.Senha'/>
             </div>
             <div class="form-outline mb-3">
                 <input type="password" id="form3Example4" class="form-control form-control-lg"
@@ -53,46 +53,46 @@
             </div>
             <div class="form-outline mb-4">
                 <input type="number" id="form3Example3" class="form-control form-control-lg"
-                       placeholder="CPF" name="cpf" />
+                       placeholder="CPF" name="cpf"  value='@Model?.Cpf' />
             </div>
             <div class="form-outline mb-4">
                 <input type="date" id="form3Example3" class="form-control form-control-lg"
-                       placeholder="Data Nascimento" name="dataNascimento" />
+                       placeholder="Data Nascimento" name="dataNascimento" value='@Model?.DataNascimento' />
             </div>
             <div class="form-outline mb-3">
                 <input type="tel" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Telefone" name="telefone" />
+                       placeholder="Telefone" name="telefone" value='@Model?.Telefone' />
             </div>
             <div class="form-outline mb-3">
                 <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="CEP" name="cep" />
+                       placeholder="CEP" name="cep" value='@Model?.Cep' />
             </div>
             <div class="form-outline mb-3">
                 <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Endereço" name="endereco" />
+                       placeholder="Endereço" name="endereco" value='@Model?.Endereco' />
             </div>
             <div class="form-outline mb-3">
                 <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Número" name="numero" />
+                       placeholder="Número" name="numero" value='@Model?.Numero' />
             </div>
             <div class="form-outline mb-3">
                 <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Complemento" name="complemento" />
+                       placeholder="Complemento" name="complemento" value='@Model?.Complemento' />
             </div>
             <div class="form-outline mb-3">
                 <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Bairro" name="bairro" />
+                       placeholder="Bairro" name="bairro" value='@Model?.Bairro' />
             </div>
             <div class="form-outline mb-3">
                 <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Cidade" name="cidade" />
+                       placeholder="Cidade" name="cidade" value='@Model?.Cidade' />
             </div>
             <div class="form-outline mb-3">
                 <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="UF" name="uf" />
+                       placeholder="UF" name="uf" value='@Model?.Uf' />
             </div>
             <div class="form-outline mb-3">
-                <select name="codigoTipoUsuario" class="form-select" aria-label="Default select example">
+                <select name="codigoTipoUsuario" class="form-select" aria-label="Default select example" value='@Model?.Tipo'>
                     <option value="1"> Administrador</option>
                     <option value="2"> Funcionário</option>
                 </select>
@@ -122,10 +122,10 @@
                         <td>@item.Email</td>
                         <td>@item.Cpf</td>
                         <td>
-                            @Html.ActionLink("Editar", "Editar", "Categoria", new { codigo = item.Codigo })
+                            @Html.ActionLink("Editar", "Editar", "CadastroFuncionario", new { codigo = item.Codigo })
                         </td>
                         <td>
-                            @Html.ActionLink("Excluir", "Excluir", "Categoria", new { codigo = item.Codigo, nome = item.Nome })
+                            @Html.ActionLink("Excluir", "Excluir", "CadastroFuncionario", new { codigo = item.Codigo })
                         </td>
                     </tr>
                     }

@@ -311,7 +311,7 @@
             <response code="400">Dados produto não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioController.ObterUsuarios">
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.ObterUsuarios(FlySneakers.Borders.Dto.ObterUsuariosDto)">
             <summary>
             Obter usuarios
             </summary>
