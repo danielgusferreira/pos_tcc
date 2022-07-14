@@ -265,17 +265,17 @@ CREATE TABLE pedido (
 CREATE TABLE comentario (
   [codigo] INT NOT NULL IDENTITY,
   [codigo_usuario] INT NOT NULL,
-  [codigo_produto_dados] INT NOT NULL,
+  [codigo_produto] INT NOT NULL,
   [nota] INT NOT NULL,
   [descricao] VARCHAR(500) NULL,
   PRIMARY KEY ([codigo]),
+
   CONSTRAINT [fk_comentario_usuario1]
-  FOREIGN KEY ([codigo_usuario])
-  REFERENCES usuario ([codigo]),
-  CONSTRAINT [fk_comentario_produto_sku1]
-  FOREIGN KEY ([codigo_produto_dados])
-  REFERENCES produto_dados ([codigo])
+  FOREIGN KEY ([codigo_usuario]) REFERENCES usuario ([codigo]),
+
+  CONSTRAINT [fk_comentario_produto]
+  FOREIGN KEY ([codigo_produto]) REFERENCES produto ([codigo])
 );
 
 INSERT INTO comentario([codigo_usuario], [codigo_produto_dados], [nota], [descricao])
-VALUES(3, 1, 5, 'Produto muito bom!');						    
+VALUES(3, 1, 5, 'Produto muito bom!');					

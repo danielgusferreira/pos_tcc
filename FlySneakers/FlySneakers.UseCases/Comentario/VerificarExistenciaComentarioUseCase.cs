@@ -1,26 +1,24 @@
-﻿using FlySneakers.Borders.Models;
-using FlySneakers.Borders.Repositories;
+﻿using FlySneakers.Borders.Repositories;
 using FlySneakers.Borders.UseCase;
 using System;
-using System.Collections.Generic;
 
 namespace FlySneakers.UseCases
 {
-    public class ObterComentarioUseCase : IObterComentarioUseCase
+    public class VerificarExistenciaComentarioUseCase : IVerificarExistenciaComentarioUseCase
     {
         private readonly IComentarioRepository ComentarioRepository;
 
-        public ObterComentarioUseCase(IComentarioRepository comentarioRepository)
+        public VerificarExistenciaComentarioUseCase(IComentarioRepository comentarioRepository)
         {
             this.ComentarioRepository = comentarioRepository;
         }
 
-        public IEnumerable<ComentarioDto> Execute(int codigo)
+        public bool Execute(int codigoUsuario, int codigoProduto)
         {
-            IEnumerable<ComentarioDto> result;
+            bool result;
             try
             {
-                result = this.ComentarioRepository.ObterComentarios(codigo);
+                result = this.ComentarioRepository.VerificarExistenciaComentario(codigoUsuario, codigoProduto);
             }
             catch (Exception e)
             {

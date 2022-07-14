@@ -119,7 +119,7 @@ namespace FlySneakers.Repositories.Repositories
 	                                codigo_perfil = @codigoPerfil,
 	                                nome = @Nome,
 	                                email = @Email,
-	                                senha = @Senha,
+	                                senha = @Senha
                                 WHERE
 	                                codigo = @codigo;";
 
@@ -152,9 +152,9 @@ namespace FlySneakers.Repositories.Repositories
 	                                complemento	= @complemento,
 	                                bairro	= @bairro,
 	                                cidade = @cidade,
-	                                uf = @uf,
+	                                uf = @uf
                                 WHERE
-	                                codigo = @codigo";
+	                                codigo_usuario = @codigo";
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("codigo", usuario.Codigo, DbType.Int32);

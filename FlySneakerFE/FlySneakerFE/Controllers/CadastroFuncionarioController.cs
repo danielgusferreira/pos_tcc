@@ -108,13 +108,13 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/categoria/" + codigo, httpContent))
+                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/usuario/" + codigo, httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
                             if (resultApi == "1")
                             {
-                                mensagem = "Categoria alterada com sucesso!";
+                                mensagem = "Funcionario alterado com sucesso!";
                             }
                         }
                     }

@@ -18,18 +18,68 @@ namespace FlySneakers.Repositories.Repositories
         {
         }
 
-        public IEnumerable<Comentario> ObterComentarios(int codigo)
+        public IEnumerable<ComentarioDto> ObterComentarios(int codigoProduto)
         {
             using (var connection = new SqlConnection(Connection))
             {
-                string sql = "SELECT codigo, codigo_usuario, codigo_produto_dados, nota, descricao FROM comentario WHERE codigo_produto_dados = @codigoProdutoDados;";
+                string sql = @"SELECT
+                                c.codigo,
+	                            c.codigo_usuario as CodigoUsuario, 
+	                            usu.nome,
+	                            c.codigo_produto as CodigoProduto, 
+	                            c.nota, 
+	                            c.descricao
+                            FROM
+                                comentario c
+
+                                inner join usuario usu ON
+                                    usu.codigo = c.codigo_usuario
+                            WHERE
+                                codigo_produto = @codigoProduto;";
 
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("codigo_produto_dados", codigo, DbType.Int32);
+                parameters.Add("codigoProduto", codigoProduto, DbType.Int32);
 
-                var result = connection.Query<Comentario>(sql, parameters);
+                var result = connection.Query<ComentarioDto>(sql, parameters);
 
                 return result;
+            }
+        }
+
+        public bool VerificarExistenciaComentario(int codigoUsuario, int codigoProduto)
+        {
+            using (var connection = new SqlConnection(Connection))
+            {
+                string sql = @"SELECT DISTINCT
+                                co.codigo_produto,
+	                            co.codigo_usuario,
+	                            co.descricao
+                            FROM
+                                pedido p
+
+                                INNER JOIN carrinho c ON
+                                    c.codigo = p.codigo_carrinho
+
+                                INNER JOIN produto_dados pd ON
+                                    PD.codigo = c.codigo_produto_dados
+
+                                INNER JOIN produto pr ON
+                                    pr.codigo = pd.codigo_produto
+
+                                INNER JOIN comentario co ON
+                                    co.codigo_usuario = c.usuario_codigo AND
+                                    co.codigo_produto = pr.codigo
+                            WHERE
+                                c.usuario_codigo = @codigoUsuario AND
+                                pr.codigo = @codigoProduto; ";
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("codigoUsuario", codigoUsuario, DbType.Int32);
+                parameters.Add("codigoProduto", codigoProduto, DbType.Int32);
+
+                var result = connection.QueryFirstOrDefault<int>(sql, parameters);
+
+                return result == 1;
             }
         }
 
@@ -38,11 +88,11 @@ namespace FlySneakers.Repositories.Repositories
             using (var connection = new SqlConnection(Connection))
             {
 
-                string sql = @"INSERT INTO comentario(codigo_usuario, codigo_produto_dados, nota, descricao) VALUES (@codigo_usuario, @codigo_produto_dados, @nota, @descricao);";
+                string sql = @"INSERT INTO comentario(codigo_usuario, codigo_produto, nota, descricao) VALUES (@codigo_usuario, @codigo_produto, @nota, @descricao);";
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("codigo_usuario", comentario.CodigoUsuario, DbType.String);
-                parameters.Add("codigo_produto_dados", comentario.CodigoProdutoSku, DbType.String);
+                parameters.Add("codigo_produto", comentario.CodigoProduto, DbType.String);
                 parameters.Add("nota", comentario.Nota, DbType.String);
                 parameters.Add("descricao", comentario.Descricao, DbType.String);
 
@@ -56,7 +106,7 @@ namespace FlySneakers.Repositories.Repositories
         {
             using (var connection = new SqlConnection(Connection))
             {
-                string sql = @"UPDATE comentario SET nota = @nota, descricao = @descricao;";
+                string sql = @"UPDATE comentario SET nota = @nota, descricao = @descricao WHERE codigo = @codigo;";
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("codigo", comentario.Codigo, DbType.Int32);

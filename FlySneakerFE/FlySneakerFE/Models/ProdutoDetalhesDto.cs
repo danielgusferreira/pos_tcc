@@ -11,6 +11,8 @@ namespace FlySneakerFE.Models
         public string Foto2 { get; set; }
         public string Foto3 { get; set; }
         public string Foto4 { get; set; }
+        public bool HabilitarComentario { get; set; }
         public IEnumerable<EstoqueDto> Estoque { get; set; }
+        public IEnumerable<ComentarioDto> Comentarios { get; set; }
     }
 }

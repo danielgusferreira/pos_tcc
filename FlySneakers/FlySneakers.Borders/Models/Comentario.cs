@@ -5,6 +5,6 @@
         public string Descricao { get; set; }
         public int Nota { get; set; }
         public int CodigoUsuario { get; set; }
-        public int CodigoProdutoSku { get; set; }
+        public int CodigoProduto { get; set; }
     }
 }

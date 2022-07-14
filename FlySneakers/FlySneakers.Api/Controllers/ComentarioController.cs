@@ -17,14 +17,16 @@ namespace FlySneakers.Api.Controllers
         private readonly ICadastarComentarioUseCase cadastarComentarioUseCase;
         private readonly IEditarComentarioUseCase editarComentarioUseCase;
         private readonly IRemoverComentarioUseCase removerComentarioUseCase;
+        private readonly IVerificarExistenciaComentarioUseCase verificarExistenciaComentarioUseCase;
 
-        public ComentarioController(IActionResultConverter actionResultConverter, IObterComentarioUseCase obterComentarioUseCase, ICadastarComentarioUseCase cadastarComentarioUseCase, IEditarComentarioUseCase editarComentarioUseCase, IRemoverComentarioUseCase removerComentarioUseCase)
+        public ComentarioController(IActionResultConverter actionResultConverter, IObterComentarioUseCase obterComentarioUseCase, ICadastarComentarioUseCase cadastarComentarioUseCase, IEditarComentarioUseCase editarComentarioUseCase, IRemoverComentarioUseCase removerComentarioUseCase, IVerificarExistenciaComentarioUseCase verificarExistenciaComentarioUseCase)
         {
             this.actionResultConverter = actionResultConverter;
             this.obterComentarioUseCase = obterComentarioUseCase;
             this.cadastarComentarioUseCase = cadastarComentarioUseCase;
             this.editarComentarioUseCase = editarComentarioUseCase;
             this.removerComentarioUseCase = removerComentarioUseCase;
+            this.verificarExistenciaComentarioUseCase = verificarExistenciaComentarioUseCase;
         }
 
         /// <summary>
@@ -34,12 +36,27 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Comentario retornada</response>
         /// <response code="400">Comentario não encontrada</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpGet("{idProduto}", Order = 1)]
-        public ActionResult<IEnumerable<Comentario>> ObterComentarioProduto(int idProduto)
+        [HttpGet("{idProduto}")]
+        public ActionResult<IEnumerable<ComentarioDto>> ObterComentarioProduto(int idProduto)
         {
             var listaCategoria = obterComentarioUseCase.Execute(idProduto);
 
             return Ok(listaCategoria);
+        }
+
+        /// <summary>
+        /// Obter os comentarios do produto a partir do ID informado
+        /// </summary>
+        /// <remarks>Ao informar os IDs 1 e 2 será retornado os comentarios dos produtos</remarks>
+        /// <response code="200">Comentario retornada</response>
+        /// <response code="400">Comentario não encontrada</response>
+        /// <response code="500">Erro inesperado</response>
+        [HttpGet("{idProduto}/verificar/{codigoUsuario}")]
+        public ActionResult<Comentario> VerificarExistenciaComentario(int codigoUsuario, int idProduto)
+        {
+            var result = verificarExistenciaComentarioUseCase.Execute(codigoUsuario, idProduto);
+
+            return Ok(result);
         }
 
         /// <summary>

@@ -65,8 +65,9 @@ namespace FlySneakers.Api
             services.AddScoped<IObterComentarioUseCase, ObterComentarioUseCase>();
             services.AddScoped<ICadastarComentarioUseCase, CadastarComentarioUseCase>();
             services.AddScoped<IEditarComentarioUseCase, EditarComentarioUseCase>();
-            services.AddScoped<IRemoverComentarioUseCase, RemoverComentarioUseCase>();
-
+            services.AddScoped<IRemoverComentarioUseCase, RemoverComentarioUseCase>(); 
+            services.AddScoped<IVerificarExistenciaComentarioUseCase, VerificarExistenciaComentarioUseCase>();
+     
             services.AddScoped<IObterFormaPagamentoUseCase, ObterFormaPagamentoUseCase>();
             services.AddScoped<ICadastarFormaPagamentoUseCase, CadastarFormaPagamentoUseCase>();
             services.AddScoped<IEditarFormaPagamentoUseCase, EditarFormaPagamentoUseCase>();
@@ -90,6 +91,7 @@ namespace FlySneakers.Api
             services.AddScoped<IVerificarCadastroUsuarioUseCase, VerificarCadastroUsuarioUseCase>();
             services.AddScoped<IObterUsuariosUseCase, ObterUsuariosUseCase>();
             services.AddScoped<IRemoverUsuarioUseCase, RemoverUsuarioUseCase>();
+            services.AddScoped<IEditarUsuarioUseCase, EditarUsuarioUseCase>();   
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IUsuarioDadosRepository, UsuarioDadosRepository>();

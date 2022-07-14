@@ -169,24 +169,44 @@ namespace FlySneakers.Repositories.Repositories
         {
             using (var connection = new SqlConnection(Connection))
             {
-                string sql = @"UPDATE produto_produto SET nome = @nome, descricao = @descricao FROM produto_produto where codigo = @codigo;";
+                string sql = @"UPDATE
+	                                produto_dados
+                                SET
+	                                tamanho	= @tamanho,
+	                                valor = @valor,
+	                                estoque	 = @estoque
+                                WHERE
+	                                codigo_produto = @codigoProduto;";
 
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("codigo", produto.Codigo, DbType.Int32);
-                parameters.Add("nome", produto.Nome, DbType.String);
-                parameters.Add("descricao", produto.Descricao, DbType.String);
+                parameters.Add("codigoProduto", produto.Codigo, DbType.Int32);
+                parameters.Add("tamanho", produto.Nome, DbType.String);
+                parameters.Add("valor", produto.Descricao, DbType.Decimal);
+                parameters.Add("estoque", produto.Descricao, DbType.Int32);
 
                 var result = connection.Execute(sql, parameters);
 
                 return result;
-            }
+            } 
         }
 
         public int AtualizarProduto(Produto produto)
         {
             using (var connection = new SqlConnection(Connection))
             {
-                string sql = @"UPDATE produto_produto SET nome = @nome, descricao = @descricao FROM produto_produto where codigo = @codigo;";
+                string sql = @"UPDATE
+	                                produto
+                                SET
+	                                nome =	@nome,			
+	                                descricao =	@descricao,		
+	                                codigo_categoria =	@codigo_categoria,
+	                                codigo_marca =	@codigo_marca,
+	                                foto1 =	@foto1,			
+	                                foto2 =	@foto2,			
+	                                foto3 =	@foto3,			
+	                                foto4 =	@foto4			
+                                WHERE
+	                                codigo = @codigo;";
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("codigo", produto.Codigo, DbType.Int32);

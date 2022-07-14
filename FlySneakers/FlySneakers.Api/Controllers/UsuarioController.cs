@@ -21,6 +21,7 @@ namespace FlySneakers.Api.Controllers
         private readonly IVerificarCadastroUsuarioUseCase verificarCadastroUsuarioUseCase;
         private readonly IObterUsuariosUseCase obterUsuariosUseCase;
         private readonly IRemoverUsuarioUseCase removerUsuarioUseCase;
+        private readonly IEditarUsuarioUseCase editarUsuarioUseCase;
 
         public UsuarioController(IActionResultConverter actionResultConverter,
             ILogarUseCase logarUseCase,
@@ -28,8 +29,9 @@ namespace FlySneakers.Api.Controllers
             ICadastrarDadosUsuarioUseCase cadastrarDadosUsuarioUseCase,
             IObterUsuarioDadosUseCase obterUsuarioDadosUseCase,
             IVerificarCadastroUsuarioUseCase verificarCadastroUsuarioUseCase,
-            IObterUsuariosUseCase obterUsuariosUseCase, 
-            IRemoverUsuarioUseCase removerUsuarioUseCase)
+            IObterUsuariosUseCase obterUsuariosUseCase,
+            IRemoverUsuarioUseCase removerUsuarioUseCase, 
+            IEditarUsuarioUseCase editarUsuarioUseCase)
         {
             this.actionResultConverter = actionResultConverter;
             this.logarUseCase = logarUseCase;
@@ -39,6 +41,7 @@ namespace FlySneakers.Api.Controllers
             this.verificarCadastroUsuarioUseCase = verificarCadastroUsuarioUseCase;
             this.obterUsuariosUseCase = obterUsuariosUseCase;
             this.removerUsuarioUseCase = removerUsuarioUseCase;
+            this.editarUsuarioUseCase = editarUsuarioUseCase;
         }
 
         /// <summary>
@@ -138,9 +141,15 @@ namespace FlySneakers.Api.Controllers
         /// <response code="400">Usuario não encontrado</response>
         /// <response code="500">Erro inesperado</response>
         [HttpPut("{idUsuario}")]
-        public ActionResult<Usuario> AlterarUsuario(int idUsuario, [FromBody] Usuario usuario)
+        public ActionResult<Usuario> AlterarUsuario(int idUsuario, [FromBody] UsuariosDto usuario)
         {
-            return Ok(usuario);
+            usuario.Codigo = idUsuario;
+            var result = editarUsuarioUseCase.Execute(usuario);
+
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(result);    
         }
 
         /// <summary>

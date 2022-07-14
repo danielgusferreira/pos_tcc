@@ -69,6 +69,15 @@
             <response code="400">Comentario não encontrada</response>
             <response code="500">Erro inesperado</response>
         </member>
+        <member name="M:FlySneakers.Api.Controllers.ComentarioController.VerificarExistenciaComentario(System.Int32,System.Int32)">
+            <summary>
+            Obter os comentarios do produto a partir do ID informado
+            </summary>
+            <remarks>Ao informar os IDs 1 e 2 será retornado os comentarios dos produtos</remarks>
+            <response code="200">Comentario retornada</response>
+            <response code="400">Comentario não encontrada</response>
+            <response code="500">Erro inesperado</response>
+        </member>
         <member name="M:FlySneakers.Api.Controllers.ComentarioController.CadastrarComentario(FlySneakers.Borders.Models.Comentario)">
             <summary>
             Cadastrar comentario
@@ -356,7 +365,7 @@
             <response code="200">Dados usuario cadastrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioController.AlterarUsuario(System.Int32,FlySneakers.Borders.Models.Usuario)">
+        <member name="M:FlySneakers.Api.Controllers.UsuarioController.AlterarUsuario(System.Int32,FlySneakers.Borders.Models.UsuariosDto)">
             <summary>
             Alterar usuario a partir do ID informado
             </summary>

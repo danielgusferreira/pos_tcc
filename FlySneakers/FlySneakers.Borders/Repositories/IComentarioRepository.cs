@@ -5,7 +5,8 @@ namespace FlySneakers.Borders.Repositories
 {
     public interface IComentarioRepository
     {
-        IEnumerable<Comentario> ObterComentarios(int codigo);
+        IEnumerable<ComentarioDto> ObterComentarios(int codigoProduto);
+        bool VerificarExistenciaComentario(int codigoUsuario, int codigoProduto);
         int CadastrarComentario(Comentario comentario);
         int AtualizarComentario(Comentario comentario);
         int RemoverComentario(int codigo);

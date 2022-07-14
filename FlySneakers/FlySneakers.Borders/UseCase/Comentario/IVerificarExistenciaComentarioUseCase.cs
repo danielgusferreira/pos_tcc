@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace FlySneakers.Borders.UseCase
 {
-    public interface IObterComentarioUseCase
+    public interface IVerificarExistenciaComentarioUseCase
     {
-        IEnumerable<ComentarioDto> Execute(int codigo);
+        bool Execute(int codigoUsuario, int codigoProduto);
     }
 }
