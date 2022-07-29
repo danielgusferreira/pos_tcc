@@ -13,6 +13,5 @@ namespace FlySneakers.Borders.Models
         public string LinkFoto2 { get; set; }
         public string LinkFoto3 { get; set; }
         public string LinkFoto4 { get; set; }
-
     }
 }

@@ -19,6 +19,55 @@ namespace FlySneakers.Repositories.Repositories
         {
         }
 
+        public IEnumerable<Produtos> ObterListaProdutos()
+        {
+            using (var connection = new SqlConnection(Connection))
+            {
+                string sql = @"select 	
+                                    codigo,
+	                                nome,
+	                                descricao,
+	                                data_criacao as DataCriacao,
+	                                codigo_categoria as CodigoCategoria,
+	                                codigo_marca as CodigoMarca,
+	                                foto1 as LinkFoto1,
+	                                foto2 as LinkFoto2,
+	                                foto3 as LinkFoto3,
+	                                foto4 as LinkFoto4
+                                from
+                                    produto; ";
+
+                var result = connection.Query<Produtos>(sql);
+
+                return result;
+            }
+        }
+
+        public IEnumerable<ProdutoSku> ObterListaProdutosDados(int codigoProduto)
+        {
+            using (var connection = new SqlConnection(Connection))
+            {
+                string sql = @"SELECT
+                                    codigo,
+                                    codigo_produto AS ProdutoCodigo,
+                                    tamanho,
+                                    valor,
+                                    data_criacao AS DataCriacao,
+                                    estoque
+                                FROM
+                                    produto_dados
+                                WHERE
+                                    codigo_produto = @codigoProduto; ";
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("codigoProduto", codigoProduto, DbType.Int32);
+
+                var result = connection.Query<ProdutoSku>(sql, parameters);
+
+                return result;
+            }
+        }
+
         public Task<IEnumerable<Produto>> ObterProdutosCompletos()
         {
             using (var connection = new SqlConnection(Connection))
@@ -123,7 +172,7 @@ namespace FlySneakers.Repositories.Repositories
             }
         }
 
-        public int CadastrarProduto(Produto produto)
+        public int CadastrarProduto(Produtos produto)
         {
             using (var connection = new SqlConnection(Connection))
             {
@@ -148,16 +197,19 @@ namespace FlySneakers.Repositories.Repositories
             }
         }
 
-        public int CadastrarProdutoDados(Produto produto)
+        public int CadastrarProdutoDados(ProdutoSku produto)
         {
             using (var connection = new SqlConnection(Connection))
             {
-
-                string sql = @"INSERT INTO produto_produto(nome, descricao) VALUES(@nome, @descricao);";
+                string sql = @"INSERT INTO produto_dados(codigo_produto,tamanho,valor,data_criacao,estoque)
+                                VALUES(@codigo_produto, @tamanho, @valor, @data_criacao, @estoque);";
 
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("nome", produto.Nome, DbType.String);
-                parameters.Add("descricao", produto.Descricao, DbType.String);
+                parameters.Add("codigo_produto", produto.ProdutoCodigo, DbType.Int32);
+                parameters.Add("tamanho", produto.Tamanho, DbType.String);
+                parameters.Add("valor", produto.Valor, DbType.Decimal);
+                parameters.Add("data_criacao", produto.DataCriacao, DbType.DateTime);
+                parameters.Add("estoque", produto.Estoque, DbType.Int32);
 
                 var result = connection.Execute(sql, parameters);
 
@@ -165,7 +217,7 @@ namespace FlySneakers.Repositories.Repositories
             }
         }
 
-        public int AtualizarProdutoDados(Produto produto)
+        public int AtualizarProdutoDados(ProdutoSku produto)
         {
             using (var connection = new SqlConnection(Connection))
             {
@@ -180,9 +232,9 @@ namespace FlySneakers.Repositories.Repositories
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("codigoProduto", produto.Codigo, DbType.Int32);
-                parameters.Add("tamanho", produto.Nome, DbType.String);
-                parameters.Add("valor", produto.Descricao, DbType.Decimal);
-                parameters.Add("estoque", produto.Descricao, DbType.Int32);
+                parameters.Add("tamanho", produto.Tamanho, DbType.String);
+                parameters.Add("valor", produto.Valor, DbType.Decimal);
+                parameters.Add("estoque", produto.Estoque, DbType.Int32);
 
                 var result = connection.Execute(sql, parameters);
 
@@ -190,7 +242,7 @@ namespace FlySneakers.Repositories.Repositories
             } 
         }
 
-        public int AtualizarProduto(Produto produto)
+        public int AtualizarProduto(Produtos produto)
         {
             using (var connection = new SqlConnection(Connection))
             {
@@ -212,6 +264,12 @@ namespace FlySneakers.Repositories.Repositories
                 parameters.Add("codigo", produto.Codigo, DbType.Int32);
                 parameters.Add("nome", produto.Nome, DbType.String);
                 parameters.Add("descricao", produto.Descricao, DbType.String);
+                parameters.Add("codigo_categoria", produto.Descricao, DbType.Int32);
+                parameters.Add("codigo_marca", produto.Descricao, DbType.Int32);
+                parameters.Add("foto1", produto.Descricao, DbType.String);
+                parameters.Add("foto2", produto.Descricao, DbType.String);
+                parameters.Add("foto3", produto.Descricao, DbType.String);
+                parameters.Add("foto4", produto.Descricao, DbType.String);
 
                 var result = connection.Execute(sql, parameters);
 
@@ -251,4 +309,4 @@ namespace FlySneakers.Repositories.Repositories
         }
 
     }
-}
+} 

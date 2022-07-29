@@ -9,6 +9,8 @@
             Layout = "~/Views/Shared/_LayoutFunc.cshtml";
             break;
     }
+
+    @model FlySneakerFE.Models.ProdutosCreateDto
 }
 
 <body>
@@ -41,57 +43,57 @@
                                 </div>
                             }
                         }
-                    <form method="post" action="@Url.Action("Index", "Categoria")">
-                        <input type="hidden" id="custId" name="codigo" value="@Model?.Codigo">
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form3Example3" class="form-control form-control-lg"
-                                   placeholder="Nome" name="nome" value='@Model?.Nome' />
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form3Example3" class="form-control form-control-lg"
-                                   placeholder="Link foto 1" name="nome" value='@Model?.Foto1' />
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form3Example3" class="form-control form-control-lg"
-                                   placeholder="Link foto 2" name="nome" value='@Model?.Foto2' />
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form3Example3" class="form-control form-control-lg"
-                                   placeholder="Link foto 3" name="nome" value='@Model?.Foto3' />
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form3Example3" class="form-control form-control-lg"
-                                   placeholder="Link foto 4" name="nome" value='@Model?.Foto4' />
-                        </div>
-                        <div class="form-outline mb-4">
-                            <span>Marca: </span>
-                            <select name="codigoProdutoDados" class="form-select" aria-label="Default select example">
-                                @foreach (var item in Model.Marcas)
-                                {
-                                    <option value="@item.Codigo">  @item.Nome</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <span>Categoria: </span>
-                            <select name="codigoProdutoDados" class="form-select" aria-label="Default select example">
-                                @foreach (var item in Model.Categorias)
-                                {
-                                    <option value="@item.Codigo">  @item.Nome</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <textarea id="form3Example3" class="form-control form-control-lg"
-                                      placeholder="Descrição" name="descricao" value='@Model?.Descricao'>@Model?.Descricao</textarea>
-                        </div>
-                        <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" class="btn btn-outline-dark flex-shrink-0 text-center"
-                                    style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                                Cadastrar
-                            </button>
-                        </div>
-                    </form>
+                        <form method="post" action="@Url.Action("Index", "Categoria")">
+                            <input type="hidden" id="custId" name="codigo" value="@Model?.Produto?.Codigo">
+                            <div class="form-outline mb-4">
+                                <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                       placeholder="Nome" name="nome" value='@Model?.Produto?.Nome' />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                       placeholder="Link foto 1" name="nome" value='@Model?.Produto?.LinkFoto1' />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                       placeholder="Link foto 2" name="nome" value='@Model?.Produto?.LinkFoto2' />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                       placeholder="Link foto 3" name="nome" value='@Model?.Produto?.LinkFoto3' />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                       placeholder="Link foto 4" name="nome" value='@Model?.Produto?.LinkFoto4' />
+                            </div>
+                            <div class="form-outline mb-4">
+                                    <span>Marca: </span>
+                                    <select name="codigoProdutoDados" class="form-select" aria-label="Default select example" value='@Model?.Produto?.CodigoMarca'>
+                                        @foreach (var item in Model?.Marcas)
+                                        {
+                                            <option value="@item.Codigo">  @item.Nome</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <span>Categoria: </span>
+                                    <select name="codigoProdutoDados" class="form-select" aria-label="Default select example" value='@Model?.Produto?.CodigoCategoria'>
+                                        @foreach (var item in Model?.Categorias)
+                                        {
+                                            <option value="@item.Codigo">  @item.Nome</option>
+                                        }
+                                    </select>
+                                </div>
+                            <div class="form-outline mb-4">
+                                <textarea id="form3Example3" class="form-control form-control-lg"
+                                          placeholder="Descrição" name="descricao" value='@Model?.Produto?.Descricao'>@Model?.Produto?.Descricao</textarea>
+                            </div>
+                            <div class="text-center text-lg-start mt-4 pt-2">
+                                <button type="submit" class="btn btn-outline-dark flex-shrink-0 text-center"
+                                        style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                    Cadastrar
+                                </button>
+                            </div>
+                        </form>
                         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
@@ -101,17 +103,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.Categorias)
+                                @foreach (var item in Model.ProdutoList)
                                 {
                                     <tr>
                                         <td>@item.Codigo</td>
                                         <td>@item.Nome</td>
                                         <td>@item.Descricao</td>
                                         <td>
-                                            @Html.ActionLink("Editar", "Editar", "Categoria", new { codigo = item.Codigo })
+                                            @Html.ActionLink("Editar", "Editar", "Produto", new { codigo = item.Codigo })
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Excluir", "Excluir", "Categoria", new { codigo = item.Codigo, nome = item.Nome, descricao = item.Descricao })
+                                            @Html.ActionLink("Excluir", "Excluir", "Produto", new { codigo = item.Codigo, nome = item.Nome, descricao = item.Descricao })
                                         </td>
                                     </tr>
                                 }

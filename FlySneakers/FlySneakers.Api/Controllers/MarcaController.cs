@@ -70,14 +70,12 @@ namespace FlySneakers.Api.Controllers
         [HttpPost]
         public ActionResult<Marca> CadastrarMarca([FromBody] Marca marca)
         {
-            {
-                var result = cadastarMarcaUseCase.Execute(marca);
+            var result = cadastarMarcaUseCase.Execute(marca);
 
-                if (result == 0)
-                    return StatusCode(StatusCodes.Status500InternalServerError);
+            if (result == 0)
+                return StatusCode(StatusCodes.Status500InternalServerError);
 
-                return Ok(result);
-            }
+            return Ok(result);
         }
 
         /// <summary>

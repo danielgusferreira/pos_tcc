@@ -214,6 +214,22 @@
             <response code="400">Pedido não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutosCriacao">
+            <summary>
+            Obter produtos cadastrados
+            </summary>
+            <response code="200">Produtos retornados</response>
+            <response code="400">Produtos não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutosDadosCriacao(System.Int32)">
+            <summary>
+            Obter produtos cadastrados
+            </summary>
+            <response code="200">Produtos retornados</response>
+            <response code="400">Produtos não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
         <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutos(System.Int32,System.Int32)">
             <summary>
             Obter produtos cadastrados
@@ -231,7 +247,7 @@
             <response code="400">Produto não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosController.CadastrarProdutos(FlySneakers.Borders.Models.Produto)">
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.CadastrarProdutos(FlySneakers.Borders.Models.Produtos)">
             <summary>
             Cadastrar produto
             </summary>
@@ -239,7 +255,23 @@
             <response code="400">Produto não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosController.AlterarDadosProduto(System.Int32,FlySneakers.Borders.Models.Produto)">
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.CadastrarProdutosDados(FlySneakers.Borders.Models.ProdutoSku)">
+            <summary>
+            Cadastrar produto dados
+            </summary>
+            <response code="200">Produto cadatrado</response>
+            <response code="400">Produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.AlterarInformacoesProduto(System.Int32,FlySneakers.Borders.Models.Produtos)">
+            <summary>
+            Alterar produto a partir do ID informado
+            </summary>
+            <response code="200">Produto alterado</response>
+            <response code="400">Produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.AlterarInformacoesProdutoDados(System.Int32,FlySneakers.Borders.Models.ProdutoSku)">
             <summary>
             Alterar produto a partir do ID informado
             </summary>

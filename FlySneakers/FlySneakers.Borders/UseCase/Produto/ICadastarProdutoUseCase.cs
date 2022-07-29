@@ -4,6 +4,6 @@ namespace FlySneakers.Borders.UseCase
 {
     public interface ICadastarProdutoUseCase
     {
-        int Execute(Comentario comentario);
+        int Execute(Produtos produto);
     }
 }
