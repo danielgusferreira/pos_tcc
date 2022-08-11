@@ -21,9 +21,12 @@
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Produto</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Informações adicionais</a>
-            </li>
+            @if (Model?.Produto?.Codigo != 0)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Informações adicionais</a>
+                </li>
+            }
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -43,7 +46,7 @@
                                 </div>
                             }
                         }
-                        <form method="post" action="@Url.Action("Index", "Categoria")">
+                        <form method="post" action="@Url.Action("Create", "Produto")">
                             <input type="hidden" id="custId" name="codigo" value="@Model?.Produto?.Codigo">
                             <div class="form-outline mb-4">
                                 <input type="text" id="form3Example3" class="form-control form-control-lg"
@@ -66,23 +69,23 @@
                                        placeholder="Link foto 4" name="nome" value='@Model?.Produto?.LinkFoto4' />
                             </div>
                             <div class="form-outline mb-4">
-                                    <span>Marca: </span>
-                                    <select name="codigoProdutoDados" class="form-select" aria-label="Default select example" value='@Model?.Produto?.CodigoMarca'>
-                                        @foreach (var item in Model?.Marcas)
-                                        {
-                                            <option value="@item.Codigo">  @item.Nome</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <span>Categoria: </span>
-                                    <select name="codigoProdutoDados" class="form-select" aria-label="Default select example" value='@Model?.Produto?.CodigoCategoria'>
-                                        @foreach (var item in Model?.Categorias)
-                                        {
-                                            <option value="@item.Codigo">  @item.Nome</option>
-                                        }
-                                    </select>
-                                </div>
+                                <span>Marca: </span>
+                                <select name="codigoProdutoDados" class="form-select" aria-label="Default select example" value='@Model?.Produto?.CodigoMarca'>
+                                    @foreach (var item in Model?.Marcas)
+                                    {
+                                        <option value="@item.Codigo">  @item.Nome</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <span>Categoria: </span>
+                                <select name="codigoProdutoDados" class="form-select" aria-label="Default select example" value='@Model?.Produto?.CodigoCategoria'>
+                                    @foreach (var item in Model?.Categorias)
+                                    {
+                                        <option value="@item.Codigo">  @item.Nome</option>
+                                    }
+                                </select>
+                            </div>
                             <div class="form-outline mb-4">
                                 <textarea id="form3Example3" class="form-control form-control-lg"
                                           placeholder="Descrição" name="descricao" value='@Model?.Produto?.Descricao'>@Model?.Produto?.Descricao</textarea>
@@ -122,8 +125,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                Teste 2
+                @if (Model?.Produto?.Codigo != 0)
+                {
+                    @await Component.InvokeAsync("Dados", new { codigoProduto = Model?.Produto?.Codigo })
+                }
             </div>
         </div>
     </div>

@@ -181,22 +181,12 @@
             <response code="400">Meio de pagamento não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.PedidoController.ObterPedido(System.Int32,System.Int32)">
+        <member name="M:FlySneakers.Api.Controllers.PedidoController.ObterGraficos">
             <summary>
-            Obter pedido a partir do ID informado
+            Obter dados de pedidos para gerar graficos.
             </summary>
-            <remarks>Ao informar os IDs 1 e 2 será retornado o pedido</remarks>
-            <response code="200">Pedido retornado</response>
-            <response code="400">Pedido não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.PedidoController.ObterPedidos(System.Int32)">
-            <summary>
-            Obter pedidos a partir do ID do usuario
-            </summary>
-            <remarks>Ao informar os IDs 1 e 2 será retornado os pedidos do usuário</remarks>
-            <response code="200">Pedido retornado</response>
-            <response code="400">Pedido não encontrado</response>
+            <response code="200">graficos retornado</response>
+            <response code="400">graficos não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
         <member name="M:FlySneakers.Api.Controllers.PedidoController.CadastrarPedido(FlySneakers.Borders.Dto.CadastrarPedidoDto)">
@@ -204,14 +194,6 @@
             Cadastrar pedido
             </summary>
             <response code="200">Pedido criado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.PedidoController.AlterarPedido(System.Int32,System.Int32)">
-            <summary>
-            Alterar dados pedido
-            </summary>
-            <response code="200">Pedido alterado</response>
-            <response code="400">Pedido não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
         <member name="M:FlySneakers.Api.Controllers.ProdutosController.ObterProdutosCriacao">
@@ -285,6 +267,14 @@
             </summary>
             <response code="200">Produto removido</response>
             <response code="400">Produto não encontrado</response>
+            <response code="500">Erro inesperado</response>
+        </member>
+        <member name="M:FlySneakers.Api.Controllers.ProdutosController.RemoverProdutoDados(System.Int32)">
+            <summary>
+            Remover marca
+            </summary>
+            <response code="200">Marca removida</response>
+            <response code="400">Marca não encontrada</response>
             <response code="500">Erro inesperado</response>
         </member>
         <member name="M:FlySneakers.Api.Controllers.ProdutosDadosController.ObterInformacoesProdutos">

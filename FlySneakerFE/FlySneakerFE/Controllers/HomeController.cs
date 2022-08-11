@@ -1,4 +1,5 @@
 ﻿using FlySneakerFE.Models;
+using FlySneakerFE.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -83,6 +84,82 @@ namespace FlySneakerFE.Controllers
                 return View();
             }
 
+        }
+
+        public async Task<JsonResult> GraficoVendasAnual()
+        {
+            using (var httpClient = new HttpClient(httpClientHandler))
+            {
+                var url = "https://localhost:5001/api/pedido/graficos";
+
+                using (var response = await httpClient.GetAsync(url))
+                {
+                    var resultApi = await response.Content.ReadAsStringAsync();
+
+                    var dados = JsonConvert.DeserializeObject<GraficoDto>(resultApi);
+
+                    var listaPopulacao = PopulacaoService.GetPopulacaoPorEstado(dados.ListaGraficoVendasAnual);
+
+                    return Json(listaPopulacao);
+                }
+            }
+        }
+
+        public async Task<JsonResult> GraficoVendasPorMarca()
+        {
+            using (var httpClient = new HttpClient(httpClientHandler))
+            {
+                var url = "https://localhost:5001/api/pedido/graficos";
+
+                using (var response = await httpClient.GetAsync(url))
+                {
+                    var resultApi = await response.Content.ReadAsStringAsync();
+
+                    var dados = JsonConvert.DeserializeObject<GraficoDto>(resultApi);
+
+                    var listaPopulacao = PopulacaoService.GetPopulacaoPorEstado(dados.ListaGraficoVendasPorMarca);
+
+                    return Json(listaPopulacao);
+                }
+            }
+        }
+
+        public async Task<JsonResult> GraficoVendasPorCategoria()
+        {
+            using (var httpClient = new HttpClient(httpClientHandler))
+            {
+                var url = "https://localhost:5001/api/pedido/graficos";
+
+                using (var response = await httpClient.GetAsync(url))
+                {
+                    var resultApi = await response.Content.ReadAsStringAsync();
+
+                    var dados = JsonConvert.DeserializeObject<GraficoDto>(resultApi);
+
+                    var listaPopulacao = PopulacaoService.GetPopulacaoPorEstado(dados.ListaGraficoVendasPorCategoria);
+
+                    return Json(listaPopulacao);
+                }
+            }
+        }
+
+        public async Task<JsonResult> GraficoQuantidadeVendasPorMes()
+        {
+            using (var httpClient = new HttpClient(httpClientHandler))
+            {
+               var url = "https://localhost:5001/api/pedido/graficos";
+
+                using (var response = await httpClient.GetAsync(url))
+                {
+                    var resultApi = await response.Content.ReadAsStringAsync();
+
+                    var dados = JsonConvert.DeserializeObject<GraficoDto>(resultApi);
+
+                    var listaPopulacao = PopulacaoService.GetPopulacaoPorEstado(dados.ListaGraficoQuantidadeVendasPorMes);
+
+                    return Json(listaPopulacao);
+                }
+            }
         }
     }
 }

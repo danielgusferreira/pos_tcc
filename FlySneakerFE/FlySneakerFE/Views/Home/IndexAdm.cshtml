@@ -19,7 +19,193 @@
     }
 }
 
-<div class="container">
-    <br />
-    <h4>DashBoard</h4>
-</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div id="chart_div1" style="width: 900px; height: 500px;"></div>
+<div id="chart_div2" style="width: 900px; height: 500px;"></div>
+<div id="chart_div3" style="width: 900px; height: 500px;"></div>
+<div id="chart_div4" style="width: 900px; height: 500px;"></div>
+
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(CarregaDadosGraficoVendasAnual);
+    google.charts.setOnLoadCallback(CarregaDadosGraficoVendasPorMarca);
+    google.charts.setOnLoadCallback(CarregaDadosGraficoVendasPorCategoria);
+    google.charts.setOnLoadCallback(CarregaDadosGraficoQuantidadePedidos);
+
+    function CarregaDadosGraficoVendasAnual() {
+        $.ajax({
+            url: '@Url.Action("GraficoVendasAnual", "Home")',
+            dataType: "json",
+            type: "GET",
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function(data) {
+                GraficoVendasAnual(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function CarregaDadosGraficoVendasPorMarca() {
+        $.ajax({
+            url: '@Url.Action("GraficoVendasPorMarca", "Home")',
+            dataType: "json",
+            type: "GET",
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function(data) {
+                GraficoVendasPorMarca(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function CarregaDadosGraficoVendasPorCategoria() {
+        $.ajax({
+            url: '@Url.Action("GraficoVendasPorCategoria", "Home")',
+            dataType: "json",
+            type: "GET",
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function(data) {
+                GraficoVendasPorCategoria(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function CarregaDadosGraficoQuantidadePedidos() {
+        $.ajax({
+            url: '@Url.Action("GraficoQuantidadeVendasPorMes", "Home")',
+            dataType: "json",
+            type: "GET",
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function(data) {
+                GraficoQuantidadePedidos(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function GraficoQuantidadePedidos(data) {
+        var dataArray = [
+            ['Cidade', '2022']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.cidade, item.populacao2010]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: 'Vendas - Quantidade mensal de vendas',
+            chartArea: {
+                width: '50%'
+            },
+            colors: ['#b0120a', '#ffab91'],
+            hAxis: {
+                title: 'Quantidade',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Meses'
+            }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div4'));
+        chart.draw(data, options);
+        return false;
+    }
+
+    function GraficoVendasPorMarca(data) {
+        var dataArray = [
+            ['Cidade', '2022']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.cidade, item.populacao2010]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: 'Vendas - Quantidade de vendas por marca',
+            chartArea: {
+                width: '50%'
+            },
+            colors: ['#b0120a', '#ffab91'],
+            hAxis: {
+                title: 'Quantidade',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Meses'
+            }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+        return false;
+    }
+
+    function GraficoVendasPorCategoria(data) {
+        var dataArray = [
+            ['Cidade', '2022']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.cidade, item.populacao2010]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: 'Vendas - Quantidade de vendas por categoria',
+            chartArea: {
+                width: '50%'
+            },
+            colors: ['#b0120a', '#ffab91'],
+            hAxis: {
+                title: 'Quantidade',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Meses'
+            }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div3'));
+        chart.draw(data, options);
+        return false;
+    }
+
+    function GraficoVendasAnual(data) {
+        var dataArray = [
+            ['Cidade', '2022']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.cidade, item.populacao2010]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: 'Vendas - Valor mensal de vendas',
+            chartArea: {
+                width: '50%'
+            },
+            colors: ['#b0120a', '#ffab91'],
+            hAxis: {
+                title: 'Valor',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Meses'
+            }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
+        chart.draw(data, options);
+        return false;
+    }
+</script>

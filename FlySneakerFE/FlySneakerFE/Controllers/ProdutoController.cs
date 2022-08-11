@@ -80,56 +80,76 @@ namespace FlySneakerFE.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(int codigo, string nome, string descricao)
+        public async Task<IActionResult> Create(int codigo, string nome, string descricao, string linkFoto1, string linkFoto2, string linkFoto3, string linkFoto4, int codigoCategoria, int codigoMarca)
         {
             try
             {
-
                 if (codigo != 0)
                 {
-                    var dados = new Marcas { Codigo = codigo, Nome = nome, Descricao = descricao };
+                    var dados = new Produto
+                    {
+                        Codigo = codigo,
+                        Nome = nome,
+                        Descricao = descricao,
+                        LinkFoto1 = linkFoto1,
+                        LinkFoto2 = linkFoto2,
+                        LinkFoto3 = linkFoto3,
+                        LinkFoto4 = linkFoto4,
+                        CodigoCategoria = codigoCategoria,
+                        CodigoMarca = codigoMarca
+                    };
 
                     var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/marca/" + codigo, httpContent))
+                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/produtos/" + codigo, httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
                             if (resultApi == "1")
                             {
-                                mensagem = "Marca alterada com sucesso!";
+                                mensagem = "Produto alterado com sucesso!";
                             }
                         }
                     }
                 }
                 else
                 {
-                    var dados = new Marcas { Nome = nome, Descricao = descricao };
+                    var dados = new Produto
+                    {
+                        Nome = nome,
+                        Descricao = descricao,
+                        LinkFoto1 = linkFoto1,
+                        LinkFoto2 = linkFoto2,
+                        LinkFoto3 = linkFoto3,
+                        LinkFoto4 = linkFoto4,
+                        CodigoCategoria = codigoCategoria,
+                        CodigoMarca = codigoMarca
+                    };
 
                     var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/marca", httpContent))
+                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/produtos/", httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
                             if (resultApi == "1")
                             {
-                                mensagem = "Marca cadastrada com sucesso!";
+                                mensagem = "Produto cadastrado com sucesso!";
                             }
                         }
                     }
                 }
 
-                return RedirectToAction("Index", "Marca", new { mensagem = mensagem });
+                return RedirectToAction("Create", "Produto", new { mensagem = mensagem });
             }
             catch
             {
-                var erro = "Erro ao cadastrar marca, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao cadastrar produto, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return RedirectToAction("Create", "Produto", new { erro = erro });
             }
         }
 
@@ -169,13 +189,13 @@ namespace FlySneakerFE.Controllers
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/marca/" + codigo))
+                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/produtos/" + codigo))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
                         if (resultApi == "1")
                         {
-                            mensagem = "Marca removida com sucesso!";
+                            mensagem = "Produto removido com sucesso!";
                         }
                     }
                 }
@@ -184,8 +204,8 @@ namespace FlySneakerFE.Controllers
             }
             catch
             {
-                var erro = "Erro ao remover marca, verifique a existencia de algum produto vinculado a marca!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao remover produto, verifique a existencia de algum dados de estoque vinculado ao produto!";
+                return RedirectToAction("Create", "Produto", new { erro = erro });
             }
         }
 

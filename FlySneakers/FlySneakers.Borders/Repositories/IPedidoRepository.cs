@@ -7,5 +7,6 @@ namespace FlySneakers.Borders.Repositories
         UsuarioLogadoDto ObterDadosConcluirPedido(CadastrarCarrinhoDto login);
         UsuarioLogadoDto ObterPedidos(CadastrarCarrinhoDto login);
         int CadastrarPedido(CadastrarPedidoDto pedido);
+        GraficoDto ObterGraficosPedidos();
     }
 }
