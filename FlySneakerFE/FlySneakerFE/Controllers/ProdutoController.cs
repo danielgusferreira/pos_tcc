@@ -1,5 +1,4 @@
 ﻿using FlySneakerFE.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -333,6 +332,104 @@ namespace FlySneakerFE.Controllers
             {
                 ViewBag.ErroLogin = "Erro ao realizar cadastro, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
                 return View();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateDados(int codigoProduto, int codigo, string mensagem, string erro, string desc = "")
+        {
+            if (Request.Cookies["PerfilUsuarioLogado"] != "1" && Request.Cookies["PerfilUsuarioLogado"] != "2")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.PerfilUsuario = Request.Cookies["PerfilUsuarioLogado"];
+            ViewBag.Mensagem = mensagem;
+            ViewBag.Erro = erro;
+
+            using (var httpClient = new HttpClient(httpClientHandler))
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/produtos/criacao-dados/" + codigoProduto))
+                {
+                    var resultApi = await response.Content.ReadAsStringAsync();
+
+                    produtosCreateDto.ProdutoDadosList = JsonConvert.DeserializeObject<IEnumerable<ProdutoDados>>(resultApi);
+                }
+            }
+
+            if (codigo != 0)
+            {
+                produtosCreateDto.ProdutoDados.Codigo = codigo;
+                produtosCreateDto.ProdutoDados.ProdutoCodigo = codigoProduto;
+                produtosCreateDto.ProdutoDados.Estoque = produtosCreateDto.ProdutoDadosList.FirstOrDefault(x => x.Codigo == codigo).Estoque;
+                produtosCreateDto.ProdutoDados.Tamanho = produtosCreateDto.ProdutoDadosList.FirstOrDefault(x => x.Codigo == codigo).Tamanho;
+                produtosCreateDto.ProdutoDados.Valor = produtosCreateDto.ProdutoDadosList.FirstOrDefault(x => x.Codigo == codigo).Valor;
+            }
+
+            return View(produtosCreateDto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateDados()
+        {
+            var a = "batata";
+            return View();
+        }
+
+        public async Task<IActionResult> EditarDados(int codigoProduto, int codigo)
+        {
+            try
+            {
+                IEnumerable<ProdutoDados> retorno;
+                using (var httpClient = new HttpClient(httpClientHandler))
+                {
+                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/produtos/criacao-dados/" + codigoProduto))
+                    {
+                        var resultApi = await response.Content.ReadAsStringAsync();
+
+                        retorno = JsonConvert.DeserializeObject<IEnumerable<ProdutoDados>>(resultApi);
+                    }
+                }
+
+                var result = retorno.FirstOrDefault(x => x.Codigo == codigo);
+
+                produtosCreateDto.ProdutoDados = new ProdutoDados();
+                produtosCreateDto.Codigo = result.Codigo;
+                produtosCreateDto.CodigoProduto = result.ProdutoCodigo;
+
+                return RedirectToAction("CreateDados", "Produto", produtosCreateDto);
+            }
+            catch (Exception ex)
+            {
+                var erro = "Erro ao alterar marca, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return RedirectToAction("Index", "Marca", new { erro = erro });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ExcluirDados(int codigo)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient(httpClientHandler))
+                {
+                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/produtos/" + codigo))
+                    {
+                        var resultApi = await response.Content.ReadAsStringAsync();
+
+                        if (resultApi == "1")
+                        {
+                            mensagem = "Dados do produto removidos com sucesso!";
+                        }
+                    }
+                }
+
+                return RedirectToAction("Index", "Marca", new { mensagem = mensagem });
+            }
+            catch
+            {
+                var erro = "Erro ao remover produto, verifique a existencia de algum dados de estoque vinculado ao produto!";
+                return RedirectToAction("Create", "Produto", new { erro = erro });
             }
         }
     }

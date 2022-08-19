@@ -2,6 +2,9 @@
     @model FlySneakerFE.Models.ProdutosCreateDto
 }
 
+<br/>
+<br />
+<br />
 <div class="row d-flex justify-content-center align-items-center h-100">
     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         @{
@@ -18,9 +21,9 @@
                 </div>
             }
         }
-        <form method="post" action="@Url.Action("Create", "Produto")">
+        <form method="post" action="@Url.Action("CreateDados", "Produto")">
             <input type="hidden" id="custId" name="codigo" value="@Model?.ProdutoDados?.Codigo">
-            <label>Código Produto:</label>
+            <input type="hidden" id="custId" name="codigo" value="@Model?.ProdutoDados?.ProdutoCodigo">
             <input type="text" disabled id="form3Example3" class="form-control form-control-lg"
                    placeholder="CodigoProduto" name="nome" value='@Model?.ProdutoDados?.Tamanho' />
             <div class="form-outline mb-4">
@@ -42,8 +45,9 @@
             <thead>
                 <tr>
                     <th class="th-sm">Código</th>
-                    <th class="th-sm">Nome</th>
-                    <th class="th-sm">Descrição</th>
+                    <th class="th-sm">Tamanho</th>
+                    <th class="th-sm">Valor</th>
+                    <th class="th-sm">Estoque</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,15 +55,14 @@
                 {
                     <tr>
                         <td>@item.Codigo</td>
-                        <td>@item.CodigoProduto</td>
                         <td>@item.Tamanho</td>
                         <td>@item.Valor</td>
                         <td>@item.Estoque</td>
                         <td>
-                            @Html.ActionLink("EditarDados", "EditarDados", "Produto", new { codigo = item.Codigo })
+                            @Html.ActionLink("Editar", "EditarDados", "Produto", new { codigoProduto = item.ProdutoCodigo, codigo = item.Codigo })
                         </td>
                         <td>
-                            @Html.ActionLink("ExcluirDados", "ExcluirDados", "Produto", new { codigo = item.Codigo })
+                            @Html.ActionLink("Excluir", "ExcluirDados", "Produto", new { codigoProduto = item.ProdutoCodigo, codigo = item.Codigo })
                         </td>
                     </tr>
                 }

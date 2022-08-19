@@ -12,7 +12,7 @@ namespace FlySneakerFE.ViewComponents
     public class CreateDadosViewComponent : ViewComponent
     {
         HttpClientHandler httpClientHandler = new HttpClientHandler();
-        private MarcasDto marca = new MarcasDto { Marcas = null };
+        private ProdutosCreateDto produtosCreateDto = new ProdutosCreateDto { ProdutoDadosList = new List<ProdutoDados> { }, ProdutoList = new List<Produto> { }, Produto = new Produto { }, ProdutoDados = new ProdutoDados { } };
 
         public CreateDadosViewComponent()
         {
@@ -27,22 +27,28 @@ namespace FlySneakerFE.ViewComponents
 
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/marca"))
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/produtos/criacao-dados/" + codigoProduto))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
-                    marca.Marcas = JsonConvert.DeserializeObject<IEnumerable<Marcas>>(resultApi);
+                    produtosCreateDto.ProdutoDadosList = JsonConvert.DeserializeObject<IEnumerable<ProdutoDados>>(resultApi);
                 }
             }
 
             if (codigo != 0)
             {
-                marca.Codigo = codigo;
-                marca.Nome = marca.Marcas.FirstOrDefault(x => x.Codigo == codigo).Nome;
-                marca.Descricao = marca.Marcas.FirstOrDefault(x => x.Codigo == codigo).Descricao;
+                produtosCreateDto.Produto.Codigo = codigo;
+                produtosCreateDto.Produto.Nome = produtosCreateDto.ProdutoList.FirstOrDefault(x => x.Codigo == codigo).Nome;
+                produtosCreateDto.Produto.Descricao = produtosCreateDto.ProdutoList.FirstOrDefault(x => x.Codigo == codigo).Descricao;
+                produtosCreateDto.Produto.CodigoCategoria = produtosCreateDto.ProdutoList.FirstOrDefault(x => x.Codigo == codigo).CodigoCategoria;
+                produtosCreateDto.Produto.CodigoMarca = produtosCreateDto.ProdutoList.FirstOrDefault(x => x.Codigo == codigo).CodigoMarca;
+                produtosCreateDto.Produto.LinkFoto1 = produtosCreateDto.ProdutoList.FirstOrDefault(x => x.Codigo == codigo).LinkFoto1;
+                produtosCreateDto.Produto.LinkFoto2 = produtosCreateDto.ProdutoList.FirstOrDefault(x => x.Codigo == codigo).LinkFoto2;
+                produtosCreateDto.Produto.LinkFoto3 = produtosCreateDto.ProdutoList.FirstOrDefault(x => x.Codigo == codigo).LinkFoto3;
+                produtosCreateDto.Produto.LinkFoto4 = produtosCreateDto.ProdutoList.FirstOrDefault(x => x.Codigo == codigo).LinkFoto4;
             }
 
-            return View(marca);
+            return View(produtosCreateDto);
         }
     }
 }

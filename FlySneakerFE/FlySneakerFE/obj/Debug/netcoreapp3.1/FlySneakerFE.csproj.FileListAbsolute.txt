@@ -54,4 +54,5 @@ C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Produto\Create.cshtml.g.cs
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Menu\Index.cshtml.g.cs
 C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutFunc.cshtml.g.cs
-C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Dados\CreateDados.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Dados\Default.cshtml.g.cs
+C:\Users\danie\OneDrive\Área de Trabalho\pos_tcc\FlySneakerFE\FlySneakerFE\obj\Debug\netcoreapp3.1\Razor\Views\Produto\CreateDados.cshtml.g.cs

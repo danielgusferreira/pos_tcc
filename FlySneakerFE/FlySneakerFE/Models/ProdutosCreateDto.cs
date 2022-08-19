@@ -4,6 +4,7 @@ namespace FlySneakerFE.Models
 {
     public class ProdutosCreateDto : BaseModel
     {
+        public int CodigoProduto { get; set; }
         public Produto Produto { get; set; }
         public IEnumerable<Produto> ProdutoList { get; set; }
         public ProdutoDados ProdutoDados { get; set; }

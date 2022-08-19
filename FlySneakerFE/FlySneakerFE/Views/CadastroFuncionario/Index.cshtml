@@ -16,6 +16,7 @@
 
 <div class="container-fluid h-custom">
     <br />
+    <h4>Funcionários</h4>
     <br />
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
@@ -33,77 +34,82 @@
                     </div>
                 }
             }
-        <form method="post" action="@Url.Action("Index", "CadastroFuncionario")">
-            <input type="hidden" id="custId" name="codigo" value="@Model?.Codigo">
-            <div class="form-outline mb-4">
-                <input type="text" id="form3Example3" class="form-control form-control-lg"
-                       placeholder="Nome" name="nome" value='@Model?.Nome' />
-            </div>
-            <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control form-control-lg"
-                       placeholder="Email" name="email" value='@Model?.Email' />
-            </div>
-            <div class="form-outline mb-3">
-                <input type="password" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Senha" name="senha" value='@Model?.Senha'/>
-            </div>
-            <div class="form-outline mb-3">
-                <input type="password" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Confirmar Senha" name="confirmarSenha" />
-            </div>
-            <div class="form-outline mb-4">
-                <input type="number" id="form3Example3" class="form-control form-control-lg"
-                       placeholder="CPF" name="cpf"  value='@Model?.Cpf' />
-            </div>
-            <div class="form-outline mb-4">
-                <input type="date" id="form3Example3" class="form-control form-control-lg"
-                       placeholder="Data Nascimento" name="dataNascimento" value='@Model?.DataNascimento' />
-            </div>
-            <div class="form-outline mb-3">
-                <input type="tel" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Telefone" name="telefone" value='@Model?.Telefone' />
-            </div>
-            <div class="form-outline mb-3">
-                <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="CEP" name="cep" value='@Model?.Cep' />
-            </div>
-            <div class="form-outline mb-3">
-                <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Endereço" name="endereco" value='@Model?.Endereco' />
-            </div>
-            <div class="form-outline mb-3">
-                <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Número" name="numero" value='@Model?.Numero' />
-            </div>
-            <div class="form-outline mb-3">
-                <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Complemento" name="complemento" value='@Model?.Complemento' />
-            </div>
-            <div class="form-outline mb-3">
-                <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Bairro" name="bairro" value='@Model?.Bairro' />
-            </div>
-            <div class="form-outline mb-3">
-                <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="Cidade" name="cidade" value='@Model?.Cidade' />
-            </div>
-            <div class="form-outline mb-3">
-                <input type="text" id="form3Example4" class="form-control form-control-lg"
-                       placeholder="UF" name="uf" value='@Model?.Uf' />
-            </div>
-            <div class="form-outline mb-3">
-                <select name="codigoTipoUsuario" class="form-select" aria-label="Default select example" value='@Model?.Tipo'>
-                    <option value="1"> Administrador</option>
-                    <option value="2"> Funcionário</option>
-                </select>
-            </div>
-            <div class="text-center text-lg-start mt-4 pt-2">
-                <button type="submit" class="btn btn-outline-dark flex-shrink-0 text-center"
-                        style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                    Cadastrar
-                </button>
-            </div>
-        </form>
+            <form method="post" action="@Url.Action("Index", "CadastroFuncionario")">
+                <input type="hidden" id="custId" name="codigo" value="@Model?.Codigo">
+                <div class="form-outline mb-4">
+                    <input type="text" id="form3Example3" class="form-control form-control-lg"
+                           placeholder="Nome" name="nome" value='@Model?.Nome' />
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="email" id="form3Example3" class="form-control form-control-lg"
+                           placeholder="Email" name="email" value='@Model?.Email' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="password" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="Senha" name="senha" value='@Model?.Senha' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="password" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="Confirmar Senha" name="confirmarSenha" />
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="number" id="form3Example3" class="form-control form-control-lg"
+                           placeholder="CPF" name="cpf" value='@Model?.Cpf' />
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="date" id="form3Example3" class="form-control form-control-lg"
+                           placeholder="Data Nascimento" name="dataNascimento" value='@Model?.DataNascimento' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="tel" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="Telefone" name="telefone" value='@Model?.Telefone' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="CEP" name="cep" value='@Model?.Cep' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="Endereço" name="endereco" value='@Model?.Endereco' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="Número" name="numero" value='@Model?.Numero' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="Complemento" name="complemento" value='@Model?.Complemento' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="Bairro" name="bairro" value='@Model?.Bairro' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="Cidade" name="cidade" value='@Model?.Cidade' />
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" id="form3Example4" class="form-control form-control-lg"
+                           placeholder="UF" name="uf" value='@Model?.Uf' />
+                </div>
+                <div class="form-outline mb-3">
+                    <select name="codigoTipoUsuario" class="form-select" aria-label="Default select example" value='@Model?.Tipo'>
+                        <option value="1"> Administrador</option>
+                        <option value="2"> Funcionário</option>
+                    </select>
+                </div>
+                <div class="text-center text-lg-start mt-4 pt-2">
+                    <button type="submit" class="btn btn-outline-dark flex-shrink-0 text-center"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                        Cadastrar
+                    </button>
+                    <br />
+                    <br />
+                </div>
+            </form>
+        </div>
+        <br />
+        <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <thead>
                     <tr>
@@ -116,18 +122,18 @@
                 <tbody>
                     @foreach (var item in Model.UsuariosDtos)
                     {
-                    <tr>
-                        <td>@item.Codigo</td>
-                        <td>@item.Nome</td>
-                        <td>@item.Email</td>
-                        <td>@item.Cpf</td>
-                        <td>
-                            @Html.ActionLink("Editar", "Editar", "CadastroFuncionario", new { codigo = item.Codigo })
-                        </td>
-                        <td>
-                            @Html.ActionLink("Excluir", "Excluir", "CadastroFuncionario", new { codigo = item.Codigo })
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@item.Codigo</td>
+                            <td>@item.Nome</td>
+                            <td>@item.Email</td>
+                            <td>@item.Cpf</td>
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", "CadastroFuncionario", new { codigo = item.Codigo })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Excluir", "Excluir", "CadastroFuncionario", new { codigo = item.Codigo })
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>

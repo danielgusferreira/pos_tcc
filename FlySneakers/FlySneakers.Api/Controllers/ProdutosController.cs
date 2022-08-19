@@ -74,8 +74,8 @@ namespace FlySneakers.Api.Controllers
         /// <response code="200">Produtos retornados</response>
         /// <response code="400">Produtos não encontrado</response>
         /// <response code="500">Erro inesperado</response>
-        [HttpGet("criacao-dados")]
-        public ActionResult<IEnumerable<ProdutoSku>> ObterProdutosDadosCriacao([FromQuery] int codigoProduto)
+        [HttpGet("criacao-dados/{codigoProduto}")]
+        public ActionResult<IEnumerable<ProdutoSku>> ObterProdutosDadosCriacao(int codigoProduto)
         {
             var result = obterProdutoDadosCriacaoUseCase.Execute(codigoProduto);
 
