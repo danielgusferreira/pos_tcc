@@ -176,8 +176,8 @@ namespace FlySneakerFE.Controllers
             }
             catch (Exception ex)
             {
-                var erro = "Erro ao alterar marca, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao alterar produto, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return RedirectToAction("Create", "Produto", new { erro = erro });
             }
         }
 
@@ -199,7 +199,7 @@ namespace FlySneakerFE.Controllers
                     }
                 }
 
-                return RedirectToAction("Index", "Marca", new { mensagem = mensagem });
+                return RedirectToAction("Create", "Produto", new { mensagem = mensagem });
             }
             catch
             {
@@ -246,7 +246,7 @@ namespace FlySneakerFE.Controllers
                     }
                 }
 
-                return View(produtosCreateDto);
+                return View(produtoDetalhes);
             }
             catch
             {
@@ -344,6 +344,7 @@ namespace FlySneakerFE.Controllers
             }
 
             ViewBag.PerfilUsuario = Request.Cookies["PerfilUsuarioLogado"];
+            produtosCreateDto.ProdutoDados.ProdutoCodigo = codigoProduto;
             ViewBag.Mensagem = mensagem;
             ViewBag.Erro = erro;
 
@@ -370,10 +371,70 @@ namespace FlySneakerFE.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDados()
+        public async Task<IActionResult> CreateDados(int codigo, int codigoProduto, string tamanho, decimal valor, int estoque)
         {
-            var a = "batata";
-            return View();
+            try
+            {
+                if (codigo != 0)
+                {
+                    var dados = new ProdutoDados
+                    {
+                        Codigo = codigo,
+                        ProdutoCodigo = codigoProduto,
+                        Tamanho = tamanho,
+                        Valor = valor,
+                        Estoque = estoque,
+                    };
+
+                    var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
+
+                    using (var httpClient = new HttpClient(httpClientHandler))
+                    {
+                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/produtos/" + codigo + "/dados", httpContent))
+                        {
+                            var resultApi = await response.Content.ReadAsStringAsync();
+
+                            if (resultApi == "1")
+                            {
+                                mensagem = "Dados produto alterado com sucesso!";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var dados = new ProdutoDados
+                    {
+                        Codigo = codigo,
+                        ProdutoCodigo = codigoProduto,
+                        Tamanho = tamanho,
+                        Valor = valor,
+                        Estoque = estoque,
+                    };
+
+                    var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
+
+                    using (var httpClient = new HttpClient(httpClientHandler))
+                    {
+                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/produtos/dados", httpContent))
+                        {
+                            var resultApi = await response.Content.ReadAsStringAsync();
+
+                            if (resultApi == "1")
+                            {
+                                mensagem = "Dados produto cadastrado com sucesso!";
+                            }
+                        }
+                    }
+                }
+
+                return RedirectToAction("CreateDados", "Produto", new { codigoProduto = codigoProduto, mensagem = mensagem });
+            }
+            catch
+            {
+                var erro = "Erro ao cadastrar produto, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return RedirectToAction("CreateDados", "Produto", new { erro = erro });
+            }
         }
 
         public async Task<IActionResult> EditarDados(int codigoProduto, int codigo)
@@ -401,19 +462,19 @@ namespace FlySneakerFE.Controllers
             }
             catch (Exception ex)
             {
-                var erro = "Erro ao alterar marca, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
-                return RedirectToAction("Index", "Marca", new { erro = erro });
+                var erro = "Erro ao alterar dados produto, caso o erro persista tente mais tarde ou entre em contato com o suporte!";
+                return RedirectToAction("CreateDados", "Produto", new { erro = erro });
             }
         }
 
         [HttpGet]
-        public async Task<IActionResult> ExcluirDados(int codigo)
+        public async Task<IActionResult> ExcluirDados(int codigo, int codigoProduto)
         {
             try
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/produtos/" + codigo))
+                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/produtos/" + codigo + "/dados"))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -424,7 +485,7 @@ namespace FlySneakerFE.Controllers
                     }
                 }
 
-                return RedirectToAction("Index", "Marca", new { mensagem = mensagem });
+                return RedirectToAction("CreateDados", "Produto", new { codigoProduto = codigoProduto, mensagem = mensagem });
             }
             catch
             {

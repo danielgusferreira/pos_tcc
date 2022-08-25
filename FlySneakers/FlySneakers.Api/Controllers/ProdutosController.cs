@@ -171,7 +171,7 @@ namespace FlySneakers.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
             return Ok(result);
-        } 
+        }
 
         /// <summary>
         /// Alterar produto a partir do ID informado

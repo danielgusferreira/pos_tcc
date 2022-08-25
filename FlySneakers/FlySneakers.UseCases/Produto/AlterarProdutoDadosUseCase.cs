@@ -20,13 +20,13 @@ namespace FlySneakers.UseCases
             try
             {
                 result = produtoRepository.AtualizarProdutoDados(produtoSku);
+
+                return result;
             }
             catch (Exception e)
             {
                 throw e;
             }
-
-            return result;
         }
     }
 }

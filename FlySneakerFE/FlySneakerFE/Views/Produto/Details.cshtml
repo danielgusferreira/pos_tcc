@@ -62,7 +62,7 @@
     </div>
 </form>
 
-@if (!Model.HabilitarComentario)
+@if (Model.HabilitarComentario == true)
 {
     <form method="post" action="@Url.Action("Comentario", "Produto")">
         <input type="hidden" id="custId" name="codigo" value="@Model?.Codigo">
@@ -88,7 +88,7 @@
             </button>
         </div>
     </form>
-}
+} 
 
 <div class="row">
     <div class="col-md-12">

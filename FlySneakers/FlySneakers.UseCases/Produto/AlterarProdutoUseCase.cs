@@ -23,6 +23,7 @@ namespace FlySneakers.UseCases
             }
             catch (Exception e)
             {
+                var a = e;
                 throw e;
             }
 

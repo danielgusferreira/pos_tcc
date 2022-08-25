@@ -178,7 +178,7 @@ namespace FlySneakers.Repositories.Repositories
             {
 
                 string sql = @"INSERT INTO produto(nome, descricao, data_criacao, codigo_categoria, codigo_marca, foto1, foto2, foto3, foto4) 
-	                            VALUES(@nome, @descricao, @data_criacao, @codigo_categoria, @codigo_produto, @foto1, @foto2, @foto3, @foto4);";
+	                            VALUES(@nome, @descricao, @data_criacao, @codigo_categoria, @codigo_marca, @foto1, @foto2, @foto3, @foto4);";
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("nome", produto.Nome, DbType.String);
@@ -208,7 +208,7 @@ namespace FlySneakers.Repositories.Repositories
                 parameters.Add("codigo_produto", produto.ProdutoCodigo, DbType.Int32);
                 parameters.Add("tamanho", produto.Tamanho, DbType.String);
                 parameters.Add("valor", produto.Valor, DbType.Decimal);
-                parameters.Add("data_criacao", produto.DataCriacao, DbType.DateTime);
+                parameters.Add("data_criacao", DateTime.Now, DbType.DateTime);
                 parameters.Add("estoque", produto.Estoque, DbType.Int32);
 
                 var result = connection.Execute(sql, parameters);
@@ -228,10 +228,10 @@ namespace FlySneakers.Repositories.Repositories
 	                                valor = @valor,
 	                                estoque	 = @estoque
                                 WHERE
-	                                codigo_produto = @codigoProduto;";
+	                                codigo = @codigo;";
 
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("codigoProduto", produto.Codigo, DbType.Int32);
+                parameters.Add("codigo", produto.Codigo, DbType.Int32);
                 parameters.Add("tamanho", produto.Tamanho, DbType.String);
                 parameters.Add("valor", produto.Valor, DbType.Decimal);
                 parameters.Add("estoque", produto.Estoque, DbType.Int32);
@@ -264,12 +264,12 @@ namespace FlySneakers.Repositories.Repositories
                 parameters.Add("codigo", produto.Codigo, DbType.Int32);
                 parameters.Add("nome", produto.Nome, DbType.String);
                 parameters.Add("descricao", produto.Descricao, DbType.String);
-                parameters.Add("codigo_categoria", produto.Descricao, DbType.Int32);
-                parameters.Add("codigo_marca", produto.Descricao, DbType.Int32);
-                parameters.Add("foto1", produto.Descricao, DbType.String);
-                parameters.Add("foto2", produto.Descricao, DbType.String);
-                parameters.Add("foto3", produto.Descricao, DbType.String);
-                parameters.Add("foto4", produto.Descricao, DbType.String);
+                parameters.Add("codigo_categoria", produto.CodigoCategoria, DbType.Int32);
+                parameters.Add("codigo_marca", produto.CodigoMarca, DbType.Int32);
+                parameters.Add("foto1", produto.LinkFoto1, DbType.String);
+                parameters.Add("foto2", produto.LinkFoto2, DbType.String);
+                parameters.Add("foto3", produto.LinkFoto3, DbType.String);
+                parameters.Add("foto4", produto.LinkFoto4, DbType.String);
 
                 var result = connection.Execute(sql, parameters);
 
