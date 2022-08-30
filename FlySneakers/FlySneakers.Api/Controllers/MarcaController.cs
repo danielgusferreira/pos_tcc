@@ -40,27 +40,6 @@ namespace FlySneakers.Api.Controllers
             return Ok(ListaMarcas);
         }
 
-        #region
-        /// <summary>
-        /// Obter a marca a partir do ID informado
-        /// </summary>
-        /// <remarks>Ao informar os IDs 1 e 2 será retornado a marca</remarks>
-        /// <response code="200">Marca retornada</response>
-        /// <response code="400">Marca não encontrada</response>
-        /// <response code="500">Erro inesperado</response>
-        //[HttpGet("{idMarca}")]
-        //public ActionResult<Marca> ObterMarca(int idMarca)
-        //{
-        //    return idMarca switch
-        //    {
-        //        1 => Ok(new Marca { Codigo = 1, Nome = "Nike", Descricao = "Marca roupas Nike" }),
-        //        2 => Ok(new Marca { Codigo = 2, Nome = "Adidas", Descricao = "Marca roupas Adidas" }),
-        //        _ => NotFound(),
-        //    };
-        //}
-
-        #endregion
-
         /// <summary>
         /// Cadastrar marca
         /// </summary>

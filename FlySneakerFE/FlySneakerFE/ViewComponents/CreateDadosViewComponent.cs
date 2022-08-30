@@ -27,7 +27,7 @@ namespace FlySneakerFE.ViewComponents
 
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/produtos/criacao-dados/" + codigoProduto))
+                using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/criacao-dados/" + codigoProduto))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 

@@ -48,7 +48,7 @@ namespace FlySneakerFE.Controllers
 
                 var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("https://localhost:5001/api/usuario/obter", httpContent))
+                using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario/obter", httpContent))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -108,7 +108,7 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/usuario/" + codigo, httpContent))
+                        using (var response = await httpClient.PutAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario/" + codigo, httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -185,7 +185,7 @@ namespace FlySneakerFE.Controllers
 
                     var httpContent = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
 
-                    using (var response = await httpClient.PostAsync("https://localhost:5001/api/usuario/obter", httpContent))
+                    using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario/obter", httpContent))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -212,7 +212,7 @@ namespace FlySneakerFE.Controllers
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/usuario/" + codigo))
+                    using (var response = await httpClient.DeleteAsync("https://flysneakersbeapi.azurewebsites.net/api/usuario/" + codigo))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 

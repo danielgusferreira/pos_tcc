@@ -40,21 +40,21 @@ namespace FlySneakerFE.Controllers
 
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/produtos/criacao"))
+                using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/criacao"))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
                     produtosCreateDto.ProdutoList = JsonConvert.DeserializeObject<IEnumerable<Produto>>(resultApi);
                 }
 
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/marca"))
+                using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/marca"))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
                     produtosCreateDto.Marcas = JsonConvert.DeserializeObject<IEnumerable<Marcas>>(resultApi);
                 }
 
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/categoria"))
+                using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/categoria"))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -102,7 +102,7 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/produtos/" + codigo, httpContent))
+                        using (var response = await httpClient.PutAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/" + codigo, httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -131,7 +131,7 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/produtos/", httpContent))
+                        using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/", httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -159,7 +159,7 @@ namespace FlySneakerFE.Controllers
                 IEnumerable<Produto> retorno;
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/produtos/criacao"))
+                    using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/criacao"))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -188,7 +188,7 @@ namespace FlySneakerFE.Controllers
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/produtos/" + codigo))
+                    using (var response = await httpClient.DeleteAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/" + codigo))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -226,7 +226,7 @@ namespace FlySneakerFE.Controllers
                         produtoDetalhes = JsonConvert.DeserializeObject<ProdutoDetalhesDto>(resultApi);
                     }
 
-                    string urlComentario = "https://localhost:5001/api/comentario/" + codigo;
+                    string urlComentario = "https://flysneakersbeapi.azurewebsites.net/api/comentario/" + codigo;
 
                     using (var response = await httpClient.GetAsync(urlComentario))
                     {
@@ -316,7 +316,7 @@ namespace FlySneakerFE.Controllers
 
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.PostAsync("https://localhost:5001/api/comentario/", httpContent))
+                    using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/comentario/", httpContent))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -350,7 +350,7 @@ namespace FlySneakerFE.Controllers
 
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/produtos/criacao-dados/" + codigoProduto))
+                using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/criacao-dados/" + codigoProduto))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -390,7 +390,7 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/produtos/" + codigo + "/dados", httpContent))
+                        using (var response = await httpClient.PutAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/" + codigo + "/dados", httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -416,7 +416,7 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/produtos/dados", httpContent))
+                        using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/dados", httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -444,7 +444,7 @@ namespace FlySneakerFE.Controllers
                 IEnumerable<ProdutoDados> retorno;
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/produtos/criacao-dados/" + codigoProduto))
+                    using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/criacao-dados/" + codigoProduto))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -474,7 +474,7 @@ namespace FlySneakerFE.Controllers
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/produtos/" + codigo + "/dados"))
+                    using (var response = await httpClient.DeleteAsync("https://flysneakersbeapi.azurewebsites.net/api/produtos/" + codigo + "/dados"))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 

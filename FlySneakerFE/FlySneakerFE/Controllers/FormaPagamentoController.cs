@@ -44,7 +44,7 @@ namespace FlySneakerFE.Controllers
 
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/meio-pagamento"))
+                using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/meio-pagamento"))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -76,7 +76,7 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/meio-pagamento/" + codigo, httpContent))
+                        using (var response = await httpClient.PutAsync("https://flysneakersbeapi.azurewebsites.net/api/meio-pagamento/" + codigo, httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -95,7 +95,7 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/meio-pagamento", httpContent))
+                        using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/meio-pagamento", httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -123,7 +123,7 @@ namespace FlySneakerFE.Controllers
                 IEnumerable<MeioPagamento> retorno;
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/meio-pagamento"))
+                    using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/meio-pagamento"))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -151,7 +151,7 @@ namespace FlySneakerFE.Controllers
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/meio-pagamento/" + codigo))
+                    using (var response = await httpClient.DeleteAsync("https://flysneakersbeapi.azurewebsites.net/api/meio-pagamento/" + codigo))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 

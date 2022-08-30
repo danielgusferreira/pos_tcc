@@ -19,6 +19,20 @@
     <h4>Funcionários</h4>
     <br />
     <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
+            <div class="col-md-6 col-lg-6 col-xl-12 offset-xl-1">
+                <div class="form-outline mb-4">
+                    <input type="text" id="form3Example3" class="form-control form-control-lg"
+                           placeholder="Nome" name="nome" value='@Model?.Nome' />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-12 offset-xl-1">
+                <div class="form-outline mb-4">
+                    <input type="email" id="form3Example3" class="form-control form-control-lg"
+                           placeholder="Email" name="email" value='@Model?.Email' />
+                </div>
+            </div>
+        </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             @{
                 if (ViewBag.Mensagem != null)
@@ -36,14 +50,14 @@
             }
             <form method="post" action="@Url.Action("Index", "CadastroFuncionario")">
                 <input type="hidden" id="custId" name="codigo" value="@Model?.Codigo">
-                <div class="form-outline mb-4">
+                @*<div class="form-outline mb-4">
                     <input type="text" id="form3Example3" class="form-control form-control-lg"
                            placeholder="Nome" name="nome" value='@Model?.Nome' />
                 </div>
                 <div class="form-outline mb-4">
                     <input type="email" id="form3Example3" class="form-control form-control-lg"
                            placeholder="Email" name="email" value='@Model?.Email' />
-                </div>
+                </div>*@
                 <div class="form-outline mb-3">
                     <input type="password" id="form3Example4" class="form-control form-control-lg"
                            placeholder="Senha" name="senha" value='@Model?.Senha' />

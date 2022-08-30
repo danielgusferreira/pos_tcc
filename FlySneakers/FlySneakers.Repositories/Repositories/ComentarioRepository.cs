@@ -66,7 +66,7 @@ namespace FlySneakers.Repositories.Repositories
                                 INNER JOIN produto pr ON
                                     pr.codigo = pd.codigo_produto
 
-                                INNER JOIN comentario co ON
+                                LEFT JOIN comentario co ON
                                     co.codigo_usuario = c.usuario_codigo AND
                                     co.codigo_produto = pr.codigo
                             WHERE

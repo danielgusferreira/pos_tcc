@@ -40,26 +40,6 @@ namespace FlySneakers.Api.Controllers
             return Ok(listaCategoria);
         }
 
-        #region
-        /// <summary>
-        /// Obter meio de pagamento a partir do ID informado
-        /// </summary>
-        /// <remarks>Ao informar os IDs 1 e 2 será retornado o meio de pagamento</remarks>
-        /// <response code="200">Meio de pagamento retornado</response>
-        /// <response code="400">Meio de pagamento não encontrado</response>
-        /// <response code="500">Erro inesperado</response>
-        [HttpGet("{idMeioPagamento}")]
-        public ActionResult<MeioPagamento> ObterMeioPagamento(int idMeioPagamento)
-        {
-            return idMeioPagamento switch
-            {
-                1 => Ok(new MeioPagamento { Codigo = 1, Nome = "Boleto", Descricao = "Opção de pagamento via Boleto" }),
-                2 => Ok(new MeioPagamento { Codigo = 2, Nome = "Pix", Descricao = "Opção de pgamento via Pix" }),
-                _ => NotFound(),
-            };
-        }
-        #endregion
-
         /// <summary>
         /// Cadastrar meio de pagamento
         /// </summary>

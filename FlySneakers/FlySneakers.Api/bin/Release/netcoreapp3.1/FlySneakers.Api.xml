@@ -149,15 +149,6 @@
             <response code="400">Meios de pagamentos não cadastrados</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.MeiosPagamentoController.ObterMeioPagamento(System.Int32)">
-            <summary>
-            Obter meio de pagamento a partir do ID informado
-            </summary>
-            <remarks>Ao informar os IDs 1 e 2 será retornado o meio de pagamento</remarks>
-            <response code="200">Meio de pagamento retornado</response>
-            <response code="400">Meio de pagamento não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
         <member name="M:FlySneakers.Api.Controllers.MeiosPagamentoController.CadastrarMeioPagamento(FlySneakers.Borders.Models.MeioPagamento)">
             <summary>
             Cadastrar meio de pagamento
@@ -277,71 +268,6 @@
             <response code="400">Marca não encontrada</response>
             <response code="500">Erro inesperado</response>
         </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosDadosController.ObterInformacoesProdutos">
-            <summary>
-            Obter todas as informações dos produtos
-            </summary>
-            <response code="200">Produtos retornados</response>
-            <response code="400">Produtos não encontrados</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosDadosController.ObterInformacoesProduto(System.Int32)">
-            <summary>
-            Obter todas as informações do produto a partir do ID informado
-            </summary>
-            <remarks>Ao informar os IDs 1 e 2 será retornado todos os dados do produto</remarks>
-            <response code="200">Produto retornado</response>
-            <response code="400">Produto não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosDadosController.ObterProdutoSku">
-            <summary>
-            Obter dados dos produtos
-            </summary>
-            <response code="200">Dados produtos retornados</response>
-            <response code="400">Dados produtos não encontrados</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosDadosController.ObterProdutoSku(System.Int32)">
-            <summary>
-            Obter dados produto a partir do ID informado
-            </summary>
-            <remarks>Ao informar os IDs 1 e 2 será retornado o dados produto</remarks>
-            <response code="200">Dados produto retornado</response>
-            <response code="400">Dados produto não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosDadosController.CadastrarProdutoSku(FlySneakers.Borders.Models.ProdutoSku)">
-            <summary>
-            Cadastrar dados produto
-            </summary>
-            <response code="200">Produto cadastrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosDadosController.AlterarDadosProdutoSku(System.Int32,FlySneakers.Borders.Models.ProdutoSku)">
-            <summary>
-            Alterar dados produto a partir do ID informado
-            </summary>
-            <response code="200">Dados produto alterado</response>
-            <response code="400">Dados produto não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosDadosController.AlterarEstoque(System.Int32,FlySneakers.Borders.Dto.EstoqueDto)">
-            <summary>
-            Alterar estoque produto a partir do ID informado
-            </summary>
-            <response code="200">Estoque alterado</response>
-            <response code="400">Dados produto não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.ProdutosDadosController.RemoverProdutoSku(System.Int32)">
-            <summary>
-            Remover dados produto a partir do ID informado
-            </summary>
-            <response code="200">Dados produto removido</response>
-            <response code="400">Dados produto não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
         <member name="M:FlySneakers.Api.Controllers.UsuarioController.ObterUsuarios(FlySneakers.Borders.Dto.ObterUsuariosDto)">
             <summary>
             Obter usuarios
@@ -401,37 +327,6 @@
             </summary>
             <response code="200">Usuario removido</response>
             <response code="400">Usuario não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioPerfilController.ObterUsuarioPerfis">
-            <summary>
-            Obter perfis usuarios
-            </summary>
-            <response code="200">Perfil usuario retornados</response>
-            <response code="400">Perfil usuario não encontrados</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioPerfilController.CadastrarUsuarioPerfil(FlySneakers.Borders.Models.UsuarioPerfil)">
-            <summary>
-            Cadastrar perfil usuario
-            </summary>
-            <response code="200">Perfil usuario cadastrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioPerfilController.AlterarUsuarioPerfil(System.Int32,FlySneakers.Borders.Models.UsuarioPerfil)">
-            <summary>
-            Alterar perfil usuario a partir do ID informado
-            </summary>
-            <response code="200">Perfil usuario alterado</response>
-            <response code="400">Perfil usuario não encontrado</response>
-            <response code="500">Erro inesperado</response>
-        </member>
-        <member name="M:FlySneakers.Api.Controllers.UsuarioPerfilController.RemoverUsuarioPerfil(System.Int32)">
-            <summary>
-            Remover perfil usuario a partir do ID informado
-            </summary>
-            <response code="200">Perfil usuario removido</response>
-            <response code="400">Perfil usuario não encontrado</response>
             <response code="500">Erro inesperado</response>
         </member>
     </members>

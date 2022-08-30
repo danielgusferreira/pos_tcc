@@ -45,26 +45,6 @@ namespace FlySneakers.Api.Controllers
             return Ok(listaCategoria);
         }
 
-        #region
-        ///// <summary>
-        ///// Obter a categoria informada pelo ID
-        ///// </summary>
-        ///// <remarks>Ao informar os IDs 1 e 2 será retornado a categoria</remarks>
-        ///// <response code="200">Categoria retornada</response>
-        ///// <response code="400">Categoria não encontrada</response>
-        ///// <response code="500">Erro inesperado</response>
-        //[HttpGet("{idCategoria}")]
-        //public ActionResult<Categoria> ObterCategoria(int idCategoria)
-        //{
-        //    return idCategoria switch
-        //    {
-        //        1 => Ok(new Categoria { Codigo = 1, Nome = "Tênis", Descricao = "Categoria responsavel por listas os tênis disponiveis no site." }),
-        //        2 => Ok(new Categoria { Codigo = 2, Nome = "Feminino", Descricao = "Categoria responsavel por listas itens femininos." }),
-        //        _ => NotFound(),
-        //    };
-        //}
-        #endregion
-
         /// <summary>
         /// Criar nova categoria
         /// </summary>

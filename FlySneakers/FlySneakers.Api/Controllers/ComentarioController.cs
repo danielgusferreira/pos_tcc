@@ -109,6 +109,5 @@ namespace FlySneakers.Api.Controllers
 
             return Ok(result);
         }
-
     }
 }

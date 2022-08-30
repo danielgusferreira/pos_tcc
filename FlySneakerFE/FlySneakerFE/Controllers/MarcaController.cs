@@ -44,7 +44,7 @@ namespace FlySneakerFE.Controllers
 
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/marca"))
+                using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/marca"))
                 {
                     var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -76,7 +76,7 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PutAsync("https://localhost:5001/api/marca/" + codigo, httpContent))
+                        using (var response = await httpClient.PutAsync("https://flysneakersbeapi.azurewebsites.net/api/marca/" + codigo, httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -95,7 +95,7 @@ namespace FlySneakerFE.Controllers
 
                     using (var httpClient = new HttpClient(httpClientHandler))
                     {
-                        using (var response = await httpClient.PostAsync("https://localhost:5001/api/marca", httpContent))
+                        using (var response = await httpClient.PostAsync("https://flysneakersbeapi.azurewebsites.net/api/marca", httpContent))
                         {
                             var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -123,7 +123,7 @@ namespace FlySneakerFE.Controllers
                 IEnumerable<Marcas> retorno;
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/marca"))
+                    using (var response = await httpClient.GetAsync("https://flysneakersbeapi.azurewebsites.net/api/marca"))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 
@@ -151,7 +151,7 @@ namespace FlySneakerFE.Controllers
             {
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
-                    using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/marca/"+ codigo))
+                    using (var response = await httpClient.DeleteAsync("https://flysneakersbeapi.azurewebsites.net/api/marca/"+ codigo))
                     {
                         var resultApi = await response.Content.ReadAsStringAsync();
 

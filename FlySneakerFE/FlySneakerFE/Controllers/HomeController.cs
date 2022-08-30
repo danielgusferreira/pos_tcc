@@ -90,7 +90,7 @@ namespace FlySneakerFE.Controllers
         {
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                var url = "https://localhost:5001/api/pedido/graficos";
+                var url = "https://flysneakersbeapi.azurewebsites.net/api/pedido/graficos";
 
                 using (var response = await httpClient.GetAsync(url))
                 {
@@ -109,7 +109,7 @@ namespace FlySneakerFE.Controllers
         {
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                var url = "https://localhost:5001/api/pedido/graficos";
+                var url = "https://flysneakersbeapi.azurewebsites.net/api/pedido/graficos";
 
                 using (var response = await httpClient.GetAsync(url))
                 {
@@ -128,7 +128,7 @@ namespace FlySneakerFE.Controllers
         {
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-                var url = "https://localhost:5001/api/pedido/graficos";
+                var url = "https://flysneakersbeapi.azurewebsites.net/api/pedido/graficos";
 
                 using (var response = await httpClient.GetAsync(url))
                 {
@@ -147,7 +147,7 @@ namespace FlySneakerFE.Controllers
         {
             using (var httpClient = new HttpClient(httpClientHandler))
             {
-               var url = "https://localhost:5001/api/pedido/graficos";
+               var url = "https://flysneakersbeapi.azurewebsites.net/api/pedido/graficos";
 
                 using (var response = await httpClient.GetAsync(url))
                 {

@@ -80,7 +80,7 @@ namespace FlySneakers.Repositories.Repositories
             }
         }
 
-        public IEnumerable<ProdutoPagInicialDto> ObterProdutosPagInicial(int codigoCategoria, int codigoProduto)
+        public IEnumerable<ProdutoPagInicialDto> ObterProdutosPagInicial(int codigoCategoria, int codigoMarca)
         {
             using (var connection = new SqlConnection(Connection))
             {
@@ -90,15 +90,15 @@ namespace FlySneakers.Repositories.Repositories
 	                            p.foto1 as foto,
 	                            (SELECT MIN(pd.valor) FROM produto_dados pd WHERE pd.codigo_produto = p.codigo) as valor,
 	                            p.codigo_categoria as CodigoCategoria,
-	                            p.codigo_produto as CodigoProduto
+	                            p.codigo_marca as CodigoMarca
                             FROM
 	                            produto p
 
 	                            INNER JOIN produto_categoria c ON
 		                            c.codigo = p.codigo_categoria
 
-	                            INNER JOIN produto_produto m ON
-		                            m.codigo = p.codigo_produto ";
+	                            INNER JOIN marca_produto m ON
+		                            m.codigo = p.codigo_marca ";
 
                 DynamicParameters parameters = new DynamicParameters();
 
@@ -109,11 +109,11 @@ namespace FlySneakers.Repositories.Repositories
                     parameters.Add("codigoCategoria", codigoCategoria, DbType.Int32);
                 }
 
-                if (codigoProduto != 0)
+                if (codigoMarca != 0)
                 {
-                    sql += "WHERE m.codigo = @codigoProduto";
+                    sql += "WHERE m.codigo = @codigoMarca";
 
-                    parameters.Add("codigoProduto", codigoProduto, DbType.Int32);
+                    parameters.Add("codigoMarca", codigoMarca, DbType.Int32);
                 }
 
                 var result = connection.Query<ProdutoPagInicialDto>(sql, parameters);
